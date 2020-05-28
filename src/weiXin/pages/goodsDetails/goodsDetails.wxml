@@ -1,0 +1,546 @@
+<!--goods-details.wxml-->
+<import src="../../html-view/index.wxml" />
+  <!--tab切换-->
+  <view class='tab-fixed' wx:if="{{has_top}}">
+    <view class="tab-h">
+      <block wx:for='{{tabH}}' wx:key="{{index}}">
+        <view id="tab{{index}}" data-index="{{index}}" class="tab-item {{index == status ? 'navbar_item_on' : ''}} {{select == item.id?'navbar_item_on':''}}" bindtap="navTabClick">
+          <view class="navbar_title">{{item.name}}</view>
+        </view>
+      </block>
+      <view class="tab-item">
+        <view class='shar-icon'>
+          <button open-type='share' plain="true">
+            <image src='../../weixinImg/fx_icon@2x.png' mode='aspectFit'></image>
+          </button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='goods-fiexd-bar' wx:if="{{!ssss}}">
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;">
+
+    
+    <view class='sq' wx:if="{{goods_storage==0}}">已售罄</view>
+      <form bindsubmit="formSubmit" report-submit="true" class="new_form">
+        <view class='fiexd-bar-con'>
+          <view class='g-handle'>
+            <view class='service-inlet inlet'>
+              <button class='nobtn' open-type='contact' plain="true">
+                <image src='../../weixinImg/kf_icon@2x.png' mode='aspectFit'></image>
+                <text>客服</text>
+              </button>
+            </view>
+            <view class='store-inlet inlet' bindtap='goIndex'>
+              <image src='../../weixinImg/fhsy_icon@2x.png' mode='aspectFit'></image>
+              <text>首页</text>
+            </view>
+            <view class='cart-inlet inlet' bindtap='goShoppingCar' wx:if="{{mossage.tuan_flag==1?false:true}}">
+              <view class='cartNum' hidden="{{cart_count==0}}">{{cart_count}}</view>
+              <image src='../../weixinImg/fhgwc_icon@2x.png' mode='aspectFit'></image>
+              <text>购物车</text>
+            </view>
+            <button class='cart-inlet inlet' open-type='share' wx:if="{{mossage.tuan_flag==1}}">
+              <image src='../../weixinImg/fx_icon@2x.png' mode='aspectFit'></image>
+              <text>分享</text>
+            </button>
+          </view>
+          <view class='cart' wx:if="{{mossage.tuan_flag==1?false:true}}">
+            <view wx:if="{{goods_storage!=0 && arrive_notice==0}}" class='add-cart' bindtap='bindPlus' hidden="{{carts_num>0}}">
+              加入购物车
+            </view>
+            <view wx:if="{{goods_storage!=0 && arrive_notice==0}}" class='buy_now' bindtap='buyNow' hidden="{{carts_num>0}}">
+              立即购买
+            </view>
+            <button wx:if="{{goods_storage==0 && arrive_notice==0}}" formType="submit" class="add-cart_1" hidden="{{carts_num>0}}" bindtap='tabAlarm'>
+              到货提醒
+            </button>
+            <button wx:if="{{goods_storage==0 &&  arrive_notice==1}}" class="add-cart_2" hidden="{{carts_num>0}}">
+              已订阅
+            </button>
+            <view class='add-cart-num-change' wx:if="{{carts_num>0}}">
+              <!-- 减号 -->
+              <text class="normal" bindtap="bindMinus">-</text>
+              <!-- 数值 -->
+              <input type="number" bindchange="bindManual" value="{{carts_num}}" />
+              <!-- 加号 -->
+              <text class="normal" bindtap="bindPlus">+</text>
+            </view>
+          </view>
+          <view class='cart' wx:if="{{mossage.tuan_flag==1}}">
+            <view class='tuan_now' bindtap='buyNow'>
+              <text>¥{{mossage.tuan_info.goods_price}}</text>
+              <text class="tuan1">原价购买</text>
+            </view>
+            <view class='tuan_start' data-is_pintuan="1" bindtap="buyNow">
+              <text>¥{{mossage.tuan_info.pintuan_price}}</text>
+              <text class="tuan3">我要开团</text>
+            </view>
+          </view>
+        </view>
+      </form>
+      </div>
+    </view>
+
+  <!--商品图轮播-->
+  <scroll-view class='fixed-y' scroll-y="true" scroll-into-view="tab{{status}}" bindscroll="bindscroll">
+    <view id="tab0">
+      <view class='goods-details'>
+        <swiper circular="true" indicator-dots="{{indicatorDots}}" bindchange='currentC' indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}">
+          <block wx:for="{{imgUrls}}" wx:key="unique">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" mode="scaleToFill" bindtap='previewImage' data-item='{{item}}' />
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class="currC" wx:if="{{imgUrls.length>=1}}">
+          {{crrC}}/{{imgUrls.length}}
+        </view>
+      </view>
+
+      <view class='rank_title_row' wx:if="{{is_xianshi}}">
+        <view class='rank_num_row'>¥{{goods_price}}</view>
+        <view class='rank_top_row'>
+          限时秒杀
+        </view>
+        <view style='flex:1'></view>
+        <image src='../../weixinImg/ms2_icon@2x.png' class='rank_img'></image>
+        <view class='rank_top_t1'>距结束还剩</view>
+        <view class='xs_time_row'>
+          <view class='time_1'>{{time[0]}}</view>
+          <view class='time_2'>:</view>
+          <view class='time_1'>{{time[1]}}</view>
+          <view class='time_2'>:</view>
+          <view class='time_1'>{{time[2]}}</view>
+        </view>
+      </view>
+
+      <!--商品信息-->
+      <view class="goods-info">
+        <view class='row_1'>
+          <!-- <view class='col_1'> -->
+            <text class='goods-title'>{{goods_name}}</text>
+          <!-- </view>  -->
+          <button class="distribution" bindtap="shareUrl" wx:if="{{is_pyramid_goods=='1'}}">
+            <image src='/weixinImg/distributionCenter_icon@2x.png' />
+            <text>一键分销</text>
+          </button>
+          <view class='collect-goods'>
+            <view class="not-collect hide{{tabCollect?'':'show'}}" bindtap="onChangeCollect">
+              <view class='collect-icon'>
+                <image src='../../weixinImg/spscl_icon@2x.png' mode='aspectFit' />
+              </view>
+              <text>收藏</text>
+            </view>
+            <view class="already-collect hide{{tabCollect?'show':''}}" bindtap="onChangeCollect">
+              <view class='collect-icon'>
+                <image src='../../weixinImg/spscdj_icon@2x.png' mode='aspectFit' />
+              </view>
+              <text>已收藏</text>
+            </view>
+          </view>
+        </view>
+        <text class='goods-des'>{{goods_jingle}}</text>
+        <view class='current-price' wx:if="{{!is_xianshi}}">
+          <view>
+            <text class="num">￥{{goods_price}}</text>
+            <text class='num_before'>￥{{goods_marketprice}}</text>
+          </view>
+          <text class='num_sale'>销量：{{goods_salenum}}</text>
+        </view>
+        <view class='current-price' wx:if="{{is_xianshi}}">
+          <view>
+            <text class="num">￥{{xianshi_info.xianshi_price}}</text>
+            <text class="limit" wx:if="{{xianshi_info.xianshi_limit > 0}}">(限购:{{xianshi_info.xianshi_limit}}件)</text>
+            <text class='num_before'>￥{{xianshi_info.goods_price}}</text>
+            <text class='num_market_price'>市场价￥{{goods_marketprice}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class='mj_row' bindtap='show_ms' wx:if="{{mansong_info.length>0}}">
+        <view class='mj_icon' wx:if="{{mansong_info[0].discount!=0&&mansong_info[0].goods_id>0}}">满减满赠</view>
+        <view class='mj_icon_2' wx:if="{{mansong_info[0].discount!=0&&mansong_info[0].goods_id==0}}">满减</view>
+        <view class='mj_icon_2' wx:if="{{mansong_info[0].discount==0&&mansong_info[0].goods_id>0}}">满赠</view>
+        <view class='mj_content' wx:if="{{mansong_info[0].discount!=0&&mansong_info[0].goods_id==0}}">活动1：{{mansong_info[0].rule_range==0?'':'商品参加'}}满{{mansong_info[0].price}}减{{mansong_info[0].discount}}</view>
+        <view class='mj_content' wx:if="{{mansong_info[0].discount!=0&&mansong_info[0].goods_id>0}}">活动1：{{mansong_info[0].rule_range==0?'':'商品参加'}}满{{mansong_info[0].price}}元减{{mansong_info[0].discount}}，并且可获得礼包：{{mansong_info[0].mansong_goods_name}}，赠完为止</view>
+        <view class='mj_content' wx:if="{{mansong_info[0].discount==0&&mansong_info[0].goods_id>0}}">活动1：{{mansong_info[0].rule_range==0?'':'商品参加'}}满{{mansong_info[0].price}}元，即可获得礼包：{{mansong_info[0].mansong_goods_name}}，赠完为止</view>
+        <view style='flex:1' class='mj_con'></view>
+        <image src='../../weixinImg/mjzk_icon@2x.png' class='mj_img' mode='aspectFit'></image>
+      </view>
+
+      <!-- 送至 -->
+      <view class='addressBlock'>
+        <!-- <view class='address_b'>
+          <text class='to-w'>送至</text>
+          <nyz_area_picker class='nyz' provinces="{{provinces}}" citys="{{citys}}" areas="{{areas}}" multiArray="{{multiArray}}" value="{{value}}" defaultText="{{defaultText}}" deliverGoods="{{goods_id}}" bindDeliverGoods="changeDeliverGoods">
+            <view class='area_row'>
+              <view class="address_t1">请选择</view>
+              <view style='-webkit-flex:1'></view>
+              <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+            </view>
+          </nyz_area_picker>
+          <image src='../../weixinImg/more_icon@2x.png'></image>
+        </view> -->
+       <!-- 红包 -->
+        <view class='quality_b  quality_r' wx:if="{{red_t_list.length>0}}" data-type="h" bindtap='showModal'>
+          <view class="newRpick">
+              <image class="rimg" mode="widthFix" src="../../weixinImg/dphb_icon@2x.png"></image>
+              <text class='to-w-t'>平台红包，可与优惠券叠加</text>
+          </view>
+          <image src='../../weixinImg/more_icon@2x.png'></image>
+        </view>
+        <!-- 优惠券 -->
+        <view class='quality_b' wx:if="{{store_voucher_list.length>0}}" data-type="y" bindtap='showModal'>
+           <view class="newRpick">
+              <image class="vimg" mode="widthFix" src="../../weixinImg/lq_icon@2x.png"></image>
+              <view class="v_list" wx:key="uq4">
+                <text class='to-w' wx:if="{{store_voucher_list.length>=1}}">满{{store_voucher_list[0].voucher_t_limit}}减{{store_voucher_list[0].voucher_t_price}}元</text>
+                <text class='to-w' wx:if="{{store_voucher_list.length>=2}}">满{{store_voucher_list[1].voucher_t_limit}}减{{store_voucher_list[1].voucher_t_price}}元</text>
+                <!-- <text class='to-w' wx:if="{{store_voucher_list.length>=3}}">满{{store_voucher_list[2].voucher_t_limit}}减{{store_voucher_list[0].voucher_t_price}}元</text> -->
+              </view>
+          </view>
+          <image src='../../weixinImg/more_icon@2x.png'></image>
+        </view>
+         <view class='quality_b' wx:if="{{showSpec}}" data-type="g" bindtap="showModal">
+          <text class='to-w-s'>已选</text>
+          <view class="specfication">
+            <text class='choose-at'>{{spec_name}}</text>
+            <image src='../../weixinImg/more_icon@2x.png'></image>
+          </view>
+        </view>
+      </view>
+
+      <!-- 新增拼团 -->
+      <view class='collageBlock' wx:if="{{mossage.tuan_flag==1 && mossage.tuan_join>0}}">
+        <view class='quality_b'>
+          <text class='to-ws'>{{mossage.tuan_join}}人正在拼单，可直接参与</text>
+          <view class="goCollagelist" data-id="{{mossage.tuan_info.pintuan_goods_id}}" bindtap='showModal' data-type="col_details">
+            查看更多
+            <image src='../../weixinImg/more_icon@2x.png'></image>
+          </view>
+        </view>
+        <block wx:for="{{tuan_list}}" wx:key="">
+          <view class="Collage_item" wx:if="{{item.expires_time==0?false:true}}">
+            <view class="coll-user">
+              <image mode="widthFix" src="{{item.member_img}}"></image>
+              <text>{{item.captain_name}}</text>
+            </view>
+            <view class="coll-go">
+              <view class="coll-go-num">
+                <view class="coll1">还差
+                  <text>{{mossage.tuan_info.limit_user-item.user_count}}</text>人成团</view>
+                <text class="coll2">剩余{{item.time1}}</text>
+              </view>
+              <button class="coll-go-btn" bindtap='showModal' data-type="col" data-itm="{{item}}">去参团</button>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!--店铺信息-->
+      <view class='store-info-wrap' id="tab1">
+        <!--<view class='store-info' >
+          <view class='s-top'>
+            <view class='s-logo'>
+              <image src='../../weixinImg/dptb_icon@2x.png' mode='aspectFit'></image>
+            </view>
+            <view class='s-name'>
+              <text>{{store_info.store_name}}</text>
+            </view>
+            <view class='s-handle'>
+              <text class='collect-store' bindtap="collectStore">收藏店铺</text>
+              <text class='into-store' bindtap='goShopDetail'>进店逛逛</text>
+            </view>
+          </view>
+          <view class='s-rate'>
+            <view>
+              <text class='name'>描述相符</text>
+              <text class='point'>{{store_info.store_credit.store_desccredit.credit}}</text>
+            </view>
+            <view>
+              <text class='name'>服务态度</text>
+              <text class='point'>{{store_info.store_credit.store_servicecredit.credit}}</text>
+            </view>
+            <view>
+              <text class='name'>发货速度</text>
+              <text class='point'>{{store_info.store_credit.store_deliverycredit.credit}}</text>
+            </view>
+          </view>
+        </view>-->
+
+        <!-- 推荐商品 -->
+        <view class='recommand_goods' wx:if="{{goods_commend_list.length>0}}">
+          <view class='recom_goods' wx:for="{{goods_commend_list}}" wx:key="unique" data-item="{{item}}" bindtap="goGoodsDetails">
+            <image src='{{item.goods_image_url}}'></image>
+            <text class='re_name'>{{item.goods_name}}</text>
+            <view class='re_price'>￥{{item.goods_price}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 商品评价 -->
+      <view class='comment' id="tab2" wx:if="{{!isDisabled}}">
+        <view class='comment_title' bindtap='allEvaluate'>
+          <text class='t'>商品评价</text>
+          <view class='look'>
+            查看全部
+            <image src='../../weixinImg/ckqb_icon@2x.png'></image>
+          </view>
+        </view>
+        <view class='comment_con' wx:if="{{goods_eval_list.length>0}}">
+          <view class='con_one' wx:for="{{goods_eval_list}}" wx:key="unique">
+            <view class='con_title'>
+              <view class='con_title_left'>
+                <image src='{{item.member_avatar}}' class='user_img'></image>
+                <text class='user_name'>{{item.geval_frommembername}}</text>
+                <view class='user_star'>
+                  <block wx:for='{{item.geval_scores-0}}' wx:key='un'>
+                    <image src='../../weixinImg/star1_icon@2x.png'></image>
+                  </block>
+                  <block wx:for='{{5-item.geval_scores-0}}' wx:key="un">
+                    <image src='../../weixinImg/star2_icon@2x.png'></image>
+                  </block>
+                </view>
+              </view>
+              <text class='com_time'>{{item.geval_addtime_str}}</text>
+            </view>
+            <view class='con_con'>
+              {{item.geval_content}}
+              <view wx:if="{{item.geval_image.length>0}}" class='img_block'>
+                <view class='con_img' wx:for="{{item.geval_image}}" wx:for-item="item_child" wx:key="uni">
+                  <image src='{{item_child}}' bindtap='previewCommentImage' data-url='{{item_child}}' data-item="{{item}}"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='comment_con noCom' wx:else>
+          <image src='../../weixinImg/xtxx_w_img@2x.png' class='noImg'></image>
+          暂无评论
+        </view>
+      </view>
+    </view>
+
+    <!--详情-->
+    <view id="tab3">
+      <view class='details' wx:if="{{hasDetails}}">
+        <view class='details-con'>
+          <template is="html-view" data="{{data: mobile_body}}" />
+        </view>
+      </view>
+      <view class='details' wx:else>
+        <view class="details-con off_details">
+          —— 暂无详情 ——
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+    <!-- 规格弹窗 -->
+   <view class="commodity_screen" bindtap="hideModal" wx:if="{{specStatus}}"></view>
+   <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{specStatus}}">
+     <view class='screen_a'>
+       <view class='commo_title'>
+         <image src='{{current_spc_img_url}}'></image>
+         <view class='ct-con'>
+           <text class='c-price'>￥{{goods_price}}</text>
+           <text class='ct-c'>库存{{goods_storage}}件</text>
+           <text class='ct-c'>已选：{{spec_name}}</text>
+         </view>
+       </view>
+       <view class='choose_color'>
+         <block wx:for="{{spec_all}}" wx:key="unique">
+           <text class='c_txt'>{{item.spec_name}}</text>
+           <scroll-view  scroll-y>
+             <view class='row_flex'>
+                <block  wx:for="{{item.values}}" wx:for-item="item_child" wx:key="uniq">
+                  <view class='c_green' wx:if="{{current_spc_value_id == item_child.spec_value_id}}">
+                    {{item_child.spec_value_name}}
+                  </view>
+                  <view class="c_normal" bindtap="changeSpc" data-spec_name="{{item_child.spec_value_name}}" data-spec_id="{{item.spec_id}}" data-spec_value_id="{{item_child.spec_value_id}}" wx:if="{{current_spc_value_id != item_child.spec_value_id}}">
+                    {{item_child.spec_value_name}}
+                  </view>
+                </block>
+             </view>
+           </scroll-view>
+         </block>
+       </view>
+       <view class='quantity'>
+         <text class='c_txt'>数量</text>
+         <view class='addArea'>
+           <view class='minus' wx:if="{{carts_num>1}}" bindtap="bindMinus">
+             <image src='../../weixinImg/minus_icon@2x.png'></image>
+           </view>
+           <view class='minus' wx:if="{{carts_num <= 1}}">
+             <image src='../../weixinImg/minus_icon@2x.png'></image>
+           </view>
+           <input value='{{carts_num}}' bindchange="bindManual" class='inpus' maxlength='3'></input>
+           <view class='add' bindtap='bindPlus'>
+             <image src='../../weixinImg/plus_icon@2x.png'></image>
+           </view>
+         </view>
+       </view>
+       <button class='confirm' bindtap="hideModal">确定</button>
+     </view>
+   </view>
+
+  <!-- 优惠券列表弹框 -->
+  <view class="voucher_screen" bindtap="hideModal" wx:if="{{VoucherStatus}}"></view>
+  <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{VoucherStatus}}">
+    <view class='voucher_a'>
+      <text class="vouch_title">优惠券</text>
+      <image class='vouch_img' src='../../weixinImg/gb_icon@2x.png' catchtap="hideModal"></image>
+      <scroll-view class='vou_fixed' scroll-y>
+        <block wx:for="{{store_voucher_list}}" wx:key="uip">
+          <view class="vouch_list_img" catchtap="Receive_voucher" data-id="{{item.voucher_t_id}}" data-index="{{index}}">
+            <image src="../../weixinImg/dpyhq_img@2x.png"></image>
+            <view class="vouch_text">
+              <view class="mony">
+                ¥
+                <text class="mony_max">{{item.voucher_t_price}}</text> {{item.voucher_t_desc}}
+              </view>
+              <view class="time_vou">
+                <view style="height:40rpx;line-height:40rpx;">有效期：{{item.voucher_t_start_date+"-"+item.voucher_t_end_date}}</view>
+                <button class="{{item.vou_state==false?'btn_vou':'btn_vous'}}">
+                  {{item.vou_text}}
+                </button>
+              </view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 红包列表弹框 -->
+  <view class="voucher_screen" bindtap="hideModal" wx:if="{{RedStatus}}"></view>
+  <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{RedStatus}}">
+    <view class='voucher_a'>
+      <text class="vouch_title">红包</text>
+      <image class='vouch_img' src='../../weixinImg/gb_icon@2x.png' catchtap="hideModal"></image>
+      <scroll-view class='vou_fixed' scroll-y>
+        <block wx:for="{{red_t_list}}" wx:key="uip">
+          <view class="vouch_list_img" catchtap="Receive_redpick" data-id="{{item.rpacket_t_id}}" data-index="{{index}}">
+            <image src="../../weixinImg/dpyhq_img@2x.png"></image>
+            <view class="vouch_text">
+              <view class="mony">
+                ¥
+                <text class="mony_max">{{item.rpacket_t_price}}</text> 满{{item.rpacket_t_limit}}元可免费使用
+              </view>
+              <view class="time_vou">
+                <view>有效期：{{item.rpacket_t_start_date+"-"+item.rpacket_t_end_date}}</view>
+                <button class="{{item.vou_state==false?'btn_vou':'btn_vous'}}">
+                  {{item.vou_text}}
+                </button>
+              </view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 拼团弹框 -->
+  <view class="voucher_screen" wx:if="{{col_type}}"></view>
+  <view animation="{{animationData}}" class="collage_attr_box" wx:if="{{col_type}}">
+    <view class='collage_a'>
+      <image class="close" bindtap="hideModal" mode="widthFix" src="../../weixinImg/tc_icon@2x.png"></image>
+      <image class="abs" mode="widthFix" src="../../weixinImg/pgtc_bg@2x.png"></image>
+      <view class="collage_container">
+        <text class="con_c1">参加用户{{itm.captain_name}}的拼单</text>
+        <view class="con_c2">
+          仅剩
+          <text>{{mossage.tuan_info.limit_user-itm.user_count}}个</text> 名额，{{inTime}}后结束
+        </view>
+        <scroll-view scroll-x class="con_c3">
+          <block wx:for="{{user_list}}" wx:key="uq4">
+            <image mode="widthFix" src="{{item.member_avatar}}"></image>
+          </block>
+          <block wx:for="{{oldLisimg}}" wx:key="uq4">
+            <image mode="widthFix" src="../../weixinImg/txwk_icon@2x.png"></image>
+          </block>
+        </scroll-view>
+        <button class="con_btn" bindtap="buyNow" data-is_pintuan="1" data-tuanid="{{itm.tuan_id}}">
+          我要参团
+        </button>
+      </view>
+    </view>
+  </view>
+  <!-- 拼团详情弹框 -->
+  <view class="voucher_screen" wx:if="{{col_details}}"></view>
+  <view animation="{{animationData}}" class="collage_details_box" wx:if="{{col_details}}">
+    <view class='collage_details'>
+      <image class="close" bindtap="hideModal" mode="widthFix" src="../../weixinImg/tc_icon@2x.png"></image>
+      <view class="collage_details_container">
+        <text class="start">正在拼单</text>
+        <scroll-view scroll-y class="details_co3" bindscrolltolower="getmore">
+          <block wx:for="{{tuan_details_list}}" wx:key="uq4">
+            <view class="details_list">
+              <view class="miss">
+                <image mode="widthFix" src="{{item.member_img}}"></image>
+                <view class="list_text">
+                  <view class="list_user">
+                    <view class="user_1">用户{{item.captain_name}}</view>
+                    <view class="user_2">
+                      还差
+                      <text>{{mossage.tuan_info.limit_user-item.user_count}}人</text>
+                    </view>
+                  </view>
+                  <view class="list_time">剩余{{item.time1}}</view>
+                </view>
+              </view>
+              <button class="list_btn" bindtap="buyNow" data-is_pintuan="1" data-tuanid="{{item.tuan_id}}">
+                去参团
+              </button>
+            </view>
+          </block>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+
+<view class='black_layout' wx:if="{{show_ms}}" bindtap='hide_ms'></view>
+<view class='mj_bottom_layout' wx:if="{{show_ms}}">
+  <view class='mj_bottom_t1'>详细说明</view>
+  <block wx:for="{{mansong_info}}" wx:key="unique" data-item='{{item}}'>
+    <block wx:if="{{item.discount!=0&&item.goods_id==0}}">
+      <view class='mj_bottom_row'>
+        <view class='mj_icon_1'>满减</view>
+        <view class='mj_content_1'>{{item.rule_range==0?'':'商品参加'}}满{{item.price}}减{{item.discount}}</view>
+      </view>
+    </block>
+    <block wx:if="{{item.discount==0&&item.goods_id>0}}">
+      <view class='mj_bottom_row_no_line'>
+        <view class='mj_icon_1'>满赠</view>
+        <view class='mj_content_1'>{{item.rule_range==0?'':'商品参加'}}满{{item.price}}元，即可获得礼包：{{item.mansong_goods_name}}，赠完为止</view>
+      </view>
+    </block>
+    <block wx:if="{{item.discount!=0&&item.goods_id>0}}">
+      <view class='mj_bottom_row_no_line'>
+        <view class='mj_icon_3'>满赠满减</view>
+        <view class='mj_content_1'>{{item.rule_range==0?'':'商品参加'}}满{{item.price}}元减{{item.discount}}，并且可获得礼包：{{item.mansong_goods_name}}，赠完为止</view>
+      </view>
+      <!-- <view class='mj_bottom_row_zp' bindtap='goZp' data-item='{{item.goods_list}}'>
+          <block>
+            <image src='{{item.goods_image_url}}' class='mj_bottom_zp' mode='aspectFit'></image>
+          </block>
+          <view style='flex:1'> </view>
+          <view class='mj_bottom_t2'>共1类</view>
+          <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+        </view> -->
+    </block>
+  </block>
+  <view class='mj_bottom_btn' bindtap='hide_ms'>关闭</view>
+</view>
+<!-- <showdemo wx:if="{{Atatus!=1}}"></showdemo> -->
+
+<view class="share {{ visible ? 'show' : '' }}">
+  <canvas class="canvas-hide" canvas-id="share" style="width:{{canvasWidth*2}}rpx;height:{{canvasHeight*2}}rpx" />
+  <view class="content" style="transform:scale({{responsiveScale}});-webkit-transform:scale({{responsiveScale}});">
+    <image class="canvas" src="{{imageFile}}" style="width:{{canvasWidth/3*2}}rpx;height:{{canvasHeight/3*2}}rpx" />
+    <view class="footer" style="width:{{canvasWidth/3*2}}rpx">
+      <button class="save" open-type='share'>发送好友</button>
+      <view class="close" bindtap="handleSave">保存卡片</view>
+    </view>
+  </view>
+</view>

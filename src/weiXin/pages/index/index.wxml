@@ -1,0 +1,27 @@
+<import src="../../template/template.wxml" />
+<view class='white_bg'></view>
+<view scroll-y class='scroll'>
+  <view class='root'>
+    <!-- 搜索框 -->
+  <view class='search_layout' bindtap='goSearch'>
+    <view class='search_row'>
+      <icon type="search" size="14" class='icon_search'></icon>
+      <text class='search_txt'>零食</text>
+    </view>
+  </view>
+    <view class='head_row'>
+      <!-- 轮播图 -->
+      <swiper class='swiper_item' circular="true" indicator-dots="{{bannerImg.length>1}}" autoplay="{{Istrue}}" indicator-color='#fff' indicator-active-color='#2EB772' current="{{current}}">
+        <block wx:for="{{bannerImg}}" wx:key="q1">
+          <swiper-item class="swiper-item">
+            <image src="{{item.image}}" class="slide-image" mode='aspectFill' bindtap='GoSome' data-data='{{item.data}}' data-type="{{item.type}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <!-- <image bindtap='scanf' src='' class='img_scanf' mode='aspectFit' /> -->
+    </view>
+    <template is="main_template" data="{{indexList,xs_time,xs_more_time,xs_m_time}}" />
+  </view>
+</view>
+<!-- <showdemo wx:if="{{Atatus!=1}}"></showdemo> -->
+<pot_laayer data="{{layer_data}}"></pot_laayer>

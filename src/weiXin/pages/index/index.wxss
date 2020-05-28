@@ -1,0 +1,133 @@
+@import "../../template/template.wxss";
+page{overflow-y: initial;}
+.root {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img_scanf {
+  width: 50rpx;
+  padding-left: 15rpx;
+  height: 50rpx;
+}
+
+.white_bg {
+  width: 100vw;
+  height: 50vh;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
+  z-index: -1;
+}
+
+.scroll {
+  width: 100vw;
+  /* height: 100vh; */
+  overflow: hidden;
+}
+
+.head_row {
+  width: 100vw;
+  background: #fff;
+  /* padding-left: 30rpx; */
+  /* padding-right: 30rpx; */
+}
+
+.head-con {
+  width: 92%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+}
+
+.city-location {
+  display: flex;
+  flex-direction: row;
+  height: 90rpx;
+  align-items: center;
+}
+
+.city-location image {
+  width: 28rpx;
+  margin-right: 15rpx;
+  height: 28rpx;
+}
+
+.city-location text {
+  width: 100rpx;
+  font-size: 28rpx;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.search_layout {
+  width: 100vw;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  z-index: 999;
+  padding: 16rpx 24rpx 24rpx 24rpx;
+  box-sizing: border-box;
+  background: #2EB772;
+}
+
+.search_row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 64rpx;
+  background: #fff;
+  align-items: center;
+  border-radius: 30rpx;
+}
+
+.icon_search {
+  margin-left: 27rpx;
+}
+
+.search_txt {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #2EB77B;
+}
+
+.search-quick {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  box-sizing: border-box;
+  padding-left: 260rpx;
+  background: #fff;
+  padding-bottom: 15rpx;
+  align-items: center;
+  z-index: 99;
+}
+
+.search-quick text {
+  font-size: 22rpx;
+  margin-right: 40rpx;
+  color: #fff;
+}
+
+.index_line {
+  width: 100vw;
+  height: 20rpx;
+}
+.swiper_item {
+  width: 100vw;
+  height: 306rpx;
+  position: relative;
+  z-index: 99;
+}
+
+.slide-image {
+  width: 100%;
+  height: 306rpx;
+}
+@import '../../Component/showdemo/showdemo';

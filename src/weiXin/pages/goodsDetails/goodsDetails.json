@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "商品详情",
+  "usingComponents": {
+    "nyz_area_picker": "../../Component/nyz_area_picker/nyz_area_picker",
+    "showdemo": "../../Component/showdemo/showdemo"
+  }
+}

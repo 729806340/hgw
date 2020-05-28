@@ -1,0 +1,56 @@
+
+    <!-- 加载进度条 -->
+    <view class="loading_line">
+        <view class="line_loading" wx:if="{{load.progress.type}}"></view>
+        <!-- 加载动画 -->
+        <view class="loading_box" wx:if="{{load.loading1}}">
+            <view class="loading1"></view>
+        </view>
+
+        <!-- 没有更多数据 -->
+        <view class="no_more" wx:if="{{load.loading2.type}}">
+            <view class="loading_box">
+                <view class="loading3 loading3_1"></view>
+                <view class="loading3 loading3_2"></view>
+                <view class="loading3 loading3_3"></view>
+            </view>
+            <text class="no_c">{{load.loading2.content}}</text>
+            <view class="loading_box">
+                <view class="loading3 loading3_1"></view>
+                <view class="loading3 loading3_2"></view>
+                <view class="loading3 loading3_3"></view>
+            </view>
+        </view>
+      
+      <view class="jiazai" wx:if="{{load.loading3.type}}">
+        <view class="loading_box">
+            <view class="cube cube1"></view>
+            <view class="cube cube2"></view>
+        </view>
+      </view>
+       
+        <view class="loading_box" wx:if="{{load.loading4}}">
+            <view class="pulse pulse_1"></view>
+            <view class="pulse pulse_2"></view>
+            <view class="pulse pulse_3"></view>
+            <view class="pulse pulse_4"></view>
+        </view>
+        <view class="loading_box" wx:if="{{load.loading5}}">
+            <view class="knock knock_first"></view>
+            <view class="knock"></view>
+            <view class="knock"></view>
+            <view class="knock"></view>
+            <view class="knock knock_last"></view>
+        </view>
+        <view class="loading_box" wx:if="{{load.loading6}}">
+            <view class="loading_fade_circle"></view>
+        </view>
+        <view class="loading_box" wx:if="{{load.loading7}}">
+            <view class="loading_rotate_cube_parent">
+                <view class="loading_rotate_cube"></view>
+            </view>
+        </view>
+    </view>
+    
+
+

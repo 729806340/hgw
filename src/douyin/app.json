@@ -1,0 +1,102 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/index/index",
+    "pages/hango_Collage/hango_Collage",
+    "pages/undex_line/undex_line",
+    "pages/store_details/store_details",
+    "pages/limit_goods/limit_goods",
+    "pages/special_index/special_index",
+    "pages/goodsDetails/goodsDetails",
+    "pages/viewHistory/viewHistory",
+    "pages/goodsCollect2/goodsCollect2",
+    "pages/storeCollect2/storeCollect2",
+    "pages/quitList/quitList",
+    "pages/search/search",
+    "pages/shopDetails/shopDetails",
+    "pages/classify/classify",
+    "pages/offline_pay_finish/offline_pay_finish",
+    "pages/me/me",
+    "pages/systemInfo/systemInfo",
+    "pages/quitDetail/quitDetail",
+    "pages/orderDetail/orderDetail",
+    "pages/distributionInfo/distributionInfo",
+    "pages/getRefund/getRefund",
+    "pages/myOrder/myOrder",
+    "pages/commentOrder/commentOrder",
+    "pages/chargeBtn/chargeBtn",
+    "pages/getShopCoupons/getShopCoupons",
+    "pages/commentDetails/commentDetails",
+    "pages/sureOrder/sureOrder",
+    "pages/shoppingCar/shoppingCar",
+    "pages/classified/classified",
+    "pages/zp_list/zp_list",
+    "pages/getPocket/getPocket",
+    "pages/redPocket/redPocket",
+    "pages/getCoupon/getCoupon",
+    "pages/cashCoupon/cashCoupon",
+    "pages/myProperty/myProperty",
+    "pages/integration/integration",
+    "pages/chargeCard/chargeCard",
+    "pages/cardDetail/cardDetail",
+    "pages/chargeNow/chargeNow",
+    "pages/preSave/preSave",
+    "pages/addAddress/addAddress",
+    "pages/address/address",
+    "pages/bindTelephone/bindTelephone",
+    "pages/telephone/telephone",
+    "pages/flashSale/flashSale",
+    "pages/distributionOrder/distributionOrder",
+    "pages/withdraw/withdraw",
+    "pages/withdrawRecord/withdrawRecord",
+    "pages/distributionCenter/distributionCenter"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "white",
+    "navigationBarTitleText": "汉购臻选",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "selectedColor": "#2eb772",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "weixinImg/sy_xxicon@2x.png",
+        "selectedIconPath": "weixinImg/sy_kzicon@2x.png"
+      },
+      {
+        "pagePath": "pages/classify/classify",
+        "text": "分类",
+        "iconPath": "weixinImg/fl_xxicon@2x.png",
+        "selectedIconPath": "weixinImg/fl_kzicon@2x.png"
+      },
+      {
+        "pagePath": "pages/shoppingCar/shoppingCar",
+        "text": "购物车",
+        "iconPath": "weixinImg/gwc_xxicon@2x.png",
+        "selectedIconPath": "weixinImg/gwc_kzicon@2x.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的商城",
+        "iconPath": "weixinImg/wd_xxicon@2x.png",
+        "selectedIconPath": "weixinImg/wd_kzicon@2x.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取附近门店信息"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

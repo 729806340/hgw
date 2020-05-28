@@ -1,0 +1,66 @@
+<!--pages/my_sales/my_sales.wxml-->
+<!-- 账单 -->
+<view class='bill'>
+    <view class='classText {{currentData == 0 ? "isActive" : ""}}' 
+          data-current = "0" bindtap='checkCurrent'>
+          月账单</view>
+    <view class='classText  {{currentData == 1 ? "isActive" : ""}}'
+          data-current = "1" bindtap='checkCurrent'>
+          团账单</view>
+</view>
+
+<scroll-view class="Statistics" scroll-y wx:if="{{currentData == 0 }}">
+  <view class='content' bindtap="checkCurrent" >
+    <view class='content_t'>
+      <view>月份</view>
+      <view>销售额(元)</view>
+      <view>赚取利益(元)</view>
+    </view>
+    <!-- 合计 -->
+    <view class='content_y'>
+      <view class='content_1'>
+        <view class='total'>合计业绩</view>
+        <view>{{totalData.m_sell_total}}</view>
+        <view class='color'>{{totalData.m_commis_total}}</view>
+      </view> 
+        <view class='content_2' wx:for="{{totalData.month_commis}}" wx:key="*this">
+          <view class='T'>
+            <view class='t'>{{item.month_date}}</view>
+          </view>
+          <view class='Le'>{{item.sell_amount}}</view>
+          <view class='color '>{{item.commis_amount}}</view> 
+        </view>
+          
+    </view>
+  </view>
+</scroll-view>
+
+<scroll-view class="Statistics" scroll-y wx:if="{{currentData == 1 }}">
+  <view class='content' bindtap="checkCurrent"  >
+  
+    <view class='content_t'>
+      <view>团ID</view>
+      <view>销售额(元)</view>
+      <view>赚取利益(元)</view>
+    </view>
+    <!-- 合计 -->
+    <view class='content_y'>
+      <view class='content_1'>
+        <view class='total'>合计业绩</view>
+        <view>{{totalData.t_sell_total}}</view>
+        <view class='color'>{{totalData.t_commis_total}}</view>
+      </view> 
+
+        <view class='content_2' wx:for="{{totalData.tuan_commis}}" wx:key="*this" wx:for-index="index1" wx:for-item="item1">
+          <view class='T'>
+            <view class='t'>{{item1.tuan_name}}</view>
+            <view class='b'>{{item1.config_start_time}}</view>
+          </view>
+          <view class='Le'>{{item1.sell_amount}}</view>
+          <view class='color '>{{item1.commis_amount}}</view> 
+        </view>
+          
+    </view>
+  </view>
+</scroll-view>
+

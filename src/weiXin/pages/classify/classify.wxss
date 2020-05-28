@@ -1,0 +1,291 @@
+/**classify.wxss**/
+
+.classify-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+}
+
+.scroll-header {
+  width: 100vw;
+  background: #fff;
+  display: flex;
+  white-space: nowrap;
+  border-bottom: solid 2rpx #f4f4f4;
+  padding: 0 20rpx;
+}
+
+.scroll-header :last-child {
+  margin-right: 40rpx;
+}
+
+.scroll-header .classText {
+  display: inline-block;
+  font-size: 26rpx;
+  height: 86rpx;
+  line-height: 92rpx;
+  margin: 0 20rpx;
+  color: #999;
+}
+
+.current-tab {
+  border-bottom: solid 4rpx #fa7e36;
+}
+
+.class-content {
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll_left_col {
+  display: flex;
+  flex-direction: row;
+}
+.picBlock{
+  width: 102rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  margin-right: 48rpx;
+  margin-top: 22rpx;
+}
+.picBlock text{
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.colImg{
+  width: 102rpx;
+  height: 102rpx;
+}
+.scroll-left {
+  width: 100vw;
+  height: 190rpx;
+  margin-top: 90rpx;
+  box-sizing: border-box;
+  padding-left: 30rpx;
+  background: #fff;
+  /* border-right: solid 2rpx #f4f4f4; */
+}
+
+.scroll-left text {
+  width: 100rpx;
+  height: 24rpx;
+  line-height:30rpx;
+  font-size: 24rpx;
+  padding: 12rpx 0;
+  max-width: 130rpx;
+  color: #777;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.scroll-left icon {
+  margin-left: 10rpx;
+}
+
+.scroll_right {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding-bottom: 295rpx;
+}
+
+.singleTrade {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: solid 2rpx #ededed;
+}
+
+.singleTrade_spec {
+  display: flex;
+  background: #fafafa;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: solid 2rpx #eee;
+}
+
+.goods-img {
+  width: 148rpx;
+  height: 148rpx;
+  margin-left: 15rpx;
+}
+
+.goods-img_layout {
+  width: 148rpx;
+  height: 148rpx;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 15rpx;
+}
+
+.goods-img_abs {
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.goods-info {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  width: 0;
+  box-sizing: border-box;
+  flex: 1;
+}
+
+.goods-name {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.specification01 {
+  font-size: 24rpx;
+  color: #bbb;
+  margin: 10rpx 0;
+}
+
+.specification02 {
+  margin-right: 30rpx;
+  font-size: 24rpx;
+  color: #bbb;
+}
+
+.current-price {
+  font-size: 28rpx;
+  color: #fa7e36;
+  font-weight: bold !important;
+}
+
+.original-price {
+  font-size: 20rpx;
+  color: #bbb;
+  text-decoration: line-through;
+  position: relative;
+}
+
+.add_cart_img {
+  width: 54rpx;
+  margin-right: 30rpx;
+  height: 54rpx;
+}
+
+.add_cart_img_abo {
+  width: 54rpx;
+  height: 54rpx;
+  right: 30rpx;
+  position: absolute;
+}
+
+/*加号和减号*/
+
+.stepper {
+  width: 150rpx;
+  margin-right: 30rpx;
+  height: 55rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 2rpx solid #ddd;
+}
+
+.stepper text {
+  width: 50rpx;
+  line-height: 55rpx;
+  font-weight: bold !important;
+  text-align: center;
+  float: left;
+  color: #fa7e36;
+}
+
+/*数值*/
+
+.stepper input {
+  width: 50rpx;
+  height: 26px;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 12px;
+}
+
+/*禁用样式*/
+
+.stepper .disabled {
+  color: #ccc;
+}
+
+.hide {
+  display: none;
+}
+
+.on {
+  color: #7BDAAA !important;
+}
+
+.ons {
+  color: #333 !important;
+  border-bottom: 4rpx solid #7BDAAA !important;
+}
+
+
+.t7 {
+  font-size: 20rpx;
+  color: #fff;
+  padding: 3rpx 8rpx;
+  border-radius: 10rpx;
+  background: linear-gradient(to right, #ff6464, #ff4141);
+}
+
+.t8 {
+  color: #ff4141;
+  margin-left: 5rpx;
+  font-size: 24rpx;
+}
+
+.t9 {
+  margin-left: 5rpx;
+  color: #999;
+  text-decoration: line-through;
+  font-size: 18rpx;
+}
+
+.row7 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 20rpx;
+}
+
+.hotImg {
+  width: 250rpx;
+  height: 80rpx;
+  margin: 0 auto;
+}
+
+.img{
+  width: 100%;
+  margin: 14rpx 0;
+  display: flex;
+  align-content: center;
+}

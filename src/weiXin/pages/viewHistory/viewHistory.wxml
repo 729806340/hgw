@@ -1,0 +1,56 @@
+<view wx:if="{{hasViewHistory}}">
+  <view class="title1">
+    <view class='management' bindtap='Management'>
+      <text wx:if="{{hasfinished}}">管理</text>
+      <text wx:else>完成</text>
+    </view>
+  </view>
+  <scroll-view scroll-y class=" {{hasfinished == false?'storeList_mb':'storeList'}}" bindscrolltolower="handlescrolltolower">
+    <block wx:for="{{goodsList}}" wx:key="{{index}}">
+      <!-- <view class="browseTime {{hasfinished == false?'ml':''}}">{{item.browsetime}}</view> -->
+      <view class='storeItem cart-list' bindtap='goGoodsDetails' data-item='{{item}}'>
+        <icon wx:if="{{item.selected}}" type="success" color="#2eb772" data-index="{{index}}" class="cart-pro-select {{hasfinished?'off_selected':''}}" catchtap="selectList" />
+        <icon wx:else type="circle" class="cart-pro-select {{hasfinished?'off_selected':''}}" data-index="{{index}}" catchtap="selectList" />
+        <view class="storeItem_l {{hasfinished?'':'on_storeItem_l'}}">
+          <view class='goods_img'>
+            <image src='{{item.goods_image_url}}'></image>
+          </view>
+          <view class='goods_contenr'>
+            <text class='goods_name'>{{item.goods_name}}</text>
+            <view class='pc'>
+              <image class='xianshi' src='../../weixinImg/ms_icon@2x.png' wx:if='{{xianshi}}'></image>
+              <text class='ds'>¥</text>
+              <text class='goods_dollar'>{{item.goods_marketprice}}</text>
+            </view>
+            <view class='goods_content'>
+              <view class='goShop' bindtap="goShop" data-id="{{item.store_id}}">进店
+                <image src='../../weixinImg/jdzk_icon@2x.png'></image>
+              </view>
+              <view class="storeItem_r  {{hasfinished?'':'off_selected'}}" catchtap='deleteStore' data-id='{{item.goods_id}}' data-index='{{index}}'>
+                <image src='/weixinImg/deletesp_icon@2x.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+    </block>
+  </scroll-view>
+  <view class="storeFooter {{hasfinished?'off_selected':''}}">
+    <view class='storeFooter_l'>
+      <icon wx:if="{{selectAllStatus}}" type="success_circle" color="#2eb772" class="total-select" bindtap="selectAll" />
+      <icon wx:else type="circle" color="#eee" class="total-select" bindtap="selectAll" />
+      <text class='allT'>全选</text>
+    </view>
+    <view class='storeFooter_r' bindtap='cancelCollect'>
+      <view>删除</view>
+    </view>
+  </view>
+</view>
+
+<view class='noData' wx:else>
+  <view>
+    <image src='../../weixinImg/lljl_w_img@2x.png'></image>
+  </view>
+  <view>您还没有浏览记录</view>
+</view>

@@ -1,0 +1,17 @@
+/.svn
+/.idea
+/.settings
+/.buildpath
+/.project
+/cache
+/upload
+/docs
+/nginx.conf
+.phpstorm.meta.php
+src/erp/.htaccess
+/release
+.history
+.vscode*
+data/config
+src/crontab/control/wdt.php
+src/data/logic/wdt.logic.php

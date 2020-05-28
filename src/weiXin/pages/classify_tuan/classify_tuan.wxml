@@ -1,0 +1,63 @@
+<view class='searchBox'>
+  <view class="searchBox_2">
+    <image src="../../weixinImg/search_icon@2x.png" class="search_img" bindtap="searchClick"></image>
+    <input bindinput="searchipt" value="{{searchText}}" placeholder="搜索商品名称或关键字" class="search_ipt" confirm-type='search'></input>
+  </view>
+</view>
+
+<scroll-view class="navBox" scroll-y>
+  <!-- <view class="nav_item" data-index='-1' bindtap="bindGC">
+    <view class='nav_item_i {{gc_id=="-1"?"nav_item_i_a":""}}'>包邮到家</view>
+  </view> -->
+  <block wx:for='{{goods_class}}' wx:key='q'>
+    <view class="nav_item" data-index='{{index}}' bindtap="bindGC">
+      <view class='nav_item_i {{gc_id==item.gc_id?"nav_item_i_a":""}}'>{{item.gc_name}}</view>
+    </view>
+  </block>
+</scroll-view>
+
+<scroll-view class="goodsBox" scroll-y  bindscrolltolower='bindpushList'>
+  <view class="goodsList">
+    <block wx:for='{{goods_list}}' wx:for-item='item' wx:for-index='index' wx:key='q'>
+      <view class="goods_itemBox">
+        <view class="goods_item">
+          <image class="goods_item_img" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}' src="{{item.goods_list[0].goods_image_url}}"></image>
+          <view class="goods_item_info">
+            <view class="goods_name" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>{{item.goods_list[0].goods_name}}</view>
+            <view class="goods_spec">{{item.goods_list[0].goods_spec}}</view>
+            <view class="goods_price">
+              <view class="t"><text>￥</text>{{item.goods_price}}</view>
+              <view class="t2" wx:if='{{item.goods_marketprice>0}}'>￥{{item.goods_marketprice}}</view>
+            </view>
+            <view class="stepper" wx:if='{{item.goods_list.length==1 && item.goods_list[0].cart_num>0}}'>
+              <text data-index='{{index}}' bindtap="add" data-type='del'>-</text>
+              <input value="{{item.goods_list[0].cart_num}}" disabled='true'></input>
+              <text data-index='{{index}}' bindtap="add" data-type='add'>+</text>
+            </view>
+            <image data-index='{{index}}' bindtap="add" data-type='add' wx:if='{{item.goods_list[0].cart_num==0&&item.goods_list[0].is_zt==1&&item.goods_list.length==1}}' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg"></image>
+            <view class="addimg_text" wx:if='{{item.goods_list[0].is_zt==0}}' bindtap="gopay" data-id='{{item.goods_list[0].goods_id}}'>立即买</view>
+            <image wx:if='{{item.goods_list.length>1&&!item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/xldj_icon@2x.png" class="addimg"></image>
+            <image wx:if='{{item.goods_list.length>1&&item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/sqdj_icon@2x.png" class="addimg"></image>
+          </view>
+        </view>
+        <block wx:if='{{item.goods_list.length>1 && item.specShow}}' wx:for='{{item.goods_list}}' wx:for-item='specitem' wx:for-index='specindex' wx:key='q'>
+          <view class="specBox">
+            <view class="spec_item">
+              <view class="l">
+                <view class="t">{{specitem.goods_spec}}</view>
+                <view class="t2"><text>￥</text>{{specitem.goods_price}}</view>
+              </view>
+              <view class="stepper_2" style='right:20rpx;' wx:if='{{specitem.cart_num>0}}'>
+                <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='del'>-</text>
+                <input value="{{specitem.cart_num}}" disabled='true'></input>
+                <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add'>+</text>
+              </view>
+              <image wx:if='{{specitem.is_zt==1&&specitem.cart_num==0}}' data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg_2" style='right:20rpx;'></image>
+              <view wx:if='{{specitem.is_zt==0}}' class="addimg_text_2" bindtap="gopay" data-id='{{specitem.goods_id}}'>立即买</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</scroll-view>

@@ -1,0 +1,11 @@
+
+<view class='tiemBox' bindtap='gopicking'>
+  <view class='lBox' bindtap='handleinput'>
+    <image src='{{dataList.wx_user_avatar}}'></image>
+    <view class='r'>
+      <view class='t_1'>{{dataList.wx_nick_name}}</view>
+      <view class='t_2'>{{dataList.phone}}</view>
+    </view>
+  </view>
+  <image src='../../weixinImg/choose_icon@2x.png' class='rimgBox'></image>
+</view>

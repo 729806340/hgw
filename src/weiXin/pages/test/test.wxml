@@ -1,0 +1,4 @@
+<!--pages/live/live.wxml-->
+<navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId}}&custom_params={{customParams}}">直播测试</navigator>
+
+<view bindtap="testPay">支付测试</view>

@@ -1,0 +1,33 @@
+<view class="map_container">
+  <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+  <map id="myMap" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" controls="{{controls}}"  markers="{{markers}}" show-location style="width: 100vw; height: 40vh;">
+    <!--搜索框-->
+    <cover-view class='search_layout' bindtap='goSearch'>
+      <cover-view class='search_row'>
+        <cover-image class='icon_search' src='/weixinImg/search_icon@2x.png'></cover-image>
+        <!-- <icon type="search" size="14" class='icon_search'></icon> -->
+        <cover-view class='search_txt'>查找小区 街道 商厦等</cover-view>
+      </cover-view>
+    </cover-view>
+  </map>
+  <view class='location_now' bindtap='chooseLocation' data-index='-1'>
+    <view class='map_name'>[当前] {{map_now.address}}</view>
+    <view style='flex:1'></view>
+    <image src="/weixinImg/swmr1_img@2x.png" class='img_circle' wx:if="{{sp==-1}}"></image>
+  </view>
+  <scroll-view class='scroll' scroll-y>
+    <view class='map_col'>
+      <block wx:for="{{map_list}}">
+        <view class='map_item_row' bindtap='chooseLocation' data-item='{{item}}' data-index='{{index}}'>
+          <view class='map_item'>
+            <view class='map_name'>{{item.name}}</view>
+            <view class='map_address'>{{item.address}}</view>
+          </view>
+          <view style='flex:1'></view>
+          <image src="/weixinImg/swmr1_img@2x.png" class='img_circle' wx:if="{{sp==index}}"></image>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class='btn_sure' bindtap='btn_sure'>确认</view>
+</view>

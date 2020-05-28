@@ -1,0 +1,56 @@
+<!--pages/distributionOrder/distributionOrder.wxml-->
+<view class="root">
+  <view class="top">
+    <view class="header">
+      <view class="item">
+        <text>累计佣金</text>
+        <text class="price">{{total_amount}}</text>
+      </view>
+      <view class="item">
+        <text>可提佣金</text>
+        <text class="price">{{able_amount}}</text>
+      </view>
+      <view class="item">
+        <button bindtap="gotoWithdraw">立即提现</button>
+      </view>
+    </view>
+    
+    <view class='segment'>
+      <view bindtap="unfinished" class='top-btn {{state_type=="state_new"?"selected_color":""}}'>
+          <view class='{{state_type=="state_new"?"selected":""}}'>订单待完成</view>
+      </view>
+      <view bindtap="finished" class='top-btn {{state_type=="state_finish"?"selected_color":""}}'>
+        <view class='{{state_type=="state_finish"?"selected":""}}'>订单已完成</view>
+      </view>
+      <view bindtap="refunding" class='top-btn {{state_type=="state_refund"?"selected_color":""}}'>
+        <view class='{{state_type=="state_refund"?"selected":""}}'>退款中</view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="scroll" bindscrolltolower="getMore">
+    <view class='column_null' wx:if="{{records.length == 0}}">
+      <image class='column_null_img' mode='aspectFit' src='../../weixinImg/wddd_w_img@2x.png'></image>
+      <view class='column_null_txt'>老板您还没有分销订单</view>
+    </view>
+
+    <block wx:for="{{records}}" wx:key="record">
+      <view class="cell">
+        <view class="left">
+          <view>订单号：{{item.order_sn}}</view>
+          <view class="name">用户：{{item.invite_member_name}}</view>
+          <view class="time">{{item.add_time}}</view>
+        </view>
+        <view class="price">+¥{{item.return_money}}</view>
+      </view>
+    </block>
+
+    <view class='list_bottom' wx:if="{{!is_bottom && records.length > 0}}">
+      <view style='-webkit-flex:1'></view>
+      <view class='line'></view>
+      <view class='list_bottom_t'>已经到底了</view>
+      <view class='line'></view>
+      <view style='-webkit-flex:1'></view>
+    </view>
+  </scroll-view>
+</view>

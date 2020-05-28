@@ -1,0 +1,120 @@
+<view class="stroe_details">
+<scroll-view scroll-y class="fixed-y" scroll-with-animation>
+  <view class="details_img">
+    <image class="img1" src="{{chain_info.chain_img}}" mode='aspectFill'></image>
+    <view class="go_dress">{{chain_info.chain_name}}</view>
+    <image class="img2" catchtap="go_dress" src="../../weixinImg/navigate_button@2x.png" mode='widthFix'></image>
+  </view>
+  <view class="dress_info">
+    <view class="info_item">
+      <view class="info_img">
+        <image src="../../weixinImg/address_icon@2x.png" mode="widthFix"></image>
+        <text>地址</text>
+      </view>
+      <view class="info_message">
+        {{chain_info.chain_address}}
+      </view>
+    </view>
+    <view class="info_item">
+      <view class="info_img">
+        <image src="../../weixinImg/time_icon@2x.png" mode="widthFix"></image>
+        <text>营业时间</text>
+      </view>
+      <view class="info_message">
+        {{chain_info.chain_opening_hours}}
+      </view>
+    </view>
+    <!-- <view class="info_item" catchtap="callTel">
+      <view class="info_img">
+        <image src="../../weixinImg/phone_icon@2x.png" mode="widthFix"></image>
+        <text>联系电话</text>
+      </view>
+      <view class="info_message">
+        {{chain_info.chain_phone}}
+      </view>
+    </view> -->
+  </view>
+  <view class="stroeDetail_container">
+    <view class='col'>
+      <!-- 商品总列表 -->
+      <scroll-view scroll-x class="scroll-header" scroll-with-animation scroll-left="{{scrollLeftNumber}}" scroll-into-view="{{toView}}">
+        <block wx:key="unqui" wx:for="{{class_list}}">
+          <view data-index="{{index}}" class="classText {{currentTab == index?'ons':''}}" data-gc_id ="{{item.gc_id}}" id="list{{index}}" catchtap="tabClick">
+            {{item.gc_name}}
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <swiper current="{{currentTab}}"  class="swiper-box" duration="300"  bindchange="bindChange">
+      <block wx:for="{{class_list}}" wx:key="unq1">
+        <swiper-item class="swiper-item">
+          <block>
+            <template is="home0" data="{{goods_list:goods_list,is_bottom}}"/>
+          </block>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  </scroll-view>
+</view>
+<view class='row3'>
+  <view class='row11'>
+    <image src="../../weixinImg/xxgwc_icon@2x.png" class='img_circle' bindtap='goSureOrder'></image>
+    <view class='t1'></view>
+  </view>
+  <view class='col2'>
+    <view class='row4'>
+      <view class='t2'>合计：</view>
+      <view class='t3'>￥{{cart.num}}</view>
+    </view>
+    <view class='t4'>(共{{cart.cart_count}}件商品)</view>
+  </view>
+  <text wx:if="{{cart.cart_count<99}}" class="Bubble">{{cart.cart_count}}</text>
+  <text wx:else class="on_bul">99+</text>
+  <view class="{{!btn_choose?'btn_forbit':'btn_submit'}}" bindtap='goSureOrder'>去购物车</view>
+</view>
+<!-- 商品下级列表 -->
+<template name='home0'>
+<scroll-view scroll-y class='scroll_right' bindscrolltolower="getMore">
+  <block wx:for="{{goods_list}}" wx:key="uq4">
+    <view class='goods_block'>
+      <view class='goods_img'>
+        <image class="stock_img" wx:if="{{item.stock==0}}" src='../../weixinImg/flysq_img@2x.png'></image>
+        <image src='{{item.goods_image_url}}'></image>
+      </view>
+      <view class='goods_info'>
+        <view class='goods_title'>
+          {{item.goods_name}}
+        </view>
+        <view class='goods_con'>
+          <view class='goods_price'>
+             <image wx:if="{{item.xianshi_flag}}" src='../../weixinImg/ms_icon@2x.png'></image>
+             <text class='gr'>¥{{item.goods_price}}</text>
+             <text class='gl'>¥{{item.goods_marketprice}}</text>
+          </view>
+          <view class='goods_plus'>
+            <image src='../../weixinImg/plus_button@2x.png' wx:if="{{item.hasOrm}}" catchtap='bindPlus' data-index='{{index}}' data-item='{{item}}'></image>
+            <view class="stepper" wx:if="{{item.cart_num > 0}}">
+              <!-- 减号 -->
+              <text catchtap="bindMinus" data-index='{{index}}' data-item='{{item}}'>-</text>
+              <view style='-webkit-flex:1'></view>
+              <!-- 数值 -->
+              <input type="number" bindchange="bindManual" value="{{item.cart_num}}" data-item='{{item}}' data-index='{{index}}' />
+              <view style='-webkit-flex:1'></view>
+              <!-- 加号 -->
+              <text catchtap="bindPlus" data-item='{{item}}' data-index='{{index}}'>+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+     <view class='list_bottom' wx:if="{{is_bottom}}">
+       <view style='-webkit-flex:1'></view>
+       <view class='line'></view>
+       <view class='list_bottom_t'>没有更多商品了</view>
+       <view class='line'></view>
+       <view style='-webkit-flex:1'></view>
+   </view>
+  </scroll-view>
+</template>

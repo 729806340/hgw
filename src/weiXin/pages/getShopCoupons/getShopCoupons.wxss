@@ -1,0 +1,49 @@
+.root {
+  border-top: 1rpx solid #ddd;
+}
+
+.coupons {
+  margin-top: 20rpx;
+  position: relative;
+}
+
+.coupons image {
+  width: 702rpx;
+  height: 200rpx;
+  margin: 0 24rpx;
+}
+
+.cou_detail {
+  position: absolute;
+  top: 36rpx;
+  left: 100rpx;
+  width: 340rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  align-items: flex-start;
+  color: #fff;
+}
+
+.cou_price {
+  width: 100%;
+  height: 70rpx;
+  display: flex;
+  flex-direction: row;
+  align-items:baseline;
+}
+
+.symbol {
+  font-size: 32rpx;
+}
+.num{
+  font-size: 60rpx;
+}
+.name{
+  font-size: 24rpx;
+  margin-left: 16rpx;
+}
+.cou_time{
+  font-size: 20rpx;
+}

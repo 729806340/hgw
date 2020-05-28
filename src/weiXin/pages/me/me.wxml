@@ -1,0 +1,275 @@
+<scroll-view scroll-y class="fixed-y" scroll-with-animation>
+<view class='header' bindtap='shopManagement' wx:if="{{has_login}}">
+  <view class='header_block'>
+    <image class='defaultImg' src='{{member_avatar}}'></image>
+    <view class='header_cont'>
+      <view class='header_name'>{{member_name}}<view wx:if='{{member_info.is_shequ_tuanzhang==2}}'>团长</view></view>
+      <view class='vipStatus'>
+        <!-- <text class='fff'>{{level_name}}会员</text> -->
+        <text class='fff'>用户ID：{{member_info.id}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="tuan_code" bindtap="previewImage" wx:if='{{member_info.is_shequ_tuanzhang!=2}}' >
+    <image class="t_code_img" src="../../weixinImg/assets/icon1.png"></image>
+    <view class="t_code_text">提货码</view>
+  </view>
+</view>
+
+<view class='header_conter' bindtap='shopManagement' wx:if="{{has_login==''}}">
+  <view class='header_block'>
+    <image class='defaultImg' src='/weixinImg/txmr_img@2x.png'></image>
+    <view class='login_stu'>
+      您还未登录
+    </view>
+    <button class='header_login' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      登录
+    </button>
+  </view>
+</view>
+
+<view class="newBox">
+  <view class='myOrder' wx:if='{{member_info.is_shequ_tuanzhang==2}}'>
+    <view class='myOrder_t'>
+      <view class='seeTitle'>佣金管理 <image src="{{!commission?'../../weixinImg/assets/1-11.png':'../../weixinImg/assets/1-22.png'}}" data-icon='0' bindtap="yanjing"></image></view>
+      <view class='ricon' bindtap='goCommission'>
+        <text class='seeMore'>去提现</text>
+        <image src='/weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+    <view class='myc_listBox'>
+      <view class="myc_l_itemBox">
+        <view class="num">{{commission?dataList.commission.all_commission:'***'}}</view>
+        <view class="tit">累计佣金（元）</view>
+      </view>
+      <view class="myc_l_itemBox">
+        <view class="num">{{commission?dataList.commission.wait_bill_commission:'***'}}</view>
+        <view class="tit">待出账佣金（元）</view>
+      </view>
+      <view class="myc_l_itemBox">
+        <view class="num">{{commission?dataList.commission.wait_commission:'***'}}</view>
+        <view class="tit">待领取佣金（元）</view>
+      </view>
+    </view>
+  </view>
+  <view class='myOrder' wx:if='{{member_info.is_shequ_tuanzhang==2}}'>
+    <view class='myOrder_t'>
+      <view class='seeTitle'>业绩中心 <image src="{{!achievement?'../../weixinImg/assets/1-11.png':'../../weixinImg/assets/1-22.png'}}" data-icon='1' bindtap="yanjing"></image></view>
+      <view class='ricon' bindtap='goSales'>
+        <text class='seeMore'>查看全部</text>
+        <image src='/weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+    <view class='myc_listBox'>
+      <view class="myc_l_itemBox">
+        <view class="num">{{achievement?dataList.achievement.now_tuan_money:'***'}}</view>
+        <view class="tit">当前团销售额</view>
+      </view>
+      <view class="myc_l_itemBox">
+        <view class="num">{{achievement?dataList.achievement.order_num:'***'}}</view>
+        <view class="tit">主订单数量</view>
+      </view>
+      <view class="myc_l_itemBox">
+        <view class="num">{{achievement?dataList.achievement.now_tuan_earn:'***'}}</view>
+        <view class="tit">当前团赚</view>
+      </view>
+    </view>
+  </view>
+  <view class='myOrder' wx:if='{{member_info.is_shequ_tuanzhang==2}}'>
+    <view class='myOrder_t'>
+      <text class='seeTitle'>团购管理</text>
+    </view>
+    <view class='myOrder_sort_fn'>
+      <block wx:for='{{fnList}}'>
+        <view class='myOrder_sort_item myOrder_sort_fn_item' data-path='{{item.fnPath}}' bindtap="taunFnpath">
+          <image src='{{item.fnUrl}}'></image>
+          <text class='text'>{{item.fnName}}</text>
+        </view>   
+      </block>
+    </view>
+  </view>
+  <view class='myOrder'>
+    <view class='myOrder_t' data-index='-1'>
+      <text class='seeTitle'>我的订单</text>
+      <view class='ricon' bindtap='goMyOrder' data-index='-1'>
+        <text class='seeMore'>查看全部</text>
+        <image src='/weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+
+    <view class='myOrder_sort'>
+      <block wx:for="{{sortList}}" wx:key='unqui'>
+        <view class='myOrder_sort_item' bindtap='goMyOrder' data-index='{{index}}'>
+          <image src='{{item.sortUrl}}'></image>
+          <text class='text'>{{item.sortName}}</text>
+          <view class="tuan_news" wx:if='{{item.orderCount>0 && index!=2 && index!=3}}'></view>
+        </view>   
+      </block>
+    </view>
+  </view>
+  <view class="new_listBox">
+    <view class="new_list_itemBox" bindtap='cashCoupon'>
+      <view class="lBox">
+        <image src="../../weixinImg/assets/youhuiquan.png"></image>
+        <view>我的优惠券</view>
+      </view>
+      <view class="rBox">
+        <text></text>
+        <image class="rBoximg" src="../../weixinImg/more_icon@2x.png"></image>
+      </view>
+    </view>
+
+    <view class="new_list_itemBox" bindtap="goApply" wx:if='{{member_info.is_shequ_tuanzhang!=2}}'>
+      <view class="lBox">
+        <image src="../../weixinImg/assets/wo.png"></image>
+        <view>团长申请</view>
+      </view>
+      <view class="rBox">
+        <text wx:if='{{member_info.is_shequ_tuanzhang==1}}'>系统审核中</text>
+        <image class="rBoximg" src="../../weixinImg/more_icon@2x.png"></image>
+      </view>
+    </view>
+
+    <view class="new_list_itemBox" bindtap='systemInfo'>
+      <view class="lBox">
+        <image src="../../weixinImg/assets/guanyu.png"></image>
+        <view>系统消息</view>
+      </view>
+      <view class="rBox">
+        <text></text>
+        <image class="rBoximg" src="../../weixinImg/more_icon@2x.png"></image>
+      </view>
+    </view>
+
+    <view class="new_list_itemBox" bindtap='address'>
+      <view class="lBox">
+        <image src="../../weixinImg/assets/dizhi(3)copy.png"></image>
+        <view>收货地址</view>
+      </view>
+      <view class="rBox">
+        <text></text>
+        <image class="rBoximg" src="../../weixinImg/more_icon@2x.png"></image>
+      </view>
+    </view>
+
+    <button open-type='contact' plain="true" class="nobtn new_list_itemBox" style="border:none;">
+      <view class="lBox">
+        <image src="../../weixinImg/assets/service.png"></image>
+        <view>客服中心</view>
+      </view>
+      <view class="rBox">
+        <text></text>
+        <image class="rBoximg" src="../../weixinImg/more_icon@2x.png"></image>
+      </view>
+    </button>
+  </view>
+
+
+
+
+  <view class='myProperty' wx:if='{{show_charge == 1}}'>
+    <view class='myProperty_t' bindtap='goMyProperty' data-index='0'>
+      <text class='seeTitle'>我的财产</text>
+      <text class='seeMore'>查看全部财产</text>
+      <view class='ricon'>
+        <image src='/weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+    <view class='myProperty_sort'>
+      <block>
+        <view class='myProperty_sort_item'>
+          <view class='mpCont'>
+            <text class='mpNum'>{{available_predeposit}}</text>
+            <text class='mpClass'>元</text>
+          </view>
+          <text class='mpAdd'>预存款</text>
+        </view>
+        <view class='myProperty_sort_item' bindtap='chargeCard'>
+          <view class='mpCont'>
+            <text class='mpNum'>{{available_rc_balance}}</text>
+            <text class='mpClass'>元</text>
+          </view>
+          <text class='mpAdd'>充值卡余额</text>
+        </view>
+        <view class='myProperty_sort_item' bindtap='cashCoupon'>
+          <view class='mpCont'>
+            <text class='mpNum'>{{voucher_num}}</text>
+            <text class='mpClass'>张</text>
+          </view>
+          <text class='mpAdd'>代金券</text>
+        </view>
+        <view class='myProperty_sort_item' bindtap='redPocket'>
+          <view class='mpCont'>
+            <text class='mpNum'>{{rpt_num}}</text>
+            <text class='mpClass'>个</text>
+          </view>
+          <text class='mpAdd'>红包</text>
+        </view>
+        <view class='myProperty_sort_item' bindtap='integration'>
+          <view class='mpCont'>
+            <text class='mpNum'>{{member_points}}</text>
+            <text class='mpClass'>分</text>
+          </view>
+          <text class='mpAdd'>积分</text>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class='myDistribution' style="display:none;">
+    <view class='myProperty_t' bindtap='distributionCenter'>
+      <text class='seeTitle'>我的分销</text>
+      <text class='seeMore'>更多</text>
+      <view class='ricon'>
+        <image src='/weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+    <view class='myDistribution_sort'>
+      <!-- <view class='tool_sort_item' bindtap='distributionCenter'>
+        <image class="distribution_center" src='/weixinImg/distributionCenter_icon@2x.png'></image>
+        <text>分销中心</text>
+      </view> -->
+      <view class='tool_sort_item' bindtap='gotoOrder'>
+        <image class="distribution_order" src='/weixinImg/distribution_order_icon@2x.png'></image>
+        <text>分销订单</text>
+      </view>
+      <view class='tool_sort_item' bindtap='gotoRecord'>
+        <image class="withdraw_record" src='/weixinImg/withdraw_record_icon@2x.png'></image>
+        <text>提现记录</text>
+      </view>
+    </view>
+  </view>
+  <!-- <image src="../../weixinImg/sqtz.png" mode='aspectFit' style="width:100%;height:116rpx;margin-bottom:24rpx;display:block;" bindtap=""></image> -->
+  <view class='tool' style="display:none;">
+    <view class='tool_sort'>
+      <view class='tool_sort_item' bindtap='goodsCollect' style="display:none;">
+        <image src='/weixinImg/spsc_icon@2x.png'></image>
+        <text>商品收藏</text>
+      </view>
+      <view class='tool_sort_item' bindtap='viewHistory' style="display:none;">
+        <image src='/weixinImg/wdzj_icon@2x.png'></image>
+        <text>我的足迹</text>
+      </view>
+      <view class='tool_sort_item' bindtap='systemInfo'>
+        <image src='/weixinImg/xtxx_icon@2x.png'></image>
+        <!-- <view class='redpoint'></view> -->
+        <text>系统消息</text>
+      </view>
+      <view class='tool_sort_item' bindtap='bindTelephone'>
+        <image src='/weixinImg/bdsj_icon@2x.png'></image>
+        <text>绑定手机</text>
+      </view>
+      <view class='tool_sort_item' bindtap='address'>
+        <image src='/weixinImg/shdz_icon@2x.png'></image>
+        <text>收货地址</text>
+      </view>
+      <view class='tool_sort_item'>
+        <button class='nobtn' open-type='contact' plain="true">
+          <image src='/weixinImg/kfzx_icon@2x.png'></image>
+          <text>客服中心</text>
+        </button>
+      </view>
+    </view>
+  </view>
+
+</view>
+</scroll-view>

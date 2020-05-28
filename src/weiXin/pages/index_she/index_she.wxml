@@ -1,0 +1,350 @@
+
+<view wx:if='{{is_Location}}'>
+  <view class="row_topBox">
+    <view class='header'>
+      <view class="addressBox" wx:if='{{default_tz.tuanzhang_address && is_shequ_tuanzhang == 2}}'>
+        <image src="{{default_tz.tuanzhang_info.avatar}}" class="add_t_img"></image>
+        <view class="add_text">
+          <view class="add_name_add">{{default_tz.tuanzhang_info.name}}</view>
+          <view class="add_city">
+            <image src="../../weixinImg/add_s.png" class="add_icon"></image>
+            <text class="add_city_text">{{default_tz.tuanzhang_address.address}}{{default_tz.tuanzhang_address.building}}</text>
+          </view>
+        </view>
+        <button open-type='share' class="shareBox">
+          <image src="../../weixinImg/lA.png"></image>
+          分享
+        </button>
+      </view>
+
+      <view class="addressBox" bindtap="goAddress" wx:if='{{default_tz.tuanzhang_address && is_shequ_tuanzhang != 2}}'>
+        <image src="{{default_tz.tuanzhang_info.avatar}}" class="add_t_img"></image>
+        <view class="add_text">
+          <view class="add_name_add">{{default_tz.tuanzhang_info.name}}</view>
+          <view class="add_city">
+            <image src="../../weixinImg/add_s.png" class="add_icon"></image>
+            <text class="add_city_text">{{default_tz.tuanzhang_address.address}}{{default_tz.tuanzhang_address.building}}</text>
+          </view>
+        </view>
+        <view class="add_rightBox">
+          <text class="add_rightBox_text">附近团长</text>
+          <image src="../../weixinImg/jdzk_icon@2x.png" class="add_yicon"></image>
+        </view>
+      </view>
+
+      <!-- <view class="addressBox" bindtap="goAddress" wx:if='{{default_tz.is_default == 0 && is_shequ_tuanzhang != 2}}'>
+        <view class="add_text_2">
+          <image src="../../weixinImg/add_s.png" class="add_icon_2"></image>
+          请选择团长
+        </view>
+        <view class="add_rightBox">
+          <text class="add_rightBox_text">附近团长</text>
+          <image src="../../weixinImg/jdzk_icon@2x.png" class="add_yicon"></image>
+        </view>
+      </view> -->
+    </view>
+    <!-- 轮播图 -->
+    <view class='swiper_row' wx:if='{{dataList.banner_list.length > 0}}'>
+      <swiper class='swiper_item' indicator-dots="{{dataList.banner_list.length > 1}}" circular="true" autoplay="{{Istrue}}" indicator-color='#fff' indicator-active-color='#2EB772'>
+        <block wx:for="{{dataList.banner_list}}" wx:key="q1">
+          <swiper-item class="swiper-item">
+            <image src="{{item.image}}" class="slide-image" mode='aspectFill' data-data='{{item.data}}'  data-type='{{item.type}}' />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class="row_topBox_2">
+    <!-- 团购倒计时 -->
+    <view class="timeoutBox">
+      <view class="timeout_text">今日团购</view>
+      <view class="timeout_timebox">
+        <text style="margin-right:10rpx;">距结束</text>
+        <view>{{time[0]}}</view>
+        <text>天</text>
+        <view>{{time[1]}}</view>
+        <text>:</text>
+        <view>{{time[2]}}</view>
+        <text>:</text>
+        <view>{{time[3]}}</view>
+      </view>
+    </view>
+    <!-- 导航 -->
+    <view class="navBox">
+      <view class="navBox_row">
+        <!-- <view class="nav_item">
+          <image src="http://www.test.hangowa.com/data/upload/mobile/special/s0/s0_06438375594549583.png"></image>
+          <view>包邮到家</view>
+        </view> -->
+        <block wx:for='{{dataList.goods_class}}' wx:key='q'>
+          <view class="nav_item" bindtap="goClassify" data-gcid='{{item.gc_id}}'>
+            <image src="{{item.app_img}}"></image>
+            <view>{{item.gc_name}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <!-- 秒杀 -->
+    <view class="seckillBox" wx:if='{{dataList.xianshi_list.length>0}}'>
+      <view class="seckill_top">
+        <view class="s_t_leftBox">
+          <view class="s_t_l_tit">限时秒杀</view>
+          <view class="s_t_l_tit2"></view>
+          <view class="s_t_l_tit">{{time_xs_text}}</view>
+          <view class="s_t_l_icon">{{text_xs}}</view>
+        </view>
+        <!-- <view class="s_t_rightBox">
+          <text>查看更多</text>
+        </view> -->
+      </view>
+      <view class="seckill_itemBox" wx:for='{{dataList.xianshi_list[1]}}' wx:key='q'>
+        <image bindtap="godetail" data-id='{{item.goods_id}}' src="{{item.goods_image_url}}" class="s_item_img"></image>
+        <view class="s_item_textBox">
+          <view class="s_i_goodsname" bindtap="godetail" data-id='{{item.goods_id}}'>{{item.goods_name}}</view>
+          <view class="s_i_num">已抢：{{item.xianshi_sold}}</view>
+          <view class="s_i_priBox">
+            <view class="s_i_p_a">￥</view>
+            <view class="s_i_p_b">{{item.xianshi_price}}</view>
+            <view class="s_i_p_c">￥{{item.goods_price}}</view>
+          </view>
+          <view class="stepper" wx:if='{{item.cart_num>0}}'>
+            <text data-index='{{index}}' bindtap="add" data-type='del'>-</text>
+            <input value="{{item.cart_num}}" disabled='true'></input>
+            <text data-index='{{index}}' bindtap="add" data-type='add'>+</text>
+          </view>
+          <image wx:if='{{item.cart_num==0 && item.is_zt==1}}' bindtap="add" data-type='add' data-index='{{index}}' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg"></image>
+          <view class="addimg_text" wx:if='{{type_xs==1 && item.is_zt==0}}' bindtap="gopay" data-id='{{item.goods_id}}'>立即买</view>
+          <view class="addimg_text_xs" wx:if='{{type_xs!=1}}'>{{text_xs}}</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 常规商品展示 -->
+    <view class="paytypeBox">
+      <view class="p_type_item {{tab==0?'p_type_item_a':''}}" bindtap="typeTab" data-tab='0' wx:if='{{dataList.goods_list.mdzt.length > 0}}'>门店自提</view>
+      <view class="p_type_item {{tab==1?'p_type_item_a':''}}" bindtap="typeTab" data-tab='1'>包邮到家</view>
+    </view>
+    <view wx:for='{{dataList.goods_list.mdzt}}' wx:if='{{tab == 0 && dataList.goods_list.mdzt.length > 0}}' wx:for-item='item' wx:for-index='index' wx:key='q'>
+      <!-- 视频商品 -->
+      <view class="tab_itemBox" wx:if='{{item.show_type == 2}}'>
+        <view class="videoBox">
+          <view class="vider_imgBox" wx:if='{{item.fengmian}}'>
+            <image src="封面字段" class="fengmian"></image>
+            <image src="../../weixinImg/assets/bofang.png" class="bofang" bindtap="playVideo" data-index='{{index}}'></image>
+          </view>
+          <video wx:if='{{!item.fengmian}}' id='video-{{index}}' src="视频字段"></video>
+          <view class="video_bottom">
+            <view class="video_name" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>{{item.goods_list[0].goods_name}}</view>
+            <view class="video_priBox_box">
+              <view class="video_priBox" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>
+                <text class="a">￥</text>
+                <text class="b">{{item.goods_price}}</text>
+                <text class="c" wx:if='{{item.goods_market_price>0}}'>￥{{item.goods_market_price}}</text>
+              </view> 
+              <view class="stepper_2" wx:if='{{item.goods_list.length==1 && item.goods_list[0].cart_num>0}}'>
+                <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='del'>-</text>
+                <input value="{{item.goods_list[0].cart_num}}" disabled='true'></input>
+                <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add'>+</text>
+              </view>
+              <image wx:if='{{item.goods_list.length==1 && item.goods_list[0].cart_num==0}}' data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg_2" style='right:20rpx;'></image>
+              <image wx:if='{{item.goods_list.length>1 && !item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/xldj_icon@2x.png" class="addimg_2"></image>
+              <image wx:if='{{item.goods_list.length>1 && item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/sqdj_icon@2x.png" class="addimg_2"></image>
+            </view>
+            <view class="video_numBox">
+              <view class="video_numBox_l">累计销量：{{item.goods_list[0].goods_salenum}}</view>
+              <view class="video_numBox_l">已团{{item.goods_list[0].goods_tuan_sale}}/剩余{{item.goods_list[0].goods_storage}}</view>
+            </view>
+
+            <block wx:if='{{item.goods_list.length>1 && item.specShow}}' wx:for='{{item.goods_list}}' wx:for-item='specItem' wx:for-index='specindex' wx:key='q'>
+              <view class="specBox">
+                <view class="spec_item">
+                  <view class="l">
+                    <view class="t">{{specItem.goods_spec}}</view>
+                    <view class="t2"><text>￥</text>{{specItem.goods_price}}</view>
+                  </view>
+                  <view class="stepper_2" style='right:20rpx;' wx:if='{{specItem.cart_num>0}}'>
+                    <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='del'>-</text>
+                    <input value="{{specItem.cart_num}}" disabled='true'></input>
+                    <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add'>+</text>
+                  </view>
+                  <image wx:if='{{specItem.cart_num==0}}' data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg_2" style='right:20rpx;'></image>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- 图片商品 -->
+      <view class="tab_itemBox" wx:if='{{item.show_type == 1}}'>
+        <view class="imageBox_row">
+          <view class="imageBox">
+            <image bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}' src="{{item.goods_list[0].goods_image_url}}" class="img_img"></image>
+            <view class="img_textBox">
+              <view class="img_name" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>{{item.goods_list[0].goods_name}}</view>
+              <view class="img_gg">{{item.goods_list[0].goods_spec}}</view>
+              <view class="video_priBox" style="margin-top:12rpx;">
+                <text class="a">￥</text>
+              <text class="b">{{item.goods_price}}</text>
+                <text class="c" wx:if='{{item.goods_market_price>0}}'>￥{{item.goods_market_price}}</text>
+              </view> 
+              <view class="stepper" wx:if='{{item.goods_list.length==1 && item.goods_list[0].cart_num>0}}'>
+                <text data-index='{{index}}' bindtap="add" data-type='del'>-</text>
+                <input value="{{item.goods_list[0].cart_num}}" disabled='true'></input>
+                <text data-index='{{index}}' bindtap="add" data-type='add'>+</text>
+              </view>
+              <image wx:if='{{item.goods_list.length==1 && item.goods_list[0].cart_num==0}}' bindtap="add" data-index='{{index}}' data-type='add' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg"></image>
+              <image wx:if='{{item.goods_list.length>1 && !item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/xldj_icon@2x.png" class="addimg"></image>
+              <image wx:if='{{item.goods_list.length>1 && item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/sqdj_icon@2x.png" class="addimg"></image>
+            </view>
+          </view>
+          <view class="video_numBox">
+            <view class="video_numBox_l">累计销量：{{item.goods_list[0].goods_salenum}}</view>
+            <view class="video_numBox_l">已团{{item.goods_list[0].goods_tuan_sale}}/剩余{{item.goods_list[0].goods_storage}}</view>
+          </view>
+
+          <block wx:if='{{item.goods_list.length>1 && item.specShow}}' wx:for='{{item.goods_list}}' wx:for-item='specItem' wx:for-index='specindex' wx:key='q'>
+            <view class="specBox">
+              <view class="spec_item">
+                <view class="l">
+                  <view class="t">{{specItem.goods_spec}}</view>
+                  <view class="t2"><text>￥</text>{{specItem.goods_price}}</view>
+                </view>
+                <view class="stepper_2" style='right:20rpx;' wx:if='{{specItem.cart_num>0}}'>
+                  <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='del'>-</text>
+                  <input value="{{specItem.cart_num}}" disabled='true'></input>
+                  <text data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add'>+</text>
+                </view>
+                <image wx:if='{{specItem.cart_num==0}}' data-index='{{index}}' data-specindex='{{specindex}}' bindtap="add" data-type='add' src="../../weixinImg/assets/jrgwc_icon@2x.png" class="addimg_2" style='right:20rpx;'></image>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+
+    <view wx:for='{{dataList.goods_list.bydj}}' wx:if='{{tab == 1}}' wx:for-item='item' wx:for-index='index' wx:key='q'>
+      <!-- 视频商品 -->
+      <view class="tab_itemBox" wx:if='{{item.show_type == 2}}'>
+        <view class="videoBox">
+          <view class="vider_imgBox" wx:if='{{item.fengmian}}'>
+            <image src="封面字段" class="fengmian"></image>
+            <image src="../../weixinImg/assets/bofang.png" class="bofang" bindtap="playVideo" data-index='{{index}}'></image>
+          </view>
+          <video wx:if='{{!item.fengmian}}' id='video-{{index}}' src="视频字段"></video>
+          <view class="video_bottom">
+            <view class="video_name" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>{{item.goods_list[0].goods_name}}</view>
+            <view class="video_priBox_box">
+              <view class="video_priBox" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>
+                <text class="a">￥</text>
+                <text class="b">{{item.goods_price}}</text>
+                <text class="c" wx:if='{{item.goods_market_price>0}}'>￥{{item.goods_market_price}}</text>
+              </view> 
+              <view class="addimg_text_3" wx:if='{{item.goods_list.length==1}}' bindtap="gopay" data-id='{{item.goods_list[0].goods_id}}' >立即买</view>
+              <image wx:if='{{item.goods_list.length>1 && !item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/xldj_icon@2x.png" class="addimg_2"></image>
+              <image wx:if='{{item.goods_list.length>1 && item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/sqdj_icon@2x.png" class="addimg_2"></image>
+            </view>
+            <view class="video_numBox">
+              <view class="video_numBox_l">累计销量：{{item.goods_list[0].goods_salenum}}</view>
+              <view class="video_numBox_l">已团{{item.goods_list[0].goods_tuan_sale}}/剩余{{item.goods_list[0].goods_storage}}</view>
+            </view>
+
+            <block wx:if='{{item.goods_list.length>1 && item.specShow}}' wx:for='{{item.goods_list}}' wx:for-item='specItem' wx:for-index='specindex' wx:key='q'>
+              <view class="specBox">
+                <view class="spec_item">
+                  <view class="l">
+                    <view class="t">{{specItem.goods_spec}}</view>
+                    <view class="t2"><text>￥</text>{{specItem.goods_price}}</view>
+                  </view>
+                  <view class="addimg_text_3" bindtap="gopay" data-id='{{specItem.goods_id}}'>立即买</view>
+                </view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- 图片商品 -->
+      <view class="tab_itemBox" wx:if='{{item.show_type == 1}}'>
+        <view class="imageBox_row">
+          <view class="imageBox">
+            <image bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}' src="{{item.goods_list[0].goods_image_url}}" class="img_img"></image>
+            <view class="img_textBox">
+              <view class="img_name" bindtap="godetail" data-id='{{item.goods_list[0].goods_id}}'>{{item.goods_list[0].goods_name}}</view>
+              <view class="img_gg">{{item.goods_list[0].goods_spec}}</view>
+              <view class="video_priBox" style="margin-top:12rpx;">
+                <text class="a">￥</text>
+                <text class="b">{{item.goods_price}}</text>
+                <text class="c" wx:if='{{item.goods_market_price>0}}'>￥{{item.goods_market_price}}</text>
+              </view> 
+              <view wx:if='{{item.goods_list.length==1}}' class="addimg_text_2" bindtap="gopay" data-id='{{item.goods_list[0].goods_id}}'>立即买</view>
+              <image wx:if='{{item.goods_list.length>1 && !item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/xldj_icon@2x.png" class="addimg"></image>
+              <image wx:if='{{item.goods_list.length>1 && item.specShow}}' bindtap='specClick' data-index='{{index}}' src="../../weixinImg/assets/sqdj_icon@2x.png" class="addimg"></image>
+            </view>
+          </view>
+          <view class="video_numBox">
+            <view class="video_numBox_l">累计销量：{{item.goods_list[0].goods_salenum}}</view>
+            <view class="video_numBox_l">已团{{item.goods_list[0].goods_tuan_sale}}/剩余{{item.goods_list[0].goods_storage}}</view>
+          </view>
+
+          <block wx:if='{{item.goods_list.length>1 && item.specShow}}' wx:for='{{item.goods_list}}' wx:for-item='specItem' wx:for-index='specindex' wx:key='q'>
+            <view class="specBox">
+              <view class="spec_item">
+                <view class="l">
+                  <view class="t">{{specItem.goods_spec}}</view>
+                  <view class="t2"><text>￥</text>{{specItem.goods_price}}</view>
+                </view>
+                <view class="addimg_text_3" bindtap="gopay" data-id='{{specItem.goods_id}}'>立即买</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 不同团长弹窗 -->
+<view class='zz' catchtap='hide' wx:if='{{if_show}}'></view>
+<view class="row" wx:if='{{if_show}}'>
+  <view class="toptextBox">
+    <view class="t">当前不是您的常用自提点</view>
+    <view class="b">请确认是否更换取货团长</view>
+  </view>
+  <view class="itemBox" style="margin-bottom: 26rpx;">
+    <view class="itme_text">当前访问：</view>
+    <view class="item_Box">
+      <image src="{{changeTuanList.view_tuanzhang.avatar}}" class="item_img"></image>
+      <view class="item_address">
+        <view class="item_name">{{changeTuanList.view_tuanzhang.name}}</view>
+        <view class="item_a">{{changeTuanList.view_tuanzhang.address}}{{changeTuanList.view_tuanzhang.building}}</view>
+      </view>
+      <view class="item_numBox">
+        <view class="item_km">{{changeTuanList.view_tuanzhang.distance}}</view>
+        <view class="item_sel" bindtap="setTuanzhang" data-id="{{changeTuanList.view_tuanzhang.id}}">选择他</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="itemBox">
+    <view class="itme_text">默认自提点：</view>
+    <view class="item_Box" wx:if='{{changeTuanList.default_tuanzhang != ""}}'>
+      <image src="{{changeTuanList.default_tuanzhang.avatar}}" class="item_img"></image>
+      <view class="item_address">
+        <view class="item_name">{{changeTuanList.default_tuanzhang.name}}</view>
+        <view class="item_a">{{changeTuanList.default_tuanzhang.address}}</view>
+      </view>
+      <view class="item_numBox">
+        <view class="item_km">{{changeTuanList.default_tuanzhang.distance}}</view>
+        <view class="item_sel" bindtap="setTuanzhang" data-id="{{changeTuanList.default_tuanzhang.id}}">选择他</view>
+      </view>
+    </view>
+    <view class="zanwu" wx:if='{{changeTuanList.default_tuanzhang == ""}}'>还未设置默认自提点</view>
+  </view>
+</view>
+
+<view class="dingweiBox" wx:if='{{!is_Location}}' bindtap="openLocation">
+  <image src="http://www.test.hangowa.com/data/upload/mobile/special/s0/s0_06438385417260983.png" class="dignweiimg"></image>
+  <view class="kaiqidw">获取位置</view>
+</view>
+
+

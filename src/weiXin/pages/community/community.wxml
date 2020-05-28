@@ -1,0 +1,225 @@
+<import src="../../html-view/index.wxml" />
+
+  <view class="header">
+    <image src="http://www.hangowa.com/data/upload/mobile/special/s0/s0_06412286017957638.png" class="bg"></image>
+    <view class="logologoBox">
+      <image src="../../weixinImg/logologo.png" mode="aspectFit" class="logologo"></image>
+    </view>
+    <view class="infoBox">
+      <image src="{{info.tuan_zhang_info.avatar}}" class="i_logo"></image>
+      <view class="i_info">
+        <view class="name">团长：{{info.tuan_zhang_info.name}}</view>
+        <!-- <view class="t">发货方式：{{info.deliver_type}}</view>
+        <view class="t" style="display:flex;" wx:if='{{info.deliver_type!="物流发货"}}'>
+          <view style="width:80rpx;">自提点：</view>
+          <view style="flex:1;">
+            {{info.zt_address_info.area}}
+            {{info.zt_address_info.street}}
+            {{info.zt_address_info.community}}
+            {{info.zt_address_info.address}}
+          </view>
+        </view> -->
+      </view>
+      <view class="i_phone">
+        <image src="../../weixinImg/phone11.png" style="margin-right:30rpx;" bindtap="phoneCall"></image>
+        <image src="../../weixinImg/fx22.png" bindtap="shareshow"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="box">
+    <view class="row">
+      <view class="tuan_title">{{info.tuan_title}}</view>
+
+      <view class="type_0429">
+        发货方式：{{info.deliver_type}}
+        （{{info.deliver_type=="物流发货"?'预计发货时间：'+config_send_time:'预计配送时间：'+config_send_time}}）
+        <view wx:if='{{info.deliver_type!="物流发货"}}'>自提点：{{zt_address}}</view>
+      </view>
+
+      <view class="row_h" wx:if='{{if_end==2}}'>
+        <!-- 倒计时 -->
+        <view class="endtime">
+          {{timeText}}
+          <view class="endtime_time">
+            <view>{{time[0]}}</view>天
+            <view>{{time[1]}}</view>时
+            <view>{{time[2]}}</view>分
+            <view>{{time[3]}}</view>秒
+          </view>
+        </view>
+        <view class="order_num">已团：{{info.order_total_num}}</view>
+      </view>
+
+      <view class="row_h {{if_end==1?'h100':''}}" wx:if='{{if_end==1}}' style="background:#f2f2f2;">
+        <!-- 倒计时 -->
+        <view class="endtime" style="font-size:32rpx;">
+          活动已结束
+        </view>
+        <view class="order_num">已团：{{info.order_total_num}}</view>
+      </view>
+
+      <view class='details-con'>
+        <template is="html-view" data="{{data: tuan_description}}" />
+      </view>
+
+      <!-- 商品列表 -->
+      <view class="goodsBox">
+        <block wx:for='{{info.goods_list}}' wx:key='q'>
+          <view class="g_itemBox">
+            <image class="g_i_Img" src="{{item.goods_image}}" bindtap="zzshow" data-index='{{index}}'></image>
+            <view class="g_i_nameBox" bindtap="zzshow" data-index='{{index}}'>
+              <view class="n">{{item.goods_name}}</view>
+              <view class="g">
+                <text>￥</text>
+                <text class="p" wx:if='{{item.goods_list.length == 1}}'>{{item.goods_max_price}}</text>
+                <text class="p" wx:if='{{item.goods_list.length > 1}}'>{{item.goods_min_price}}--{{item.goods_max_price}}</text>
+              </view>
+            </view>
+            <view class="g_i_numBox">
+              <view class="n">已团{{item.goods_sales}}</view>
+              <!-- if_add:1,  //1可以添加  2不可以添加 -->
+              <view class="cz" wx:if='{{item.goods_list.length == 1 && if_add==1}}'>
+                <image src="../../weixinImg/j21.png" bindtap="addCar" data-index='{{index}}'></image>
+                <view wx:if='{{item.num>0}}'>{{item.num}}</view>
+                <image src="../../weixinImg/j22.png" wx:if='{{item.num>0}}' bindtap='delCar' data-index='{{index}}'></image>
+              </view>
+              <view style="width:200rpx;" wx:if='{{item.goods_list.length > 1 && if_add==1}}'>
+                <view class="xgg" bindtap="zzshow" data-index='{{index}}'>
+                  选规格
+                  <view>9</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- 订单列表 -->
+      <view class="orderBox">
+        <view class="no" wx:if='{{info.order_list.length==0}}'>暂无参与小伙伴~</view>
+        <view class="yBox" wx:if='{{info.order_list.length>0}}'>
+          <view class="t"><view></view>订单列表</view>
+          <view class="{{!if_gd?'orderlistBox':''}}" style="width: 100%;">
+            <block wx:for='{{info.order_list}}' wx:key='q'>
+              <view class="o_itemBox" wx:if='{{index < 3 || if_gd}}'>
+                <view class="num">{{item.number}}、</view>
+                <image src="{{item.member_avatar}}" class="logo"></image>
+                <view class="name">
+                  <view class="t"><text>{{item.buyer_name}}</text><text style="margin-left:30rpx;">{{item.add_time_str}}</text></view>
+                  <block wx:for='{{item.order_goods}}' wx:for-item='v'>
+                    <view class="b">{{v.goods_name}} +{{v.goods_num}}</view>
+                  </block>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view class="addlist" wx:if='{{info.order_list.length>3 && !if_gd}}' bindtap='dengduo'>加载更多</view>
+        </view>
+      </view>
+
+      <!-- 评论 -->
+      <view class="commentBox">
+      
+      </view>
+    </view>
+  </view>
+
+  <!-- 详情弹窗 -->
+  <view class="zz" wx:if="{{detail_show}}" bindtap="zzhide"></view>
+  <view class="detailBox" wx:if="{{detail_show}}">
+    <image src="../../weixinImg/gb_icon@2x.png" class="close" bindtap="zzhide"></image>
+    <view class="g_itemBox">
+      <image class="g_i_Img" src="{{info.goods_list[item_index].goods_list[select].goods_goods_image}}"></image>
+      <view class="g_i_nameBox">
+        <view class="n">{{info.goods_list[item_index].goods_list[select].goods_name}}</view>
+        <view class="g">
+          <text>￥</text>
+          <text class="p">{{info.goods_list[item_index].goods_list[select].goods_price}}</text>
+        </view>
+      </view>
+      <view class="g_i_numBox">
+      <!-- if_add:1,  //1可以添加  2不可以添加 -->
+        <view class="cz" wx:if='{{if_add==1}}'>
+          <image src="../../weixinImg/j21.png" bindtap="addCar" data-index='{{item_index}}'></image>
+          <view wx:if='{{info.goods_list[item_index].num>0}}'>{{info.goods_list[item_index].goods_list[select].num}}</view>
+          <image src="../../weixinImg/j22.png" wx:if='{{info.goods_list[item_index].num>0}}' bindtap="delCar" data-index='{{item_index}}'></image>
+        </view>
+      </view>
+    </view>
+    <view class="gg" wx:if='{{info.goods_list[item_index].goods_list.length > 1}}'>
+      <view class="n">规格</view>
+      <view class="i">
+        <block wx:for='{{info.goods_list[item_index].goods_list}}'>
+          <view class="{{select==index ? 'select' : ''}}" data-index='{{index}}' bindtap="ggclick">{{item.goods_new_spec}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="gg xq">
+      <!-- <view class="n">图文详情</view> -->
+      <view class='details-con' wx:if='{{mobile_body != ""}}'>
+        <template is="html-view" data="{{data: mobile_body}}" />
+      </view>
+      <view class="zwxq" wx:if='{{mobile_body==""}}'>暂无商品详情</view>
+    </view>
+  </view>
+
+  <!-- 分享弹窗 -->
+  <view class="zz" wx:if="{{share_show}}" bindtap="sharehide"></view>
+  <view class="shareBox" wx:if="{{share_show}}">
+    <view class="sharetit">分享</view>
+    <view class="sharebtnBox">
+      <view class="shareitem">
+        <button data-name="shareBtn" open-type="share" bindtap="sharehide">
+          <image src="../../weixinImg/fxwx.png"></image>
+          微信好友
+        </button>
+      </view>
+      <view class="shareitem" bindtap="haibaoshow">
+        <image src="../../weixinImg/fxhb.png"></image>
+        <view>生成海报</view>
+      </view>
+    </view>
+    <view class="shareqx" bindtap="sharehide">取消</view>
+  </view>
+
+  <!-- 按钮 if_add:1,  //1可以添加  2不可以添加-->
+  <view class="btnBox">
+    <view class="btn_a" wx:if='{{z_num==0 && if_add==1}}' bindtap="toastclick">我要接龙</view>
+    <view class="btn_b" wx:if='{{z_num>0 && if_add==1}}'>
+      <view class="left">
+        <view class="icon">
+          <image src="../../weixinImg/tuang1.png"></image>
+          <view class="num">{{z_num}}</view>
+        </view>
+        <view class="prc">
+          <text>￥</text>
+          <text class="p">{{z_price}}</text>
+        </view>
+      </view>
+      <view class="right" bindtap="gosureorder">我要接龙</view>
+    </view>
+    <view class="btn_a" wx:if='{{z_num==0 && if_add==2}}' style="background:#999;color:#f2f2f2;border-color:#999;">我要接龙</view>
+  </view>
+
+  <!-- 未登录 -->
+  <view class="zz" bindtap="loginhide" wx:if='{{login_show}}' style="z-index:9999;"></view>
+  <view class="loginBox" wx:if='{{login_show}}'>
+    <image src="../../weixinImg/aaaaa.png"></image>
+    <view class="login_tit">您还未授权，请先授权</view>
+    <button class='header_login' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      确定授权
+    </button>
+  </view>
+
+  <!-- 海报 -->
+  <view class="zz" wx:if='{{if_haibao}}' style="z-index:9999" bindtap="haibaohide"></view>
+  <view class="canvasBox" wx:if='{{if_haibao}}'>
+    <canvas canvas-id='share' style='width:414px;height:736px;opacity:0;'></canvas>
+  </view>
+  <image src="{{shareImgPath}}" class="canvasimg" mode="aspectFit" wx:if='{{if_haibao}}'></image>
+  <button class='fenxiang' bindtap='save' wx:if='{{if_haibao}}'>保存图片到相册</button>
+
+  <!-- 悬浮按钮 -->
+  <image src="../../weixinImg/0424_1.png" class="order_0424" bindtap="goorder_she"></image>
+  <image src="../../weixinImg/0424_2.png" class="home_0424" bindtap="gohome"></image>

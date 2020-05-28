@@ -1,0 +1,74 @@
+
+.block {
+  border-top: 2rpx solid #ededed;
+}
+
+.store_block {
+  height: 142rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  background: #fff;
+}
+
+.storeImg {
+  width: 94rpx;
+  height: 94rpx;
+  background: pink;
+  margin: 24rpx;
+}
+
+.txt_con {
+  width: 470rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.store_name {
+  font-size: 30rpx;
+  color: #222;
+  margin-bottom: 32rpx;
+}
+
+.grand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.grand_block {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  margin-right: 32rpx;
+}
+
+.des {
+  font-size: 22rpx;
+  color: #aaa;
+  margin-right: 5rpx;
+}
+
+.coin {
+  font-size: 22rpx;
+  color: #fe5a4c;
+}
+
+.delete {
+  width: 34rpx;
+  height: 34rpx;
+  margin-left: 75rpx;
+}
+
+.scroll {
+  height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding-bottom: 50rpx;
+}

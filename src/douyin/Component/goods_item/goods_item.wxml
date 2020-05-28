@@ -1,0 +1,34 @@
+<view class='scroll_left_col'>
+  <block wx:for="{{goods_list}}" wx:key="unqui">
+    <view class='singleTrade'>
+      <image src='../../weixinImg/flysq_img@2x.png' class='sqImg' catchtap="goGoodsDetail" data-item="{{item}}" wx:if="{{item.goods_storage==0}}"></image>
+      <image src='{{item.goods_image_url}}' class='goodsImg' catchtap="goGoodsDetail" data-item="{{item}}"></image>
+      <view class='goodsDetail'>
+        <text class='goodsName' catchtap="goGoodsDetail" data-item="{{item}}">{{item.goods_name}}</text>
+        <view class='goodsPrice'>
+          <view class="goodsmose" catchtap="goGoodsDetail" data-item="{{item}}">
+            <image wx:if="{{item.xianshi_flag}}" src='../../weixinImg/ms_icon@2x.png'></image>
+            <view  class="pingo" wx:if="{{item.tuan_flag}}" src='../../weixinImg/ms_icon@2x.png'>拼购</view>
+            <text class='ds'>￥</text>
+            <text class='price'>{{item.goods_price}}</text>
+          </view>
+          <view>
+            <view class='deleteImg' bindtap='deleteStore' data-id='{{item.fav_id}}' wx:if="{{fav_goods}}">
+                <image src='../../weixinImg/deletesp_icon@2x.png'></image>
+            </view>
+            <!-- <view class='goShop' bindtap="goShop" data-id="{{item.store_id}}" wx:if="{{enter_shop}}">进店
+              <image src='../../weixinImg/jdzk_icon@2x.png'></image>
+            </view> -->
+          </view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class='list_bottom' wx:if="{{is_bottom}}">
+    <view style='-webkit-flex:1'></view>
+    <view class='line'></view>
+    <view class='list_bottom_t'>已经到底了</view>
+    <view class='line'></view>
+    <view style='-webkit-flex:1'></view>
+  </view>
+</view>

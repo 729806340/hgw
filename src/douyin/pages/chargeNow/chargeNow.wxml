@@ -1,0 +1,18 @@
+<view class='cn'>
+  <view class='cn_title'>
+    <image src='/weixinImg/czkyets_icon@2x.png'></image>
+    <text>请输入已知平台充值卡号码，充值后可以在购物结算时选取使用充值卡余额进行支付</text>
+  </view>
+  <view class='cn_input'>
+    <label>
+       <text class="l-text-name">充值卡号</text>
+        <input class="input-text" name="card_num" placeholder-class='placeholder' bindinput="getCardNum" placeholder="请输入平台充值卡号" type="text"></input>
+    </label>
+     <label>
+       <text class="l-text-name">卡号密码</text>
+        <input class="input-text" name="card_pass" placeholder-class='placeholder' bindinput="getCardPass" placeholder="请输入平台充值卡密码" type="text"></input>
+    </label>
+  </view>
+  <button class='btn' disabled='{{disabled}}' bindtap='chargeNow'>确认提交</button>
+</view>
+

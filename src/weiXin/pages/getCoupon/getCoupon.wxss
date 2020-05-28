@@ -1,0 +1,57 @@
+page {
+  border-top: 1rpx solid #ededed;
+  background: #fff;
+}
+
+label {
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-align: center;
+  box-align: center;
+}
+
+.input-item {
+  width: 80%;
+  height: 86rpx;
+  text-align: left;
+  line-height: 20rpx;
+  border-bottom: solid 1rpx #ededed;
+  margin: 0 auto;
+  margin-top: 56rpx;
+}
+
+.placeholder {
+  font-size: 30rpx;
+  color: #ccc;
+  letter-spacing: 0;
+}
+.input-text{
+  position: relative;
+}
+
+.get-code {
+  position: absolute;
+  right: 60rpx;
+  width: 203rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: none;
+  border: none;
+  color: #fa7e36;
+  font-size: 25rpx;
+  z-index: 99;
+}
+
+button {
+  width: 602rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  background: #2eb772;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 48rpx auto;
+}

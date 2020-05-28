@@ -1,0 +1,46 @@
+<view class='headBox'>
+  <view class="h_timeBox">
+    <picker mode="date" value="{{start_date}}" start="{{dataList.register_time}}" end="{{end}}" bindchange="bindDateChange_start">
+      <view class="picker">{{start_date}}</view>
+    </picker>
+    <view class="h_t">~</view>
+     <picker mode="date" value="{{end_date}}" start="{{start_date}}" end="{{end}}" bindchange="bindDateChange_end">
+      <view class="picker">{{end_date}}</view>
+    </picker>
+    <view class="searchBox" bindtap='searchclick'>查询</view>
+  </view>
+
+  <view class="tabBox">
+    <view class="tab_itemBox {{bill_type=='all'?'tab_itemBox_a':''}}" data-tab='all' bindtap="tabClick">
+      <view class="t">佣金总计(元)</view>
+      <view class="b"><text>￥</text>{{dataList.commis_total}}</view>
+    </view>
+    <view class="tab_itemBox {{bill_type=='unclaimed'?'tab_itemBox_a':''}}" data-tab='unclaimed' bindtap="tabClick">
+      <view class="t">待出账(元)</view>
+      <view class="b"><text>￥</text>{{dataList.commis_wl_total}}</view>
+    </view>
+    <view class="tab_itemBox {{bill_type=='received'?'tab_itemBox_a':''}}" data-tab='received' bindtap="tabClick">
+      <view class="t">已到账(元)</view>
+      <view class="b"><text>￥</text>{{dataList.commis_yj_total}}</view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y class="scrollBox" bindscrolltolower='bindpushList'>
+  <view class="goodsBox">
+      <view class="list_goodsBox" wx:for="{{dat}}" wx:key="goods_id"  wx:for-index="index1" wx:for-item="item1">
+        <image src="{{item1.goods_image}}" class="list_g_img"></image>
+        <view class="list_g_info">
+          <view class="list_g_name">{{item1.goods_name}}</view>
+          <view class="list_g_gg">120g x 1</view>
+          <view class="list_g_gg">实付{{item1.goods_pay_price}}，优惠{{commis}}，收益{{item1.shequ_commis_amount}}</view>
+        </view>
+        <view class="list_g_prc">
+          <view class="t">￥ {{item1.goods_pay_price}}</view>
+          <view class="t_2">已完成</view>
+        </view>
+      </view>
+  </view>
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>
+

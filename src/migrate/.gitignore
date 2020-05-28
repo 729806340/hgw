@@ -1,0 +1,3 @@
+Runtime/*
+!Runtime/index.html
+Common/Conf/config.php

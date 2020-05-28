@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-touch-fullscreen" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="msapplication-tap-highlight" content="no"/>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1"/>
+    <title>专题-汉购网</title>
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <style>
+        #header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d9d9d9;
+            padding: 0;
+        }
+
+        #header .btn-back {
+            display: block;
+            position: absolute;
+            top: 0;
+            padding: 14px 16px;
+        }
+
+        #header .btn-back img {
+            width: 9px;
+            height: 15px;
+            display: block;
+        }
+
+        #header h1 {
+            line-height: 44px;
+            height: 44px;
+            text-align: center;
+            font-size: 16px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<!--<header id="header" class="fixed">-->
+    <!--<a class="btn-back" href="www.finish.com">-->
+        <!--<img class="block" src="../images/icon-back.png">-->
+    <!--</a>-->
+    <!--<h1>专题</h1>-->
+<!--</header>-->
+<div class="nctouch-main-layout fixed-Width" id="main-container" style="margin-top: 0rem"></div>
+<footer id="footer"></footer>
+<script type="text/html" id="adv_list">
+    <div class="adv_list">
+        <div class="swipe-wrap">
+            <% for (var i in item) { %>
+            <div class="item">
+                <a href="<%= item[i].url %>">
+                    <img src="<%= item[i].image %>" alt="">
+                </a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="home1">
+    <div class="nctouch-home-block">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <div class="item-pic">
+            <a href="<%= url %>">
+                <img src="<%= image %>" alt="">
+            </a>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="home2">
+    <div class="nctouch-home-block">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="item-pic-l1-r2">
+            <li>
+                <a href="<%= square_url %>"><img shopwwi-url="<%= square_image %>" rel='lazy' src="/img/loading.gif"
+                                                 alt=""></a>
+            </li>
+            <li>
+                <a href="<%= rectangle1_url %>"><img shopwwi-url="<%= rectangle1_image %>" rel='lazy'
+                                                     src="/img/loading.gif" alt=""></a>
+            </li>
+            <li>
+                <a href="<%= rectangle2_url %>"><img shopwwi-url="<%= rectangle2_image %>" rel='lazy'
+                                                     src="/img/loading.gif" alt=""></a>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="home3">
+    <div class="nctouch-home-block">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="item-pic-list">
+            <% for (var i in item) { %>
+            <li>
+                <a href="<%= item[i].url %>"><img shopwwi-url="<%= item[i].image %>" rel='lazy' src="/img/loading.gif"
+                                                  alt=""></a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="home4">
+    <div class="tit-bar">
+        <% if (title) { %>
+        <div class="title"><%= title %></div>
+        <% } %>
+        <ul class="item-pic-l2-r1">
+            <li>
+                <a href="<%= rectangle1_url %>"><img shopwwi-url="<%= rectangle1_image %>" rel='lazy'
+                                                     src="/img/loading.gif" alt=""></a>
+            </li>
+            <li>
+                <a href="<%= rectangle2_url %>"><img shopwwi-url="<%= rectangle2_image %>" rel='lazy'
+                                                     src="/img/loading.gif" alt=""></a>
+            </li>
+            <li>
+                <a href="<%= square_url %>"><img shopwwi-url="<%= square_image %>" rel='lazy' src="/img/loading.gif"
+                                                 alt=""></a>
+            </li>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="explode3">
+    <div class="nctouch-home-block">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="item-pic-list">
+            <% for (var i in item) { %>
+            <li style="width:33.33%">
+                <a href="<%= item[i].url %>"><img shopwwi-url="<%= item[i].image %>" rel='lazy' src="/img/loading.gif"
+                                                  alt=""></a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="explode4">
+    <div class="nctouch-home-block">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="item-pic-list">
+            <% for (var i in item) { %>
+            <li style="width:25%">
+                <a href="<%= item[i].url %>"><img shopwwi-url="<%= item[i].image %>" rel='lazy' src="/img/loading.gif"
+                                                  alt=""></a>
+
+                <% if (item[i].titlebelow) { %>
+                <h3 sytle="height:30px;"><%= item[i].titlebelow %></h3>
+                <% } %>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="goods">
+    <div class="nctouch-home-block item-goods">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="goods-list">
+            <% for (var i in item) { %>
+            <li>
+                <a href="http://www.fuhao.com?data=<%= item[i].goods_id %>&type=goods">
+                    <div class="goods-pic"><img shopwwi-url="<%= item[i].goods_image %>" rel='lazy'
+                                                src="/img/loading.gif" alt=""></div>
+                    <dl class="goods-info">
+                        <dt class="goods-name"><%= item[i].goods_name %></dt>
+                        <dd class="goods-price">￥<em><%= item[i].goods_promotion_price %></em></dd>
+                    </dl>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="goods1">
+    <div class="nctouch-home-block item-goods">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="goods-list">
+            <% for (var i in item) { %>
+            <li>
+                <a href="http://www.fuhao.com?data=<%= item[i].goods_id %>&type=goods">
+                    <div class="goods-pic"><img shopwwi-url"<%= item[i].goods_image %>" rel='lazy'
+                        src="/img/loading.gif" alt="">
+                    </div>
+                    <dl class="goods-info">
+                        <dt class="goods-name"><%= item[i].goods_name %></dt>
+                        <dd class="goods-price">￥<em><%= item[i].goods_promotion_price %></em><em class="goods-xianshi">限时折扣</em>
+                        </dd>
+                    </dl>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/html" id="goods2">
+    <div class="nctouch-home-block item-goods">
+        <% if (title) { %>
+        <div class="tit-bar"><%= title %></div>
+        <% } %>
+        <ul class="goods-list">
+            <% for (var i in item) { %>
+            <li>
+                <a href="http://www.fuhao.com?data=<%= item[i].goods_id %>&type=goods">
+                    <div class="goods-pic"><img shopwwi-url="<%= item[i].goods_image %>" rel='lazy'
+                                                src="/img/loading.gif" alt=""></div>
+                    <dl class="goods-info">
+                        <dt class="goods-name"><%= item[i].goods_name %></dt>
+                        <dd class="goods-price">￥<em><%= item[i].goods_promotion_price %></em><em
+                                class="goods-group">抢购</em></dd>
+                    </dl>
+                </a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="../js/main.js"></script>
+
+<!--<script type="text/javascript" src="js/config.js"></script>-->
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/template.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/swipe.js"></script>
+<script type="text/javascript" src="js/special.js"></script>
+<!--<script type="text/javascript" src="js/tmpl/footer.js"></script>-->
+<script type="text/javascript" src="js/lazy.js"></script>
+
+</body>
+</html>

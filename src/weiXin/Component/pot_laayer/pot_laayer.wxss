@@ -1,0 +1,48 @@
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0.6;
+  background: #000000;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+.commodity_attr_box{
+    width:420rpx;
+    height:550rpx;
+    position: fixed;
+    left:165rpx;
+    top:25%;
+    padding:0;
+    box-sizing: border-box; 
+    z-index: 2000;
+    border-radius: 12rpx;
+}
+
+.delete{
+  display: block;
+  width: 68rpx;
+  height: 110rpx;
+  position: absolute;
+  top: -110rpx;
+  right: 0;
+  z-index: 999;
+}
+.scroll-header {
+  /* display: flex;
+  white-space: nowrap;
+  flex-direction: column; */
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius:12rpx;
+}
+.coupon{
+  width:100%;
+  height:100%;
+  margin-right: 10rpx;
+  border-radius:12rpx;
+}

@@ -1,0 +1,110 @@
+view {
+  font-weight: 300;
+}
+
+.map_container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.search_layout {
+  width: 100vw;
+  height: 80rpx;
+  position: absolute;
+  box-sizing: border-box;
+  top: 20rpx;
+  display: flex;
+  z-index: 100;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 30rpx;
+}
+
+.search_row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 60rpx;
+  opacity: 0.8;
+  background: #fff;
+  align-items: center;
+  border-radius: 30rpx;
+}
+
+.icon_search {
+  margin-left: 27rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.search_txt {
+  margin-left: 20rpx;
+  font-size: 26rpx;
+  color: #aaa;
+}
+
+.scroll {
+  width: 100vw;
+  height: 45vh;
+}
+
+.map_col {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.map_item_row {
+  width: 100vw;
+  background: #fff;
+  padding: 20rpx 50rpx;
+  box-sizing: border-box;
+  display: flex;
+  border-bottom: 2rpx solid #f5f5f5;
+  align-items: center;
+  flex-direction: row;
+}
+
+.map_item {
+  display: flex;
+  flex-direction: column;
+}
+
+.map_name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.map_address {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.location_now {
+  width: 100vw;
+  height: 7vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 2rpx solid #f5f5f5;
+  box-sizing: border-box;
+  padding: 0 50rpx;
+}
+
+.btn_sure {
+  width: 100vw;
+  height: 8vh;
+  color: #fff;
+  font-size: 28rpx;
+  line-height: 8vh;
+  text-align: center;
+  background: #7BDAAA;
+}
+
+.img_circle {
+  width: 40rpx;
+  height: 40rpx;
+}

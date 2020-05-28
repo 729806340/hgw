@@ -1,0 +1,171 @@
+<view class='column'>
+
+  <!-- tab标签 -->
+  <scroll-view scroll-x class='scroll' scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+    <view class='scroll_bg'>
+      <block wx:for="{{tabs}}" wx:for-index='idx' wx:key="unq">
+        <text data-current='{{idx}}' class="{{currentTab==idx ? 'select' : 'unselect'}}" bindtap='swichNav'>
+          {{item}}
+        </text>
+      </block>
+    </view>
+  </scroll-view>
+  <!-- 主体部分 -->
+
+  <swiper circular='true' current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+    <block wx:for="{{tabs}}" wx:key="unq1">
+      <swiper-item class="swiper-item">
+        <block wx:if="{{item=='全部'}}">
+          <template is="home0" data="{{order_list:order_list[0],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='待付款'}}">
+          <template is="home0" data="{{order_list:order_list[1],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='待发货'}}">
+          <template is="home0" data="{{order_list:order_list[2],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='待自提'}}">
+          <template is="home0" data="{{order_list:order_list[3],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='待收货'}}">
+          <template is="home0" data="{{order_list:order_list[4],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='拼团中'}}">
+          <template is="home0" data="{{order_list:order_list[5],hasOrder,is_bottom}}" />
+        </block>
+        <block wx:if="{{item=='已完成'}}">
+          <template is="home0" data="{{order_list:order_list[6],hasOrder,is_bottom}}" />
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 全部订单 -->
+<template name='home0'>
+  <view class='column_null' wx:if="{{!hasOrder}}">
+    <image class='column_null_img' mode='aspectFit' src='../../weixinImg/wddd_w_img@2x.png'></image>
+    <view class='column_null_txt'>老板您还没有订单,快去下单吧</view>
+    <view class='btn_null' catchtap='goClass'>去购买</view>
+  </view>
+
+  <scroll-view enable-back-to-top="true" scroll-y class='t_scroll' bindtouchend="tach_fas" lower-threshold="0" bindscrolltolower="getMore" wx:else>
+    <view class='scroll_column'>
+      <block wx:for="{{order_list}}" wx:for-item="order_item" wx:for-index="order_index" wx:key="{{order_index}}">
+        <block wx:for="{{order_item.list}}" wx:key="{{item.order_id}}">
+          <view class='column_item'>
+            <view class='goods_title_row' data-item='{{item}}'>
+              <image src='../../weixinImg/dptb_icon@2x.png' class='img_shop'></image>
+              <view class='shop_name'>{{item.store_name}}</view>
+              <view style='flex:1'></view>
+              <view class='shop_t2'>{{item.state_desc}}</view>
+            </view>
+            <block wx:for="{{item.extend_order_goods}}" wx:for-item="data" wx:for-index="index1" wx:key="{{data.goods_id}}">
+              <view class='order_goods_row' bindtap='goOrderDetail' data-item='{{item}}'>
+                <image src='{{data.goods_image}}' class='order_goods_img' mode='aspectFit'></image>
+                <view class='col'>
+                  <view class='order_goods_tn' wx:if="{{data.is_zengpin==1}}">
+                    <view class="z_t">赠</view>
+                    {{data.goods_name}}
+                  </view>
+                  <view class='order_goods_t1' wx:else>
+                    <image class="ms_img" wx:if="{{data.is_miaosao==1}}" src="../../weixinImg/ms_icon@2x.png"></image>
+                    <view class='ping_t' wx:if="{{data.is_pin==1}}">拼购</view>
+                    {{data.goods_name}}
+                  </view>
+                  <view style='flex:1' class='quantity'>{{data.goods_spec}}</view>
+                  <view class='t20' wx:if="{{data.is_miaosao==1 && data.xianshi_num > 0}}">
+                    限购：{{data.xianshi_num}}件
+                  </view>
+                </view>
+                <view style='flex:1'></view>
+                <view class='order_goods_col'>
+                  <view class='order_goods_t2'>¥{{data.goods_price}}</view>
+                  <view class='shop_t1'>x{{data.goods_num}}</view>
+                  <view class="btn_ok btn_oks" catchtap='refund' wx:if="{{data.refund==1}}" data-index='{{item.order_id}}' data-refund="0" data-orderid="{{data.rec_id}}">退款</view>
+                </view>
+              </view>
+            </block>
+
+
+            <!-- 满赠减活动 -->
+            <view class='mj_row' wx:if="{{item.promotion_info.length>0}}">
+              <view class='mj_icon' wx:if="{{item.promotion_info[1]!=0&&item.promotion_info[2]!=''}}">满减满赠</view>
+              <view class='mj_icon_2' wx:if="{{item.promotion_info[1]!=0&&item.promotion_info[2]==0}}">满减</view>
+              <view class='mj_icon_2' wx:if="{{item.promotion_info[1]==0&&item.promotion_info[2]!=''}}">满赠</view>
+              <view class='mj_content' wx:if="{{item.promotion_info[1]!=0&&item.promotion_info[2]==0}}">满{{item.promotion_info[0]}}减{{item.promotion_info[1]}}元</view>
+              <view class='mj_content' wx:if="{{item.promotion_info[1]==0&&item.promotion_info[2]!=''}}">满{{item.promotion_info[0]}}元，获得礼包：{{item.promotion_info[2]}}</view>
+              <view class='mj_content' wx:if="{{item.promotion_info[1]!=0&&item.promotion_info[2]!=''}}">满{{item.promotion_info[0]}}元减{{item.promotion_info[1]}}元活动，获得礼包：{{item.promotion_info[2]}}</view>
+            </view>
+
+
+            <view class='gray_line_1' wx:if="{{item.man_song.goods_list}}"></view>
+            <!-- 满赠结束 -->
+
+            <view class='goods_bottom_row'>
+              <view style='flex:1'></view>
+              <view class='goods_bottom_t1'>共{{item.goods_count}}件商品 小计 : </view>
+              <view class='goods_center_t1'>￥{{item.goods_amount}}</view>
+              <!-- <view class='goods_bottom_t1'>(含运费￥{{item.shipping_fee}})</view> -->
+            </view>
+            <view class='row2'>
+              <!-- <view class='pay_type'>{{order_item.payment_name}}</view> -->
+              <view style='flex:1'></view>
+              <view class='btn_no' catchtap='cancelOrder' wx:if="{{item.if_cancel}}" data-order_index='{{order_index}}' data-index='{{index}}'>
+                取消订单
+              </view>
+              <view class='btn_no' catchtap='delOrder' data-order_index='{{order_index}}' data-index='{{index}}' wx:if="{{item.if_delete}}">
+                删除订单
+              </view>
+              <view class='btn_no' catchtap='quitOrder' data-index='{{index}}' wx:if="{{item.if_deliver}}" data-order_index='{{order_index}}'>
+                查看物流
+              </view>
+              <view class='btn_ok' catchtap='evaluate' data-order_index='{{order_index}}' data-index='{{index}}' wx:if="{{item.if_evaluation}}">
+                评价订单
+              </view>
+              <view class='btn_ok' catchtap='orderRec' data-order_index='{{order_index}}' data-index='{{index}}' wx:if="{{item.if_receive}}">
+                确认收货
+              </view>
+              <view class='btn_ok' catchtap='refund' data-order_index='{{order_index}}' data-index='{{item.order_id}}' wx:if="{{item.if_refund_cancel}}" data-refund="1">
+                退款
+              </view>
+              <view class='btn_no' catchtap='chain' data-order_index='{{order_index}}' data-index='{{item.order_id}}' wx:if="{{item.if_chain_receive}}">
+                提货
+              </view>
+              <button class='btn_no' open-type='share' data-item = "{{item}}" wx:if="{{item.if_pin_share}}">
+                分享
+              </button>
+            </view>
+          </view>
+        </block>
+        <form bindsubmit="formSubmit" report-submit="true">
+          <view class='top_pay' wx:if="{{order_item.if_pay}}">
+            <view class='goods_bottom_t1'>在线支付金额</view>
+            <view class='goods_center_t1'>￥{{order_item.price}}</view>
+            <view style='flex:1'></view>
+            <button class='btn_ok'  formType="submit" catchtap="payReq" data-item='{{order_item}}' data-index="{{order_index}}">
+              去支付
+            </button>
+          </view>
+        </form>
+        <view class='gray_line'></view>
+      </block>
+        <view class='list_bottom' wx:if="{{is_bottom}}">
+            <view style='-webkit-flex:1'></view>
+            <view class='line'></view>
+            <view class='list_bottom_t'>已经到底了</view>
+            <view class='line'></view>
+            <view style='-webkit-flex:1'></view>
+        </view>
+    </view>
+  </scroll-view>
+</template>
+
+
+<!-- <view class='noData'>
+  <view>
+    <image src='../../weixinImg/wddd_w_img@2x.png'></image>
+  </view>
+  <view>您还没有相关订单</view>
+
+</view> -->

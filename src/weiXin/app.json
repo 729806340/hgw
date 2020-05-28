@@ -1,0 +1,146 @@
+{
+  "cloud": true,
+  "pages": [
+    "pages/index_she/index_she",
+    "pages/index/index",
+    "pages/me/me",
+    "pages/test/test",
+    "pages/community/community",
+    "pages/pc_login/pc_login",
+    "pages/my_shopping/my_shopping",
+    "pages/hango_Collage/hango_Collage",
+    "pages/undex_line/undex_line",
+    "pages/store_details/store_details",
+    "pages/limit_goods/limit_goods",
+    "pages/special_index/special_index",
+    "pages/goodsDetails/goodsDetails",
+    "pages/viewHistory/viewHistory",
+    "pages/goodsCollect2/goodsCollect2",
+    "pages/storeCollect2/storeCollect2",
+    "pages/quitList/quitList",
+    "pages/search/search",
+    "pages/shopDetails/shopDetails",
+    "pages/classify/classify",
+    "pages/offline_pay_finish/offline_pay_finish",
+    "pages/systemInfo/systemInfo",
+    "pages/quitDetail/quitDetail",
+    "pages/orderDetail/orderDetail",
+    "pages/distributionInfo/distributionInfo",
+    "pages/getRefund/getRefund",
+    "pages/myOrder/myOrder",
+    "pages/commentOrder/commentOrder",
+    "pages/preSave_new/preSave_new",
+    "pages/chargeBtn_new/chargeBtn_new",
+    "pages/getShopCoupons/getShopCoupons",
+    "pages/commentDetails/commentDetails",
+    "pages/sureOrder/sureOrder",
+    "pages/shoppingCar/shoppingCar",
+    "pages/classified/classified",
+    "pages/zp_list/zp_list",
+    "pages/getPocket/getPocket",
+    "pages/redPocket/redPocket",
+    "pages/getCoupon/getCoupon",
+    "pages/cashCoupon/cashCoupon",
+    "pages/myProperty/myProperty",
+    "pages/integration/integration",
+    "pages/chargeCard_new_2/chargeCard_new_2",
+    "pages/cardDetail/cardDetail",
+    "pages/chargeNow/chargeNow",
+    "pages/addAddress/addAddress",
+    "pages/address/address",
+    "pages/bindTelephone/bindTelephone",
+    "pages/telephone/telephone",
+    "pages/flashSale/flashSale",
+    "pages/distributionOrder/distributionOrder",
+    "pages/withdraw/withdraw",
+    "pages/withdrawRecord/withdrawRecord",
+    "pages/distributionCenter/distributionCenter",
+    "pages/myOrder_s/myOrder_s",
+    "pages/sureOrder_she/sureOrder_she",
+    "pages/offline_pay_she/offline_pay_she",
+    "pages/dinosaur_address/dinosaur_address",
+    "pages/my_tuanList/my_tuanList",
+    "pages/my_tuanOrder/my_tuanOrder",
+    "pages/my_tuanProfit/my_tuanProfit",
+    "pages/signIn/signIn",
+    "pages/arrival_reminder/arrival_reminder",
+    "pages/scanning_code/scanning_code",
+    "pages/code_result/code_result",
+    "pages/picking_list/picking_list",
+    "pages/delivery_goods/delivery_goods",
+    "pages/commission_record/commission_record",
+    "pages/delivery_notice/delivery_notice",
+    "pages/aftermath/aftermath",
+    "pages/distribution/distribution",
+    "pages/my_sales/my_sales",
+    "pages/my_commission/my_commission",
+    "pages/my_tuanPoster/my_tuanPoster",
+    "pages/my_tuanUser/my_tuanUser",
+    "pages/delivery_receipt/delivery_receipt",
+    "pages/map_search/map_search",
+    "pages/map/map",
+    "pages/apply_TZ/apply_TZ",
+    "pages/withdrawal/withdrawal",
+    "pages/my_banknumber/my_banknumber",
+    "pages/classify_tuan/classify_tuan",
+    "pages/goodsDetail_tuan/goodsDetail_tuan",
+    "pages/nearby_tuan/nearby_tuan",
+    "pages/live_list/live_list",
+    "pages/my_tuanUsershoping/my_tuanUsershoping",
+    "Component/nyz_area_picker_2/nyz_area_picker_2"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "汉购网",
+    "navigationBarTextStyle": "black",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "selectedColor": "#2eb772",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index_she/index_she",
+        "text": "首页",
+        "iconPath": "weixinImg/Group10.png",
+        "selectedIconPath": "weixinImg/Fill3Copy.png"
+      },
+      {
+        "pagePath": "pages/classify_tuan/classify_tuan",
+        "text": "分类",
+        "iconPath": "weixinImg/Group8Copy2.png",
+        "selectedIconPath": "weixinImg/Group8Copy3.png"
+      },
+      {
+        "pagePath": "pages/shoppingCar/shoppingCar",
+        "text": "购物车",
+        "iconPath": "weixinImg/Group12.png",
+        "selectedIconPath": "weixinImg/Group11Copy.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "我的商城",
+        "iconPath": "weixinImg/Fill19Copy.png",
+        "selectedIconPath": "weixinImg/Fill20Copy.png"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序获取附近门店信息"
+    }
+  },
+  "plugins": {
+    "live-player-plugin": {
+      "version": "1.0.11",
+      "provider": "wx2b03c6e691cd7370"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

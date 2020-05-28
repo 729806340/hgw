@@ -1,0 +1,40 @@
+page{
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.tiemBox{
+  width: 100%;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tiemBox .lBox{
+  display: flex;
+  align-items: center;
+}
+.tiemBox .lBox image{
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.tiemBox .lBox .r{
+  
+}
+.tiemBox .lBox .r .t_1{
+  font-size: 36rpx;
+  color: #333;
+}
+.tiemBox .lBox .r .t_2{
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+.rimgBox{
+  width: 30rpx;
+  height: 30rpx;
+}

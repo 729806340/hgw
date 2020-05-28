@@ -1,0 +1,228 @@
+<view class="root">
+  <scroll-view scroll-y class='scroll'>
+    <view class='detail_top'>
+      <view class="status_n" wx:if="{{status==40}}">
+          <view class='de_txt'>订单已完成</view>
+          <image src='../../weixinImg/jywc_img@2x.png'></image>
+      </view>
+      <view class="status_n" wx:if="{{status==20&&order_info.order_type==3}}">
+          <view class='de_txt'>已支付，待提货</view>
+          <image src='../../weixinImg/jywc_img@2x.png'></image>
+      </view>
+      <view class="status_n" wx:if="{{status==10}}">
+          <view class='de_txt'>订单已提交</view>
+          <image src='../../weixinImg/ddtj_img@2x.png'></image>
+      </view>
+      <view class="status_n" wx:if="{{status==20 || status==15}}">
+          <view class='de_txt'>订单已支付</view>
+          <image src='../../weixinImg/ddtj_img@2x.png'></image>
+      </view>
+      <view class="status_n" wx:if="{{status==30}}">
+          <view class='de_txt'>订单已发货</view>
+          <image src='../../weixinImg/mjfh_img@2x.png'></image>
+      </view>
+      <view class="status_n" wx:if="{{status==0}}">
+        <view class='de_txt'>订单已取消</view>
+        <image src='../../weixinImg/ddtj_img@2x.png'></image>
+      </view>
+    </view>
+    <view class="shequBox" wx:if='{{order_info.shequ_tuan_info}}'>
+      <view class="shequ_img">
+        <image src="{{order_info.shequ_tuan_info.tz_avatar}}"></image>
+        团长：{{order_info.shequ_tuan_info.tz_name}}
+        <view class="tz_rigth" data-phone='{{order_info.shequ_tuan_info.tz_phone}}' bindtap="phoneCall">联系团长</view>
+      </view>
+      <view class="shequ_wuliu">
+        配送方式：{{order_info.shequ_tuan_info.deliver_type}}
+      </view>
+      <view class="shequ_wuliu">
+        活动时间：{{order_info.shequ_tuan_info.start_time}} / {{order_info.shequ_tuan_info.end_time}}
+      </view>
+      <view class="shequ_wuliu">
+        {{order_info.shequ_tuan_info.deliver_type=='物流发货'?'预计发货时间':'预计配送时间'}}：{{order_info.shequ_tuan_info.config_send_time}}
+      </view>
+      <view></view>
+    </view>
+    <view class='location_mail' bindtap='distributionInfo' wx:if="{{status==30 || status==40 &&  order_info.order_type!=3}}" data-order_id="{{order_info.order_id}}">
+      <view class='mail_info'>
+        <view class='contact_way'>
+          <image src='../../weixinImg/wl_icon@2x.png'></image>
+          <text>{{order_info.express_info.e_name}}</text>
+        </view>
+        <view class='mail_date'>运单号码：{{order_info.express_info.shipping_code}}</view>
+        <view class='mail_date'>发货时间：{{order_info.express_info.shipping_time}}</view>
+      </view>
+      <image src='../../weixinImg/wlmore_icon@2x.png' class='info_img'></image>
+    </view>
+
+    <view class='location_layout' wx:if="{{order_info.order_type!=3}}">
+      <view class='location_col'>
+        <view class='row'>
+          <view class='r2'>
+            <image class='img_location' src="../../weixinImg/shdz_icon2@2x.png" mode='aspectFit'></image>
+            <view class='location_t1'>收货人：{{order_info.reciver_name}}</view>
+          </view>
+          <view class='location_t2'>{{order_info.reciver_phone}}</view>
+        </view>
+        <view class='location_t3'>收货地址：{{order_info.reciver_addr}}</view>
+      </view>
+    </view>
+
+    <view class='location_layout' wx:if="{{order_info.order_type==3}}">
+      <view class='location_col'>
+        <view class='row_new'>
+          <view class='r2'>
+            <image class='img_location' src="../../weixinImg/psfs_icon@2x.png" mode='aspectFit'></image>
+            <view class='location_t1'>配送方式：<text>到店自提</text></view>
+          </view>
+          <view class='r2' wx:if="{{order_info.chain_code==0 || order_info.chain_code==''?false:true}}">
+            <image class='img_location' src="../../weixinImg/thm_icon@2x.png" mode='aspectFit'></image>
+            <view class='location_t1'>提货号码：<text>{{order_info.chain_code}}</text></view>
+          </view>
+          <view class='r2'>
+            <image class='img_location' src="../../weixinImg/thd_icon@2x.png" mode='aspectFit'></image>
+            <view class='location_t1'>提货地点：<text>{{order_info.reciver_addr}}</text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='buyer_message'>
+      <view class='msg_title'>
+        <image src='../../weixinImg/mjly_icon@2x.png'></image>
+        <text class='location_t1'>买家留言</text>
+      </view>
+      <view class='msg_content'>{{order_info.order_message==''?'无留言':order_info.order_message}}</view>
+    </view>
+
+    <view class='ping' wx:if="{{order_info.tuan_info!=''}}">
+        <view class='ping_Status'>
+          <text class='pin' wx:if="{{order_info.tuan_info.state==0}}">[拼团中]</text>
+          <text class='pin' wx:elif="{{order_info.tuan_info.state==1}}">[拼团成功]</text>
+          <text class='pin' wx:elif="{{order_info.tuan_info.state==-1}}">[拼团失败]</text>
+          <text wx:if="{{order_info.tuan_info.state==0}}" class="alseTime">剩余时间：{{inTime}}</text>
+        </view>
+        <scroll-view scroll-x class='ping_user'>
+          <block wx:for="{{tuan_user_list}}" wx:key="uq4">
+              <view class='user_img'>
+                <image class='userImg green' src='{{item.member_avatar}}'></image>
+                <view class='status' wx:if="{{index==0}}">团长</view>
+              </view>
+          </block>
+        </scroll-view>
+        <image class='pingImg' src='../../weixinImg/ctbg_img@2x.png'></image>
+      </view>
+
+    <view class='goods_title_row' bindtap='goShopDetail' data-item='{{item}}'>
+      <image src='../../weixinImg/dptb_icon@2x.png' class='img_shop'></image>
+      <view class='shop_name'>{{order_info.store_name}}</view>
+      <image src='../../weixinImg/dpmore_icon@2x.png' class='img_more'></image>
+    </view>
+    <block wx:for="{{order_info.extend_order_goods}}" wx:key="uq4">
+      <view class='order_goods_row' bindtap='goGoodsDetail' data-item='{{item}}' data-scene='{{order_info.shequ_tuan_info.id}}'>
+        <image src='{{item.image_url}}' class='order_goods_img'></image>
+        <view class='col'>
+          <view class='row'>
+            <view class='order_goods_t1'>
+              <view>
+                <image  wx:if="{{item.is_miaosao==1}}" class='ms_img' src='../../weixinImg/ms_icon@2x.png'></image>
+                <view wx:if="{{item.is_zengpin==1}}" class="z_t">赠</view>
+                <view wx:if="{{item.is_pin==1}}" class="z_ts">拼购</view>
+                {{item.goods_name}}
+              </view>
+            </view>
+          </view>
+          <view class='quentity'>{{item.goods_spec}}</view>
+          <view class='t20' wx:if="{{item.is_miaosao==1}}">限购:{{item.xianshi_num}}件</view>
+        </view>
+        <view style='flex:1'></view>
+        <view class='order_goods_col'>
+          <view class='order_goods_t2'>¥{{item.goods_price}}</view>
+          <view class='shop_t1'>x{{item.goods_num}}</view>
+          <view class='shop_t3' wx:if="{{item.refund_id&&item.refund_amount==''}}">退款中</view>
+          <view class='shop_t3' wx:if="{{item.refund_id&&item.refund_amount!=''}}">退款完成</view>
+          <view class='btn_quit' catchtap='quitOrder' wx:if="{{item.refund==1}}" data-order_id="{{order_info.order_id}}" data-refund = "0" data-id="{{item.rec_id}}">退款</view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 满赠减活动 -->
+    <view class='mj_row' wx:if="{{order_info.extend_order_common.promotion.length > 0}}">
+      <view class='mj_icon' wx:if="{{order_info.extend_order_common.promotion[1]!==''&&order_info.extend_order_common.promotion[2]!==''}}">满减满赠</view>
+      <view class='mj_icon_2' wx:if="{{order_info.extend_order_common.promotion[1]!=''&&order_info.extend_order_common.promotion[2]==''}}">满减</view>
+      <view class='mj_icon_2' wx:if="{{order_info.extend_order_common.promotion[1]==''&&order_info.extend_order_common.promotion[2]!=''}}">满赠</view>
+      <view class='mj_content' wx:if="{{order_info.extend_order_common.promotion[1]!=''&&order_info.extend_order_common.promotion[2]==''}}">满{{order_info.extend_order_common.promotion[0]}}减{{order_info.extend_order_common.promotion[1]}}</view>
+      <view class='mj_content' wx:if="{{order_info.extend_order_common.promotion[1]==''&&order_info.extend_order_common.promotion[2]!=''}}">满{{order_info.extend_order_common.promotion[0]}}元，获得礼包：{{order_info.extend_order_common.promotion[2]}}</view>
+      <view class='mj_content' wx:if="{{order_info.extend_order_common.promotion[1]!==''&&order_info.extend_order_common.promotion[2]!==''}}">满{{order_info.extend_order_common.promotion[0]}}元减{{order_info.extend_order_common.promotion[1]}}活动，获得礼包：{{order_info.extend_order_common.promotion[2]}}</view>
+    </view>
+    <view class='gray_line_1' wx:if="{{order_info.man_song.goods_list}}"></view>
+    <!-- 满赠结束 -->
+
+
+
+
+
+
+
+    <view class='info_row'>
+      <view class='info_t1'>运费</view>
+      <view style='flex:1'></view>
+      <view class='info_t2'>￥{{order_info.shipping_fee}}</view>
+    </view>
+    <view class='info_row2' wx:if="{{order_info.promotion.red_money > 0}}">
+      <view class='info_t1'>红包金额</view>
+      <view style='flex:1'></view>
+      <view class='info_t3'>￥{{order_info.promotion.red_money}}</view>
+    </view>
+    <view class='info_row2' wx:if="{{order_info.promotion.voucher_money > 0}}">
+      <view class='info_t1'>代金券金额</view>
+      <view style='flex:1'></view>
+      <view class='info_t3'>￥{{order_info.promotion.voucher_money}}</view>
+    </view>
+    <view class='info_row2'>
+      <view class='info_t1'>实付款(含运费)</view>
+      <view style='flex:1'></view>
+      <view class='info_t3'>￥{{order_info.order_amount}}</view>
+    </view>
+    <view class='gray_line' wx:if="{{express_info.driver}}"></view>
+
+    <view class='info_b_t1'>订单编号：{{order_info.order_sn}}</view>
+    <view class='info_b_t1'>创建时间：{{order_info.add_time}}</view>
+    <view class='info_b_t1' wx:if="{{order_info.payment_time}}">付款时间：{{order_info.payment_time}}</view>
+    <view class='info_b_t1' wx:if="{{order_info.shipping_time}}">发货时间：{{order_info.shipping_time}}</view>
+    <view class='info_b_t1' wx:if="{{order_info.finnshed_time}}">完成时间：{{order_info.finnshed_time}}</view>
+    <view class='gray_white'></view>
+
+    <view class='info_row1'>
+      <view class="row2 {{order_info.if_pin_share?'':'row3'}}">
+        <button open-type="contact" class='nobtn' plain="true"></button>
+        <image class='info_row1_img' src='../../weixinImg/lxsj_icon@2x.png' mode='aspectFit'></image>
+        <view class='info_row1_t1'>联系客服</view>
+      </view>
+      <view class='info_line'></view>
+    <view class="row2 {{order_info.if_pin_share?'':'row3'}}">
+        <button wx:if="{{store_phone==''}}" open-type="contact" class='nobtn nobtns' plain="true"></button>
+        <image class='info_row1_img' src='../../weixinImg/bddh_icon@2x.png' mode='aspectFit'></image>
+        <view class='info_row1_t1' bindtap='makePhone'>拨打电话</view>
+     </view>
+     <view class='info_line'></view>
+    <view class="row2"  wx:if="{{order_info.if_pin_share}}">
+        <button open-type='share' class='nobtn' plain="true"></button>
+        <image class='info_row1_img' src='../../weixinImg/qfx_icon@2x.png' mode='aspectFit'></image>
+        <view class='info_row1_t1'>去分享</view>
+     </view>
+    </view>
+
+  </scroll-view>
+
+
+
+  <view class='info_bottom'>
+    <view style='flex:1'></view>
+    <view class='info_btn_quit' catchtap='cancelOrder' wx:if="{{order_info.if_buyer_cancel}}">取消订单</view>
+    <view class='info_btn_quit' catchtap='quitOrder' data-index='{{order_info.refund}}' wx:if="{{order_info.if_refund_cancel}}" data-order_index='{{order_index}}' data-order_id="{{order_info.order_id}}" data-refund = "1">退款</view>
+    <view class='info_btn_ok' catchtap='orderRec' wx:if="{{order_info.if_receive}}" data-order_id="{{order_info.order_id}}">确认收货</view>
+    <view class='info_btn_ok' catchtap='commentOrder' wx:if="{{order_info.if_evaluation}}" data-order_id="{{order_info.order_id}}" data-index='{{index}}'>评价订单</view>
+    <view class='info_btn_ok' catchtap='payReq' wx:if="{{order_info.if_pay}}">去支付</view>
+  </view>
+</view>

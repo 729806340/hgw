@@ -1,0 +1,114 @@
+<import src="../../html-view/index.wxml" />
+
+  <view class="header">
+   <image src="http://www.hangowa.com/data/upload/mobile/special/s0/s0_06412286017957638.png" class="bg"></image>
+    <view class="logologoBox">
+      <image src="../../weixinImg/logologo.png" mode="aspectFit" class="logologo"></image>
+    </view>
+    <view class="infoBox">
+      <image src="{{datalist.tuanzhang_address.wx_user_avatar}}" class="i_logo"></image>
+      <view class="i_info">
+        <view class="name">团长：{{datalist.tuanzhang_address.wx_nick_name}}</view>
+        <view class="t">发货方式：{{ifcart == 1 ? '自提' : '物流'}}</view>
+        <view class="t" style="display:flex;" wx:if='{{ifcart == 1}}'>
+          <view style="width:80rpx;">自提点：</view>
+          <view style="flex:1;">{{datalist.tuanzhang_address.address}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="box">
+    <!-- 地址 -->
+    <view class="addBox" wx:if='{{ifcart == 1}}'>
+      <view class="add_name">
+        <view class="add_name_l">购买人：</view>
+        <view class="add_name_r"><input placeholder="请填写购买人姓名" value="{{link_name}}" bindinput='handleinput_name'></input></view>
+      </view>
+      <view class="add_name">
+        <view class="add_name_l">手机号：</view>
+        <view class="add_name_r"><input placeholder="请填写购买人手机号" value="{{link_phone}}" bindinput='handleinput_phone'></input></view>
+        <button wx:if='{{if_phone}}' class='wxphone' open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手机号</button>
+      </view>
+    </view>
+    <view class="addBox" wx:if='{{ifcart == 0}}'>
+      <view class="addwlfh" bindtap="goaddress" wx:if='{{address_info.address_id>0}}'>
+        <image src="../../weixinImg/add_s.png" class="addicon"></image>
+        <view class="add_cBox">
+          <view class="t"><text>{{address_info.true_name}}</text> <text>{{address_info.mob_phone}}</text></view>
+          <view class="b">{{address_info.area_info +''+address_info.address}}</view>
+        </view>
+        <image src="../../weixinImg/choose_icon@2x.png" class="addicon2"></image>
+      </view>
+      <view class='location_col' bindtap="goaddress" wx:else>
+        <view class='row_col'>
+          <view class='location_t11'>请选择您的收货地址</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class="row">
+      <view class="goodsBox">
+        <block wx:for='{{cartList}}' wx:key='q' wx:for-item='goods'>
+        <view class="list_Box">
+          <view class="dpBox"><image src="../../weixinImg/dptb_icon@2x.png"></image>{{goods.store_name}}</view>
+          <view class="g_itemBox" wx:for='{{goods.goods_list}}' wx:for-item='item'>
+            <image class="g_i_Img" src="{{item.goods_image_url}}" data-index='{{index}}'></image>
+            <view class="g_i_nameBox" data-index='{{index}}'>
+              <view class="n">{{item.goods_name}}</view>
+              <view class="g">
+                <text>￥</text>
+                <text class="p">{{item.goods_price}}</text>
+              </view>
+            </view>
+            <view class="g_i_numBox">
+              x{{item.goods_num}}
+            </view>
+          </view>
+        </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 备注 -->
+    <view class="bzBox">
+      <view class="bz_tit">备注：</view>
+      <textarea placeholder='特殊要求给团长留言' auto-height value="{{pay_message}}" bindinput='handleinput'></textarea>
+    </view>
+
+    <view class='pay_layout' wx:if="{{datalist.available_predeposit==0&&datalist.available_rc_balance==0?false:true}}">
+        <view class='pay_row' bindtap='change_pay_type' data-type="1" wx:if="{{datalist.available_predeposit!=0}}">
+          <image class='img_pay' mode='aspectFit' src='../../weixinImg/ycktb_icon@2x.png'></image>
+          <view class='pay_con'>
+            <view class='pay_t1'>预存款余额支付</view>
+            <view class='pay_t2' wx:if="{{datalist.available_predeposit!=0}}">可用余额{{datalist.available_predeposit}}元</view>
+            <view class='pay_t3' wx:else>无可用余额</view>
+          </view>
+          <view style='flex:1'></view>
+          <switch checked="{{yuesdsdwds}}" disabled="{{datalist.available_predeposit==0}}" color='#2EB772' />
+        </view>
+
+
+        <view class='pay_row_end' bindtap='change_pay_type' data-type="2" wx:if="{{datalist.available_rc_balance!=0}}">
+          <image class='img_pay' mode='aspectFit' src='../../weixinImg/czk_icon@2x.png'></image>
+          <view class='pay_con'>
+            <view class='pay_t1'>充值卡余额支付</view>
+            <view class='pay_t2' wx:if="{{datalist.available_rc_balance!=0}}">可用余额{{datalist.available_rc_balance}}元</view>
+            <view class='pay_t3' wx:else>无可用余额</view>
+          </view>
+          <view style='flex:1'></view>
+          <switch checked="{{yuesdsdwd}}" disabled="{{datalist.available_rc_balance==0}}" color='#2EB772' />
+        </view>
+      </view>
+  </view>
+
+  <!-- 按钮 -->
+  <view class="btnBox">
+    <view class="btn_s_left">
+      <text>总计：</text>
+      <text style="color:#F64234;">￥</text>
+      <text class="prc">{{datalist.order_amount}}</text>
+    </view>
+    <view class="sureorder" bindtap="payto">确认支付</view>
+  </view>

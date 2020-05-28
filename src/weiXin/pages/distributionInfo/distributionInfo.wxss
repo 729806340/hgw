@@ -1,0 +1,151 @@
+.distribute_title {
+  height: 138rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  background: #fff;
+  margin-bottom: 30rpx;
+}
+
+.distribute_title image {
+  width: 54rpx;
+  height: 54rpx;
+  margin-left: 24rpx;
+}
+
+.dt {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 24rpx;
+}
+
+.distri_company {
+  font-size: 30rpx;
+  color: #222;
+  margin-bottom: 22rpx;
+}
+
+.distri_num {
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.process {
+  background:#fff;
+  display:flex;
+  flex-direction:row;
+  margin-top:-10rpx;
+  padding-left: 35rpx;
+  box-sizing: border-box;
+}
+
+.time, .process_img, .process_content {
+  display: flex;
+  flex-direction: column;
+}
+
+.time {
+  margin-right: 25rpx;
+}
+
+.time_exact {
+  width: 150rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-bottom: 56rpx;
+  color: #999999;
+}
+
+.green {
+  color: #2eb772;
+}
+
+.month {
+  font-size: 24rpx;
+  /* color: #aaa; */
+  margin-top: 20rpx;
+}
+
+.hour {
+  font-size: 22rpx;
+  /* color: #aaa; */
+}
+
+.process_img {
+  margin-top:12rpx;
+  margin-left:0rpx;
+}
+
+.greenDot {
+  width:13rpx;
+  height:13rpx;
+  opacity:1;
+  background:#2eb772;
+  border-radius:50%;
+  position:relative;
+}
+
+.dotted {
+  width:21rpx;
+  height:21rpx;
+  background:#2eb772;
+  border-radius:50%;
+  opacity:0.3;
+  position:absolute;
+  top:-2.5rpx;
+  left:-2.5rpx;
+}
+
+.greyDot {
+  width: 13rpx;
+  height: 13rpx;
+  background: #ededed;
+  border-radius: 50%;
+}
+
+.greenLine {
+  width: 2rpx;
+  height: 100%;
+  background: #2eb772;
+  margin-left: 6rpx;
+  opacity: 0.5;
+}
+
+.greyLine {
+  width: 2rpx;
+  height: 100%;
+  background: #ededed;
+  margin-left: 6rpx;
+}
+
+.process_content {
+  width: 100%;
+  padding:0 20rpx 50rpx 20rpx;
+  box-sizing:border-box;
+  margin-left:25rpx;
+  overflow-y: scroll;
+}
+
+.green_con {
+  font-size:26rpx;
+  color:#2eb772;
+  margin-top: 25rpx;
+}
+
+.green_cons{
+   font-size:26rpx;
+  margin-top: 25rpx;
+  color: #999999;
+}
+
+.scroll{
+  height:100vh;
+  width:100%;
+  box-sizing:border-box;
+  padding-bottom: 50rpx;
+}

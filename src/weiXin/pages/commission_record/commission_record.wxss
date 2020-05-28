@@ -1,0 +1,130 @@
+.headBox{
+  width: 100vw;
+  background: #fff;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.h_timeBox{
+  width: 100%;
+  padding: 28rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2rpx solid #dddddd;
+}
+.picker{
+  width: 252rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  background: #F5F5F5;
+  border-radius: 64rpx;
+}
+.h_t{
+  font-size: 28rpx;
+  color: #333;
+  /* margin: 0 26rpx; */
+}
+.searchBox{
+  color: #2CCC60;
+  font-size: 28rpx;
+  padding: 14rpx;
+}
+.tabBox{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab_itemBox{
+  flex: 1;
+  border-bottom: 4rpx solid #fff;
+}
+.tab_itemBox view{
+  color: #333;
+  font-size: 24rpx;
+  text-align: center;
+}
+.tab_itemBox .t{
+  padding: 40rpx 0;
+}
+.tab_itemBox .b{
+  font-size: 36rpx;
+  padding-bottom: 30rpx;
+}
+.tab_itemBox .b text{
+  font-size: 24rpx;
+}
+.tab_itemBox_a{
+  border-color: #2CCC60;
+}
+.tab_itemBox_a view{
+  color: #2CCC60;
+}
+
+.scrollBox{
+  width: 100vw;
+  height: 100vh;
+  padding: 340rpx 24rpx 24rpx 24rpx;
+  box-sizing: border-box;
+}
+.goodsBox{
+  width: 100%;
+  background: #fff;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+.list_goodsBox{
+  width: 100%;
+  display: flex;
+  padding: 24rpx 0;
+  border-bottom: 2rpx solid #dddddd;
+}
+.list_g_img{
+  width: 116rpx;
+  height: 116rpx;
+}
+.list_g_info{
+  padding: 0 20rpx;
+  width: 366rpx;
+  height: 116rpx;
+}
+.list_g_name{
+  font-size: 28rpx;
+  color: #333;
+  width: 100%;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.list_g_gg{
+  font-size: 20rpx;
+  color: #666;
+  width: 100%;
+  margin-top: 12rpx;
+}
+.list_g_prc{
+  height: 116rpx;
+  width: 140rpx;
+  text-align: right;
+}
+.list_g_prc .t{
+  font-size: 28rpx;
+  color: #333;
+}
+.list_g_prc .t_2{
+  font-size: 20rpx;
+  color: #666;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

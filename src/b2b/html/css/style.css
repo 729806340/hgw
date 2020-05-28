@@ -1,0 +1,143 @@
+body, dd, dl, form, h1, h2, h3, input, ol, p, select, td, textarea, th, ul{
+	margin: 0;padding: 0;
+}
+body{
+	 overflow: hidden;height: 100%;font-size: 14px;
+}
+a {
+    text-decoration: none;
+    color: #fafafa;
+}
+img {
+    border: none;
+    display: block;
+    margin: 0 auto;
+}
+li{
+	list-style: none;
+}
+.links{
+	width:100%;
+	height: 32px;
+	line-height: 32px;
+	background: #ff9f7e;
+	position: fixed;
+	top: 0;
+	margin: 0 auto;
+}
+.links-m{
+	margin: 0 auto;
+	width: 1028px;
+	font-size: 12px;
+}
+.links a{display: inline-block;}
+.links ul {
+	display: inline-block;
+	float: right;
+	
+}
+.links ul li{
+	display: inline-block;
+	margin: 0 14px;
+}
+.links ul li a{
+	color: #fff;
+	text-decoration: underline;
+}
+#fp-nav ul li .fp-tooltip{
+    color:#F07301!important
+}
+.wrapper{
+	background: #f4f3f3;
+    font-family: Microsoft YaHei;
+    width: 100%;
+    margin-top: 32px;
+}
+.header {
+    width: 100%;
+    background: #fffbfa;
+    height: 80px;
+    position: fixed;
+    top: 32px;
+    z-index: 100;
+}
+.headerCon {
+    color: #F07301;
+    width: 1028px;
+    height: 80px;
+    margin: 0 auto;
+}
+.logo {
+    float: left;
+    display: block;
+    margin: 10px 0;
+}
+.header-nav {
+    float: left;
+    margin-left: 225px;
+}
+.header-nav li {
+    float: left;
+    margin-right: 50px;
+    height: 70px;
+    line-height: 70px; 
+}
+.header-nav .active a {
+    color: #F07301;
+}
+.header-nav li a {
+    color: #666666;
+}
+/*#dowebok .active a { color: #fff; background-color: #333;}*/
+.downloadPage{
+	width: 1028px;
+	margin: 0 auto;
+	position: relative;
+}
+.downloadPage img{
+	margin-top: 48;
+	width: 1030px;
+}
+.bimg{
+	width: 100%;
+	position: absolute;
+	bottom:0px;
+	}
+.businessCooperation{
+	background-image: url(../img/bg_img03.png);
+	background-size: 100%;	
+}
+.businessCooperation3{
+	background-image: url(../img/bg_img07.png);
+	background-size: 100%;	
+}
+.businessCooperation2{
+	background-image: url(../img/bg_img06.png);
+	background-size: 100%;	
+}
+.android, .ios {
+    display: block;
+    width: 210px;
+    height: 48px;
+    position: absolute;
+    left: 200px;
+}
+.ios {
+    top: 296px;
+}
+.android {
+    top: 210px;
+}
+.canyu_btn{
+	display: block;
+    width: 260px;
+    height: 61px;
+    position: absolute;
+    left: 385px;
+    top: 347px;
+    text-align: center;
+    line-height: 61px;
+    font-size: 22px;
+    background-color: #F07301;
+    border-radius: 5px;
+}

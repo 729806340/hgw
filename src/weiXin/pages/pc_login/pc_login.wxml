@@ -1,0 +1,16 @@
+<image class="logo" src="http://www.hangowa.com/data/upload/mobile/special/s0/s0_06414732980936879.png" mode="aspectFit"></image>
+
+<view class='login' bindtap="login">登录</view>
+
+<view class='cancel' bindtap="cancel">取消</view>
+
+
+  <!-- 未登录 -->
+  <view class="zz" bindtap="loginhide" wx:if='{{login_show}}' style="z-index:9999;"></view>
+  <view class="loginBox" wx:if='{{login_show}}'>
+    <image src="../../weixinImg/aaaaa.png"></image>
+    <view class="login_tit">您还未授权，请先授权</view>
+    <button class='header_login' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">
+      确定授权
+    </button>
+  </view>

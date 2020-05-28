@@ -1,0 +1,39 @@
+<scroll-view wx:if="{{favorites_list.length}}" scroll-y class='scrollRight' bindscrolltoupper="refresh" bindscrolltolower="getMore">
+  <view class='scroll_left_col'>
+    <block wx:for="{{favorites_list}}" wx:key="unqui">
+      <view class='singleTrade'>
+        <image src='{{item.goods_image_url}}' class='goodsImg' catchtap="goGoodsDetail" data-item="{{item}}"></image>
+        <view class='goodsDetail'>
+          <text class='goodsName' catchtap="goGoodsDetail" data-item="{{item}}">{{item.goods_name}}</text>
+          <view class='goodsPrice'>
+            <view catchtap="goGoodsDetail" data-item="{{item}}">
+              <image wx:if="{{xianshi_flag}}" src='../../weixinImg/ms_icon@2x.png'></image>
+              <text class='ds'>￥</text>
+              <text class='price'>{{item.goods_price}}</text>
+            </view>
+            <view>
+              <view class='deleteImg' bindtap='deleteStore' data-id='{{item.fav_id}}' data-index='{{index}}'>
+                <image src='../../weixinImg/deletesp_icon@2x.png'></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='list_bottom' wx:if="{{is_bottom}}">
+      <view style='-webkit-flex:1'></view>
+      <view class='line'></view>
+      <view class='list_bottom_t'>已经到底了</view>
+      <view class='line'></view>
+      <view style='-webkit-flex:1'></view>
+    </view>
+  </view>
+</scroll-view>
+
+
+<view class='noData' wx:if="{{!favorites_list.length}}">
+  <view>
+    <image src='../../weixinImg/spsc_w_img@2x.png'></image>
+  </view>
+  <view>您还没有收藏商品</view>
+</view>

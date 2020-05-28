@@ -1,0 +1,168 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-family: "苹方";
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+html,body{
+    height: 100%;
+}
+a {
+    border: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+input {outline:none;}
+input:-webkit-autofill,select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white  inset !important;
+}
+input::-webkit-input-placeholder{
+    color:#cccccc;
+}
+input::-moz-placeholder{
+    color:#cccccc;
+}
+input:-moz-placeholder{
+    color:#cccccc;
+}
+input:-ms-input-placeholder{
+    color:#cccccc;
+}
+textarea {outline:none;}
+a { text-decoration: none;}
+@media only screen and (min-width: 750px) {
+    body {
+        display: none;
+    }
+    html:before {
+        content: '请使用手机模式打开！';
+        text-align: center;
+        margin-top: 180px;
+        display: block;
+        font-size: 50px;
+    }
+}
+
+.top_title{
+    width: 100%;
+    height: 0.8rem;
+    text-align: center;
+    line-height: 0.8rem;
+    font-size: 0.3rem;
+    color: #000;
+    background: #fff;
+}
+.top_imgBox{
+    width: 100%;
+    display: block;
+}
+.inputBox{
+    width: 100%;
+    padding: 0.28rem 0.2rem;
+    background: #FFF6C5;
+}
+.name,.phone{
+    width: 100%;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    border: none;
+    border-radius: 0.05rem;
+    padding: 0 0.2rem;
+    font-size: 0.25rem;
+    color: #333;
+}
+.kong{
+    height: 0.3rem;
+}
+.region_text{
+    font-size: 0.22rem;
+    line-height: 0.2rem;
+    color: #999;
+    margin-top: 0.2rem;
+}
+.region_text span{
+    color: red;
+    margin-left: 0.06rem;
+}
+.regionBox{
+    margin-top: 0.15rem;
+    display: flex;
+    justify-content: space-between;
+}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+  color: #999;
+}
+select{
+    border: 1px solid #eaeaea;
+    width: 32%;
+    outline: none;
+    font-size: 0.25rem;
+    color: #333;
+    height: 0.65rem;
+    line-height: 0.65rem;
+    border-radius: 0.05rem;
+    color: #333;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url("../img/55.png") no-repeat scroll right center transparent;
+    background-size: 100% 100%;
+    padding-right: 0.44rem;
+    padding-left: 0.1rem;
+}
+select::-ms-expand { display: none; }
+option{
+    font-size: 0.2rem;
+    color: #333;
+}
+.addBox{
+    margin-top: 0.3rem;
+    width: 100%;
+    padding: 0.1rem 0.2rem;
+    border: none;
+    border-radius: 0.05rem;
+    color: #333;
+    font-size: 0.25rem;
+}
+.flavorBox,.payBox{
+    color: #333;
+    font-size: 0.21rem;
+    line-height: 0.3rem;
+    display: flex;
+    margin-top: 0.15rem;
+}
+.flavorBox div,.payBox div{
+    margin-right: 0.8rem;
+    display: flex;
+}
+.flavorBox div input,.payBox div input{
+    margin-right: 0.1rem;
+    width: 0.3rem;
+    height: 0.3rem;
+}
+.payBox div img{
+    height: 0.3rem;
+}
+.btnBox{
+    width: 100%;
+    height: 0.7rem;
+    text-align: center;
+    line-height: 0.7rem;
+    background: #FDD81E;
+    border-radius: 0.05rem;
+    color: #5C1101;
+    font-size: 0.33rem;
+    font-weight: 500;
+    margin-top: 0.35rem;
+}
+.cenIMG{
+    width: 100%;
+    display: block;
+}
+

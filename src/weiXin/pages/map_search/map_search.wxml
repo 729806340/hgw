@@ -1,0 +1,28 @@
+<view class="root">
+
+  <!--搜索框-->
+  <view class='search_layout'>
+    <view class='search_row'>
+      <icon type="search" size="14" class='icon_search'></icon>
+      <input class='search_txt' placeholder="查找小区 街道 商厦" bindinput='inputHandle' focus="true" confirm-type="search" type='text' value="{{search_txt}}" />
+    </view>
+  </view>
+  <view class="null_text" wx:if="{{map_list.length==0&&search_txt!=''}}">未搜索到您查询的地址,请试试其他地址</view>
+
+  <scroll-view class='scroll' scroll-y bindscrolltolower="getList">
+    <view class='map_col'>
+      <block wx:for="{{map_list}}">
+        <view class='map_item_row' bindtap='chooseLocation' data-item='{{item}}'>
+          <view class='map_item'>
+            <view class='map_name'>{{item.name}}</view>
+            <view class='map_address'>{{item.address}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+
+
+
+  </scroll-view>
+</view>

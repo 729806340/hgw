@@ -1,0 +1,9 @@
+<!-- pages/Commponent/showdemo/showdemo.wxml -->
+<view class="commodity_screen" wx:if="{{showModal}}"></view>
+<view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModal}}">
+    <view class='screen_a'>
+        <view class='commo_title'>授权登录</view>
+        <view class='no_title'>您还没有登录，请先授权登录</view>
+        <button class='logn' open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">确定</button>
+    </view>
+</view>

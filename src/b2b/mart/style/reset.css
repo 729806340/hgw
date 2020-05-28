@@ -1,0 +1,68 @@
+/* reset */
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu{ margin: 0;padding: 0}
+
+
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th { font-weight: normal; }
+html, body, fieldset, img, iframe, abbr { border: 0; }
+i, cite, em, var, address, dfn { font-style: normal; }
+li,dd { list-style: none; }
+h1, h2, h3, h4, h5, h6, small { font-size: 100%; }
+q:before, q:after { content: none; }
+textarea { overflow: auto; resize: none; }
+label, summary { cursor: default; }
+a, button { cursor: pointer; }
+h1, h2, h3, h4, h5, h6, em, strong, b {font-weight: normal;  }
+del, ins, u, s, a, a:hover { text-decoration: none; }
+body, textarea, input, button, select, keygen, legend { font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Segoe UI', 'Microsoft Yahei', Tahoma, Arial, STHeiti, sans-serif; font-size: 12px; outline: 0; }
+
+.font-yahei{ font-family: "MicrosoftYaHei"}
+
+
+h3{ font-size: 16px;}
+h2{ font-size: 20px;}
+
+a { text-decoration: none; color: #999;}
+a.blue{color:#1d65a9}
+
+
+
+/*清除*/
+.clearfix:after { display: block; clear: both; visibility: hidden; height: 0; overflow: hidden; content: "."; }
+
+
+/*display样式*/
+.dpb { display: block; }
+.dpi { display: inline-block; *display: inline; *zoom: 1; }
+
+/*float及position*/
+.fl { float: left; }
+.fr { float: right; }
+.pr { position: relative; }
+.prz { position: relative; zoom: 1; }
+.po { position: absolute; }
+.pf { position: fixed; }
+
+/*fontSize*/
+.fs12 { font-size: 12px; }
+.fs14 { font-size: 14px; }
+.fs16 { font-size: 16px; }
+.fs18 { font-size: 18px; }
+
+/*color*/
+.fc01{color: #999;}
+.fc02{color: #f53750;}
+.bc01{background: #1b9e15;}
+.bc02{background: #f3f3f3;}
+.bc03{background: #fff;}
+
+
+.w1200{ width:1200px; margin:auto;}
+.w1160{ width:1160px; margin:auto;}
+
+/*margin-top*/
+.mt10{ margin-top: 10px;}
+.mt20{ margin-top: 20px;}
+.mt30{ margin-top: 30px;}
+.mt40{ margin-top: 40px;}
+.mt60{ margin-top: 60px;}

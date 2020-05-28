@@ -1,0 +1,88 @@
+/* reset */
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu{ margin: 0;padding: 0}
+
+header, footer, section, article, aside, nav, hgroup, address, figure, figcaption, menu, details { display: block; }
+table { border-collapse: collapse; border-spacing: 0; }
+caption, th { text-align: left; font-weight: normal; }
+html, body, fieldset, img, iframe, abbr { border: 0; }
+i, cite, em, var, address, dfn { font-style: normal; }
+[hidefocus], summary { outline: 0; }
+li { list-style: none; }
+h1, h2, h3, h4, h5, h6, small { font-size: 100%; }
+sup, sub { font-size: 83%; }
+pre, code, kbd, samp { font-family: inherit; }
+q:before, q:after { content: none; }
+textarea { overflow: auto; resize: none; }
+label, summary { cursor: default; }
+button{ border:none; background:none;}
+a, button { cursor: pointer; }
+h1, h2, h3, h4, h5, h6, em, strong, b {font-weight: normal; /*color: #5C6371*/ }
+del, ins, u, s, a, a:hover { text-decoration: none; }
+body, textarea, input, button, select, keygen, legend { /*font-family: 'Helvetica Neue', Helvetica, 'Hiragino Sans GB', 'Segoe UI', 'Microsoft Yahei', Tahoma, Arial, STHeiti, sans-serif;*/ font-family:"微软雅黑";font-size: 14px; outline: 0; }
+body { }
+
+h3{ font-size: 16px;}
+h2{ font-size: 20px;}
+
+a { color:  #666 }
+a.light,
+a:hover{/*color:#00A53C;*/ /*text-decoration:underline;*/}
+a.blue{color:#1d65a9}
+
+.hide{display: none}
+
+/*清除*/
+.clear { zoom: 1; }
+    .clear:after { display: block; clear: both; visibility: hidden; height: 0; overflow: hidden; content: "."; }
+
+/*隐藏*/
+.hidden { display: none; }
+
+/*display样式*/
+.dpb { display: block; }
+.dpi { display: inline-block; *display: inline; *zoom: 1; }
+
+/*float及position*/
+.fl { float: left; }
+.fr { float: right; }
+.pr { position: relative; }
+.prz { position: relative; zoom: 1; }
+.po { position: absolute; }
+.pf { position: fixed; }
+
+/*fontSize*/
+.fs12 { font-size: 12px; }
+.fs14 { font-size: 14px; }
+.fs18 { font-size: 18px; }
+
+/*text-align*/
+.tal { text-align: left; }
+.tac { text-align: center; }
+.tar { text-align: right; }
+
+/*cursor*/
+.csp { cursor: pointer; }
+.csd { cursor: default; }
+
+
+.pt0{ padding-top: 0;}
+.ml5{ margin-left: 5px;}
+.ml10{ margin-left: 10px;}
+.mb20{ margin-bottom: 20px;}
+.mt80{ margin-top: 80px;}
+.mt20{ margin-top: 20px;}
+.mt0{ margin-top: 0;}
+
+
+
+.w30{ width: 30px;}
+.w40{ width: 40px;}
+.w60{ width: 60px;}
+.w80{ width: 80px;}
+.w100{ width: 100px;}
+.w110{ width: 111px;}
+.w1000{ width:1000px; margin:auto;}
+
+/*loading*/
+.loading { text-align: center; }
+.loading span { text-align: center; padding-bottom: 25px; background: url(/Content/Images/loading.gif) no-repeat 0 20px; }

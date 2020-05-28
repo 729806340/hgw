@@ -1,0 +1,13 @@
+
+<view class='imgBox'>
+  <view class="pay1" wx:if='{{pay == 1}}'>
+    <image src="http://www.hangowa.com/data/upload/mobile/special/s0/s0_06408851965441148.png"></image>
+    <view>支付成功</view>
+  </view>
+  <view class="pay1" wx:if='{{pay == 2}}'>
+    <image src="http://www.hangowa.com/data/upload/mobile/special/s0/s0_06408852139164499.png"></image>
+    <view>支付失败</view>
+  </view>
+</view>
+  <view class="goorder" bindtap="goorder">查看订单</view>
+  <!-- <view class="goindex" bindtap="goindex">我参与的团购</view> -->

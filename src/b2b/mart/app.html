@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/app.css" />
+		<script src="js/jquery.fullPage.js" type="text/javascript" charset="utf-8"></script>
+		<title></title>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="page01" class="pages">第1屏</div>
+			<div id="page02" class="pages">第2屏</div>
+			<div id="page03" class="pages">第3屏</div>
+			<div id="page04" class="pages">第4屏</div>
+			<div id="page05" class="pages">第5屏</div>
+			<div id="page06" class="pages">第6屏</div>
+			<div id="page07" class="pages">第7屏</div>
+		</div>
+		<div id="dots">
+			<span class="now"></span><span class=""></span><span class=""></span><span class=""></span>
+		</div>
+		<script type="text/javascript">
+			document.getElementsByTagName("html")[0].style.fontSize = window.innerWidth / 10 + "px";
+			window.onload = function() {
+				var oDiv = document.getElementById("wrap");
+				var aPages = oDiv.getElementsByClassName("pages");
+				var aDots = document.getElementById("dots").getElementsByTagName("span");
+				var winH = window.innerHeight;
+				var tTime = 1;
+				//设置每页的高度和zindex值
+				for(var i = 0; i < aPages.length; i++) {
+					aPages[i].style.height = winH + "px";
+					aPages[i].style.zIndex = 1;
+				}
+				aPages[0].style.zIndex = 3;
+				aPages[1].style.zIndex = 2;
+				oDiv.style.height = winH + "px";
+
+				//手指拖动事件（去除默认动作）
+				document.addEventListener("touchmove", function(e) {
+					e.preventDefault();
+				});
+
+				var YStart = 0;
+				var iNow = 0;
+				//手指按下
+				oDiv.addEventListener("touchstart", function(e) {
+					YStart = e.changedTouches[0].clientY;
+				});
+				//手指移动
+				oDiv.addEventListener("touchmove", function(e) {
+
+					disY = e.changedTouches[0].clientY - YStart; //向下滑正，向上滑负
+				});
+
+				//手指离开
+				oDiv.addEventListener("touchend", function(e) {
+
+					disY = e.changedTouches[0].clientY - YStart; //向下滑正，向上滑负
+					if(Math.abs(disY) > winH / 20) { //只有当滑动距离大于了一定值得时候，才执行切换
+						if(disY < 0) {
+							iNow++;
+							if(iNow >= aDots.length) {
+								iNow = 0;
+							}
+							aPages[0].style.transform = "translateY(" + -winH + "px)";
+							doSlide();
+						} else {
+							iNow--;
+							if(iNow < 0) {
+								iNow = aDots.length - 1;
+							}
+							aPages[0].style.transform = "translateY(" + winH + "px)";
+							doSlide("up");
+						}
+					}
+				});
+
+				function doSlide(upflag) {
+					for(var i = 0; i < aDots.length; i++) {
+						aDots[i].className = "";
+					}
+					aDots[iNow].className = "now";
+					if(upflag) {
+						//向上滑
+						aPages[3].style.zIndex = 2;
+						aPages[1].style.zIndex = 1;
+						oDiv.insertBefore(aPages[3], aPages[1]);
+						setTimeout(function() {
+							aPages[1].style.transform = "translateY(0px)";
+							aPages[1].style.zIndex = 2;
+							aPages[0].style.zIndex = 3;
+						}, 300)
+					} else {
+						setTimeout(function() {
+							aPages[0].style.transform = "translateY(0px)";
+							aPages[0].style.zIndex = 1;
+							aPages[1].style.zIndex = 3;
+							aPages[2].style.zIndex = 2;
+							oDiv.appendChild(aPages[0]);
+						}, 300)
+					}
+
+				}
+			}
+		</script>
+	</body>
+
+</html>

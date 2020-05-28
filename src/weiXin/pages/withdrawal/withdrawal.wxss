@@ -1,0 +1,84 @@
+/* pages/withdrawal/withdrawal.wxss */
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.block{
+  background: #FFFFFF;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+
+}
+.top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:30rpx 26rpx ;
+  border-bottom: 1rpx solid #E8E8E8;
+}
+.t_2{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.t_1{
+  font-family: PingFangSC-Medium;
+  font-size: 24rpx;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: center;
+  font-weight: 2000;
+}
+.mini{
+  font-family: PingFangSC-Medium;
+font-size: 24rpx;
+color: #2CCC60;
+letter-spacing: 0;
+text-align: center;
+}
+.money{
+  font-family: PingFangSC-Medium;
+font-size: 36rpx;
+color: #2CCC60;
+letter-spacing: 0;
+text-align: center;
+line-height: 20px;
+}
+.L{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+   padding:9rpx 26rpx ;
+
+}
+.b{
+  padding-top: 22rpx;
+}
+.m{
+padding-bottom: 18rpx;
+}
+
+.b_1 , .m_1{
+  font-family: PingFangSC-Regular;
+font-size: 24rpx;
+color: #666666;
+letter-spacing: 0;
+text-align: center;
+}
+.b_2, .m_2{
+  font-family: PingFangSC-Regular;
+font-size: 24rpx;
+color: #333333;
+letter-spacing: 0;
+text-align: center;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

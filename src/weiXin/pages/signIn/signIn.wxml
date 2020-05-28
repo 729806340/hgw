@@ -1,0 +1,7 @@
+
+<image src='{{base64ImgUrl}}' class='erweima' ></image>
+<view class="text">司机师傅配送完成后，</view>
+<view class="text">请向司机师傅展示二维码</view>
+
+<view class="address">{{dataList.tuanzhang_address}}</view>
+<view class="text">专属签收码</view>

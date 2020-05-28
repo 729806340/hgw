@@ -1,0 +1,226 @@
+<?php
+/**
+ * mobile父类
+ *
+ *
+ * @copyright  Copyright (c) 2007-2015 ShopNC Inc. (http://www.shopnc.net)
+ * @license    http://www.shopnc.net
+ * @link       http://www.shopnc.net
+ * @since      File available since Release v1.1
+ */
+
+
+defined('ByShopWWI') or exit('Access Invalid!');
+
+/********************************** 前台control父类 **********************************************/
+class mobileControl
+{
+    //客户端类型
+    protected $client_type_array = array('android', 'wap', 'wechat', 'ios', 'windows');
+    //列表默认分页数
+    protected $page = 6;
+    protected $sign;
+
+    public function __construct()
+    {
+        Language::read('mobile');
+        //当前页
+        $_GET['curpage'] = $_POST['curpage'] = intval($_POST['curpage']) ? intval($_POST['curpage']) : max(1, intval($_GET['curpage']));
+        //每页数量处理
+        $page = max(intval($_GET['page']), intval($_POST['page']));
+        if ($page > 0) {
+            $this->page = $page;
+        }
+        if (app_debug == false) {
+            //验证签名
+            $method = $_GET['method'];
+            $timestamp = $_GET['timestamp'];
+            $apikey = $_GET['apikey'];
+            $sign = $_GET['sign'];
+            $this->sign = md5(secret . $method . $timestamp . apikey . secret);
+            if (($this->sign != $sign) || empty($method) || empty($timestamp) || empty($apikey) || empty($sign)) {
+                output_error('非法请求');
+            }
+        }
+    }
+
+
+    public function getMemberWxNickName($tz_name,$member_id) {
+        /** @var memberModel $model_member */
+        $model_member = Model('member');
+        $member_info = $model_member->getMemberInfoByID($member_id);
+        return (!empty($member_info) && $member_info['wx_nick_name']) ? $member_info['wx_nick_name'] : $tz_name;
+    }
+
+    public function getCurrentTuanInfo() {
+        /** @var shequ_tuan_configModel $shequ_tuan_configModel */
+        $shequ_tuan_configModel = Model('shequ_tuan_config');
+        $shequ_tuan_config_info = $shequ_tuan_configModel->getTuanConfigInfo(array(
+            'config_start_time' => array('lt', TIMESTAMP),
+            'config_end_time' => array('gt', TIMESTAMP),
+            'config_state' => 1
+        ));
+        return $shequ_tuan_config_info;
+    }
+
+}
+
+class mobileHomeControl extends mobileControl
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    protected function getMemberIdIfExists()
+    {
+        $key = $_POST['key'];
+        //$key = 'afd4da3a47868a2ccedcd592c3cf09fc';
+        if (empty($key)) {
+            $key = $_GET['key'];
+        }
+
+        $model_mb_user_token = Model('mb_user_token');
+        $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken($key);
+        if (empty($mb_user_token_info)) {
+            return 0;
+        }
+
+        return $mb_user_token_info['member_id'];
+    }
+}
+
+class mobileMemberControl extends mobileControl
+{
+
+    protected $member_info = array();
+
+    public function __construct()
+    {
+        parent::__construct();
+        $agent = $_SERVER['HTTP_USER_AGENT'];
+        if (false && strpos($agent, "MicroMessenger") && $_GET["act"] == 'auto') {
+            $this->appId = C('app_weixin_appid');
+            $this->appSecret = C('app_weixin_secret');;
+        } else {
+            $model_mb_user_token = Model('mb_user_token');
+            $key = $_POST['key'];
+            //$key = 'afd4da3a47868a2ccedcd592c3cf09fc';
+            if (empty($key)) {
+                $key = $_GET['key'];
+            }
+            $mb_user_token_info = $model_mb_user_token->getMbUserTokenInfoByToken($key);
+
+            if (empty($mb_user_token_info)) {
+                output_error('请登录', array('login' => '0'));
+            }
+
+            /** @var memberModel $model_member */
+            $model_member = Model('member');
+
+            $this->member_info = $model_member->getMemberInfoByID($mb_user_token_info['member_id']);
+            if (empty($this->member_info)) {
+                output_error('请登录', array('login' => '0'));
+            } else {
+                $this->member_info['client_type'] = $mb_user_token_info['client_type'];
+                $this->member_info['openid'] = $mb_user_token_info['openid'];
+                $this->member_info['token'] = $mb_user_token_info['token'];
+                $level_name = $model_member->getOneMemberGrade($mb_user_token_info['member_id']);
+                $this->member_info['level_name'] = $level_name['level_name'];
+                //读取卖家信息
+                $seller_info = Model('seller')->getSellerInfo(array('member_id' => $this->member_info['member_id']));
+                $this->member_info['store_id'] = $seller_info['store_id'];
+            }
+        }
+    }
+
+    public function getOpenId()
+    {
+        return $this->member_info['openid'];
+    }
+
+    public function setOpenId($openId)
+    {
+        $this->member_info['openid'] = $openId;
+        Model('mb_user_token')->updateMemberOpenId($this->member_info['token'], $openId);
+    }
+
+    public function testLog($data)
+    {
+        $str = print_r($data, true);
+        Log::selflog($str, 'app_test', 'a+', 0);
+    }
+}
+
+class mobileMemberTuanControl extends mobileMemberControl
+{
+    public function __construct()
+    {
+        parent::__construct();
+        if (!$this->member_info['tuanzhang_id']) {
+            output_error('你还不是团长哦');
+        }
+    }
+}
+
+class mobileSellerControl extends mobileControl
+{
+
+    protected $seller_info = array();
+    protected $seller_group_info = array();
+    protected $member_info = array();
+    protected $store_info = array();
+    protected $store_grade = array();
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $model_mb_seller_token = Model('mb_seller_token');
+
+        $key = $_POST['key'] ? $_POST['key'] : $_GET['key'];
+        if (empty($key)) {
+            output_error('请登录', array('login' => '0'));
+        }
+
+        $mb_seller_token_info = $model_mb_seller_token->getSellerTokenInfoByToken($key);
+        if (empty($mb_seller_token_info)) {
+            output_error('请登录', array('login' => '0'));
+        }
+
+        $model_seller = Model('seller');
+        $model_member = Model('member');
+        $model_store = Model('store');
+        $model_seller_group = Model('seller_group');
+
+        $this->seller_info = $model_seller->getSellerInfo(array('seller_id' => $mb_seller_token_info['seller_id']));
+        $this->member_info = $model_member->getMemberInfoByID($this->seller_info['member_id']);
+        $this->store_info = $model_store->getStoreInfoByID($this->seller_info['store_id']);
+        $this->seller_group_info = $model_seller_group->getSellerGroupInfo(array('group_id' => $this->seller_info['seller_group_id']));
+
+        // 店铺等级
+        if (intval($this->store_info['is_own_shop']) === 1) {
+            $this->store_grade = array(
+                'sg_id'              => '0',
+                'sg_name'            => '自营店铺专属等级',
+                'sg_goods_limit'     => '0',
+                'sg_album_limit'     => '0',
+                'sg_space_limit'     => '999999999',
+                'sg_template_number' => '6',
+                'sg_price'           => '0.00',
+                'sg_description'     => '',
+                'sg_function'        => 'editor_multimedia',
+                'sg_sort'            => '0',
+            );
+        } else {
+            $store_grade = rkcache('store_grade', true);
+            $this->store_grade = $store_grade[$this->store_info['grade_id']];
+        }
+
+        if (empty($this->member_info)) {
+            output_error('请登录', array('login' => '0'));
+        } else {
+            $this->seller_info['client_type'] = $mb_seller_token_info['client_type'];
+        }
+    }
+}

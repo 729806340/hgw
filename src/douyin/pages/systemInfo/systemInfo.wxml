@@ -1,0 +1,22 @@
+<view class="main" wx:if="{{infoItems.length}}">
+  <scroll-view class='infoItems' scroll-y bindscrolltolower="handlescrolltolower" style="height: 100vh;">
+    <block wx:for="{{infoItems}}" wx:key="unique">
+      <view class='data'>
+        <text>{{item.message_time}}</text>
+      </view>
+      <view class='infoConent' bindtap='inToInfo' data-msg-id='{{item.msg_id}}' data-jump_type="{{item.msg_content.code}}" data-jump_data='{{item.msg_content.param}}' data-item='{{item}}'>
+        <view wx:if="{{item.msg_read}}" class='optionI'></view>
+        <view class='inform'>{{item.msg_content.title}}</view>
+        <text class='informContent' style="overfolw:hidden">{{item.msg_content.content}}</text>
+      </view>
+    </block>
+    <view class='more' wx:if="{{!is_bottom}}">点击或上拉加载更多</view>
+  </scroll-view>
+</view>
+
+<view class='noData' wx:else>
+  <view>
+    <image src='../../weixinImg/xtxx_w_img@2x.png'></image>
+  </view>
+  <view>您还没有收到任何消息</view>
+</view>

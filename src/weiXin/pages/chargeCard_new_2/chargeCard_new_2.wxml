@@ -1,0 +1,10 @@
+<view class='card_title' wx:if='{{show_charge == 1}}'>
+  <image src='/weixinImg/czk_icon@2x.png'></image>
+  <text class='card_name'>充值卡余额</text>
+  <view class='card_info'>
+    <text class='card_num'>{{available_rc_balance}}</text>
+    <text class='card_class'>元</text>
+  </view>
+  <button bindtap='chargeNow'>充值卡充值</button>
+  <view class='card_detail' bindtap='cardDetail'>充值卡交易明细</view>
+</view>

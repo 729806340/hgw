@@ -1,0 +1,41 @@
+<view class="headrow">
+  <view class='headBox'>
+    <view class="searchBox">
+      <input bindinput="search" bindconfirm='searchClick' confirm-type='search' value="{{searchText}}" placeholder="请输入团员ID/名称"></input>
+      <image src="../../weixinImg/search_icon@2x.png" bindtap="searchClick"></image>
+    </view>
+    <view class="numBox">
+      <view class="itemBox">
+        <view class="t">{{numList.fans}}</view>
+        <view class="b">粉丝数量</view>
+      </view>
+      <view class="item_icon"></view>
+      <view class="itemBox">
+        <view class="t">{{numList.month_buy_num}}</view>
+        <view class="b">月购买人数</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<scroll-view scroll-y class="scroll" bindscrolltolower='pushList'>
+  <view class="listBox">
+    <block wx:for='{{dataList}}' wx:key='q'>
+      <view class="list_itemBox" bindtap="gousershoping" data-id='{{item.member_id}}'>
+        <view class="icon {{index==0?'icon_1':''}} {{index==1?'icon_2':''}} {{index==2?'icon_3':''}}">{{item.number}}</view>
+        <view class="center">
+          <image src="{{item.wx_user_avatar}}"></image>
+          <view class="t">
+            <view class="t_t">{{item.wx_nick_name}}</view>
+            <view class="t_b">ID：{{item.member_id}}</view>
+          </view>
+        </view>
+        <view class="rBox">
+          <text>{{item.order_amount}}</text>
+          <image src="../../weixinImg/more_icon@2x.png"></image>
+        </view>
+      </view>
+    </block>
+    <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+  </view>
+</scroll-view>

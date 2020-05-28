@@ -1,0 +1,14 @@
+#httpd.conf配置
+#1. LoadModule rewrite_module modules/mod_rewrite.so
+#2. 要配置的目录的<Directory></Directory>里面，修改或添加 AllowOverride All
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^/(member|admin|circle|microshop|cms)/(.*)html$ /$1/index.php?$2 [QSA,PT,L]
+RewriteRule ^/(.*)html$ /shop/index.php?$1 [QSA,PT,L]
+
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /shop/$1 [QSA,PT,L]

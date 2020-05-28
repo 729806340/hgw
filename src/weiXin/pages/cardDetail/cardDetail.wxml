@@ -1,0 +1,16 @@
+<view class='card_detail' wx:if="{{has_log}}">
+  <scroll-view scroll-y="true" class='scroll' bindscrolltoupper="refresh" bindscrolltolower="getMore">
+    <view class='detail_block' wx:key="unique" wx:for="{{card_list}}" data-item='{{item}}'>
+      <view class='order_num'>
+        <text class='des'>{{item.description}}</text>
+        <text class='add_time'>{{item.add_time_text}}</text>
+      </view>
+      <view class="extra_money {{item.available_amount>0 ?'red':'green'}}">
+        <text class='red' wx:if='{{item.available_amount>0}}'>+</text> {{item.available_amount}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
+<view class='card_con' wx:else>
+  暂无充值卡交易记录
+</view>

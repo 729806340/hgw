@@ -1,0 +1,41 @@
+<view class='myPreSave'>
+  <image src='/weixinImg/yckbg_img@2x.png'></image>
+  <text class='saveNum'>{{available_predeposit}}</text>
+  <view class='preSave'>预存款（元）</view>
+</view>
+<view class='cardBlock t1' bindtap='chargeCard'>
+    <view class='block_left'>
+      <image src='/weixinImg/czk_icon@2x.png'></image>
+      <text>充值卡余额（元）</text>
+    </view>
+    <view class='block_right'>
+      <text>{{available_rc_balance}}</text>
+    </view>
+</view>
+<view class='cardBlock t2' bindtap='cashCoupon'>
+    <view class='block_left'>
+      <image src='/weixinImg/djq_icon@2x.png'></image>
+      <text>代金券</text>
+    </view>
+    <view class='block_right'>
+      <text>{{voucher_num}}</text>张
+    </view>
+</view>
+<view class='cardBlock t3' bindtap='redPocket'>
+    <view class='block_left'>
+      <image src='/weixinImg/hb_icon@2x.png'></image>
+      <text>红包</text>
+    </view>
+    <view class='block_right'>
+      <text>{{rpt_num}}</text>个
+    </view>
+</view>
+<view class='cardBlock t4' bindtap='integration'>
+    <view class='block_left'>
+      <image src='/weixinImg/jf_icon@2x.png'></image>
+      <text>积分</text>
+    </view>
+    <view class='block_right'>
+      <text>{{member_points}}</text>分
+    </view>
+</view>

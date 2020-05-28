@@ -1,0 +1,22 @@
+<!-- <view class='c_title'>充值金额</view>
+<view class='charge_item'>
+  <view class='item_list'>
+    <button class="{{chosen==100?'green':''}}" data-value='100' bindtap='itemClick'>￥100</button>
+    <button class="{{chosen==50?'green':''}}" data-value='50' bindtap='itemClick'>￥50</button>
+    <button class="{{chosen==30?'green':''}}" data-value='30' bindtap='itemClick'>￥30</button>
+    <button class="{{chosen==20?'green':''}}" data-value='20' bindtap='itemClick'>￥20</button>
+    <button class="{{chosen==10?'green':''}}" data-value='10' bindtap='itemClick'>￥10</button>
+    <button class="{{chosen==1?'green':''}}" data-value='1' bindtap='itemClick'>￥1</button>
+  </view>
+  <view class='otherNum'>
+    <text class='other_Num'>充值金额（可自定义）</text>
+    <input class='dollar' value='{{money}}' bindinput="getMoney" placeholder='请输入您要充值的金额' placeholder-class='placeholder'  maxlength="10"></input>
+  </view>
+</view>
+<view class='charge_info'>
+  点击去充值，即表示已阅读并同意
+  <text>《充值规则》</text> 汉购网不会以任何形式要求您输入银行账户和密码
+</view>
+<view class='charge_btn' bindtap='chargeNow'>
+  <button>去充值</button>
+</view> -->

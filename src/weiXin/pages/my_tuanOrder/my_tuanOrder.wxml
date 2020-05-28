@@ -1,0 +1,80 @@
+<scroll-view scroll-y class="scroll" bindscrolltolower='bindpushList'>
+<view class='searchBox'>
+  <input class="search_ipt" bindconfirm='searchClick' value="{{searchText}}" bindinput="searachipt" placeholder="请输入姓名/手机号查询"></input>
+  <image src="../../weixinImg/search_icon@2x.png" class="search_img" bindtap="searchClick"></image>
+</view>
+
+<view class="headBox">
+  <view class="h_titleBox">
+    <view class="h_t_left">本团概况</view>
+    <view class="h_t_right" bindtap="goProfit">
+      <text>收益明细</text>
+      <image src="../../weixinImg/more_icon@2x.png"></image>
+    </view>
+  </view>
+  <view class="dataBox">
+    <view class="data_itemBox">
+      <view class="t">预计本团收益</view>
+      <view class="num" style="color:#FF523A;">{{numList.earn}}</view>
+    </view>
+    <view class="data_itemBox">
+      <view class="t">本团订单数</view>
+      <view class="num">{{numList.num}}</view>
+    </view>
+    <view class="data_itemBox">
+      <view class="t">本团总计实付</view>
+      <view class="num">{{numList.pay}}</view>
+    </view>
+  </view>
+  <view class="tabBox">
+    <view class="tab_item {{tab==0?'tab_item_a':''}}" bindtap="tabClick" data-tab='0'>全部</view>
+    <view class="tab_item {{tab==1?'tab_item_a':''}}" bindtap="tabClick" data-tab='1'>待取货</view>
+    <view class="tab_item {{tab==2?'tab_item_a':''}}" bindtap="tabClick" data-tab='2'>已完成</view>
+  </view>
+</view>
+
+<block wx:for='{{dataList}}'>
+  <view class="listBox">
+    <view class="list_userBox">
+      <view class="list_u_left">
+        <image src="{{item.member_info.wx_user_avatar}}"></image>
+        <view class="r">
+          <view class="t">{{item.member_info.wx_nick_name}}</view>
+          <view class="t_2">订单号：{{item.order_info.order_sn}}</view>
+        </view>
+      </view>
+      <view class="list_u_right">
+        <view class="t">{{item.order_info.state_desc}}</view>
+        <view class="t_2">{{item.delivery_type}}</view>
+      </view>
+    </view>
+    <block wx:for='{{item.order_goods}}' wx:for-item='goods' wx:for-index='Gindex'>
+      <view class="list_goodsBox" wx:if='{{Gindex<2||item.zhankai}}' bindtap='goorderDetail' data-id='{{item.order_info.order_id}}'>
+        <image src="{{goods.goods_image_url}}" class="list_g_img"></image>
+        <view class="list_g_info">
+          <view class="list_g_name">{{goods.goods_name}}</view>
+          <view class="list_g_gg">{{goods.goods_spec}} x {{goods.goods_num}}</view>
+          <view class="list_g_gg">实付{{goods.goods_pay_price}}，<text wx:if="{{goods.goods_voucher > 0}}">优惠{{goods.goods_voucher}}，</text>收益{{goods.shequ_commis_amount}}</view>
+        </view>
+        <view class="list_g_prc">
+          <view class="t">￥{{goods.goods_pre_price}}</view>
+          <view class="t_2" wx:if='{{goods.show_refund == 1}}'>已退款</view>
+        </view>
+      </view>
+    </block>
+    <view class="shengyu" bindtap="zhankai" data-index='{{index}}' wx:if='{{item.order_goods.length>2&&!item.zhankai}}'>下拉展开剩余<text>{{item.order_goods.length-2}}</text>个商品<image src="../../weixinImg/assets/shengyu.png"></image></view>
+    <view class="order_numBox">
+      <view>总共实付：<text>{{item.order_info.order_amount}}</text></view>
+      <view  wx:if="{{goods.goods_voucher > 0}}">总计优惠：<text>{{item.order_info.voucher_amount}}</text></view>
+      <view>预计收益：<text>{{item.order_info.shequ_return_amount}}</text></view>
+    </view>
+    <view class="user_phone">
+      <text>{{item.reciver_info.reciver_name}}   {{item.reciver_info.mob_phone}}</text>
+      <image src="../../weixinImg/bddh_icon@2x.png" bindtap="phoneCall" data-phone='{{item.reciver_info.mob_phone}}'></image>
+    </view>
+    <view class="user_address">地址：{{item.reciver_info.address}}</view>
+  </view>
+</block>
+
+<view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>

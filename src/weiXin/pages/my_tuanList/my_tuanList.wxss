@@ -1,0 +1,99 @@
+/* pages/my_commission/my_commission.wxss */
+page{
+
+}
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.rowBox{
+  width: 100%;
+  padding: 0 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin-bottom: 26rpx;
+}
+.item_Top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 0;
+}
+.item_Top .l{
+
+}
+.item_Top .l .t{
+  font-size: 28rpx;
+  color: #333;
+}
+.item_Top .l .b{
+  font-size: 20rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+.item_Top .r{
+  display: flex;
+  align-items: center;
+}
+.item_Top .r .tit{
+  font-size: 20rpx;
+  color: #333;
+}
+.item_Top .r view{
+  width: 34rpx;
+  height: 34rpx;
+  border-radius: 4rpx;
+  background: #FA3636;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 34rpx;
+  text-align: center;
+}
+.item_Top .r .t_2{
+  color: #333;
+  margin: 0 10rpx;
+  font-size: 20rpx;
+}
+.item_cBox{
+  width: 100%;
+  padding: 30rpx 0;
+  border-top: 2rpx solid #E8E8E8;
+  border-bottom: 2rpx solid #E8E8E8;
+  display: flex;
+  justify-content: space-between;
+}
+.item_cBox image{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.item_bBox{
+ display: flex;
+ align-items: center;
+ justify-content: space-between; 
+ padding: 24rpx 0;
+}
+.item_bBox .num{
+  color: #666;
+  font-size: 24rpx;
+}
+.item_bBox .btn{
+  width: 138rpx;
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  border-radius: 38rpx;
+  border: 2rpx solid #979797;
+  color: #666;
+  font-size: 20rpx;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

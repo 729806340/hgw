@@ -1,0 +1,30 @@
+<!--pages/withdrawRecord/withdrawRecord.wxml-->
+<scroll-view scroll-y class="scroll" bindscrolltolower="getMore">
+  <view class='column_null' wx:if="{{records.length == 0}}">
+    <image class='column_null_img' mode='aspectFit' src='../../weixinImg/wddd_w_img@2x.png'></image>
+    <view class='column_null_txt'>老板您还没有提现记录</view>
+  </view>
+
+  <block wx:for="{{records}}" wx:key="record">
+    <view class="cell">
+      <view class="left">
+        <text>{{item.msg}}</text>
+        <text class="time">{{item.add_time}}</text>
+      </view>
+      <view class="right">
+        <text>¥{{item.crash_out_money}}</text>
+        <text wx:if="{{item.cash_check_state == 1}}" class="status doing">{{item.state_msg}}</text>
+        <text wx:if="{{item.cash_check_state == 2}}" class="status failure">{{item.state_msg}}</text>
+        <text wx:if="{{item.cash_check_state == 3}}" class="status complated">{{item.state_msg}}</text>
+      </view>
+    </view>
+  </block>
+
+  <view class='list_bottom' wx:if="{{!is_bottom && records.length > 0}}">
+    <view style='-webkit-flex:1'></view>
+    <view class='line'></view>
+    <view class='list_bottom_t'>已经到底了</view>
+    <view class='line'></view>
+    <view style='-webkit-flex:1'></view>
+  </view>
+</scroll-view>

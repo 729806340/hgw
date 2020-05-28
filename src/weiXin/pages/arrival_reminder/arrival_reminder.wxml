@@ -1,0 +1,35 @@
+<view class="tabBox">
+  <view class="tab_itemBox {{tab=='today_notice'?'tab_itemBox_a':''}}" data-tab='today_notice' bindtap="tabClick">
+    今日到货商品
+    <view class="icon_num" wx:if='{{numList.today_num>0}}'>{{numList.today_num}}</view>
+  </view>
+  <view class="tab_itemBox {{tab=='wait_notice'?'tab_itemBox_a':''}}" data-tab='wait_notice' bindtap="tabClick">
+    预计到货商品
+    <view class="icon_num" wx:if='{{numList.wait_num>0}}'>{{numList.wait_num}}</view>
+  </view>
+</view>
+
+<scroll-view scroll-y class="scrollBox {{tab=='wait_notice'?'scrollBox_a':''}}" bindscrolltolower='bindpushList'>
+  <view class='searchBox'>
+    <input class="search_ipt" bindconfirm='searchClick' bindinput="searchVal" value="{{searchText}}" placeholder="请输入商品名称进行搜索" confirm-type='search'></input>
+    <image src="../../weixinImg/search_icon@2x.png" class="search_img" bindtap="searchClick"></image>
+  </view>
+  <view class="goodsBox">
+    <view class="goods_tit">共<text>{{dataList.goods_num}}</text>件商品，<text>{{dataList.buyer_num}}</text>人接收</view>
+    <block wx:for='{{goodsList}}'>
+      <view class="list_goodsBox">
+        <image src="{{item.goods_image_url}}" class="list_g_img"></image>
+        <view class="list_g_info">
+          <view class="list_g_name">{{item.goods_name}}</view>
+          <view class="list_g_gg">{{item.goods_spec}}</view>
+        </view>
+        <view class="list_g_prc">
+          <view class="t">x {{item.goods_num}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>
+
+<view class="btnBox" wx:if='{{tab=="today_notice" && goodsList.length > 0}}' bindtap="goMe">发送到货提醒</view>

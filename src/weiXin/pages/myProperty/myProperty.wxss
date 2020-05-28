@@ -1,0 +1,104 @@
+.myPreSave {
+  width: 100%;
+  height: 420rpx;
+  position: relative;
+}
+
+.myPreSave image {
+  width: 750rpx;
+  height: 420rpx;
+}
+
+.saveNum {
+  font-size: 72rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  position: absolute;
+  top: 106rpx;
+  left: 45%;
+}
+
+.preSave {
+  opacity: 0.89;
+  font-size: 28rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  position: absolute;
+  top: 222rpx;
+  left: 40%;
+}
+
+.cardBlock {
+  height: 240rpx;
+  width: 100%;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 4px 0 rgba(154, 154, 154, 0.50);
+  border-radius: 12px 12px 0 0;
+  position: absolute;
+}
+
+.block_left {
+  display: flex;
+  flex-direction: row;
+}
+
+.block_left image {
+  width: 94rpx;
+  height: 94rpx;
+  margin: 0 36rpx 0 56rpx;
+}
+
+.block_left text {
+  font-size: 30rpx;
+  color: #999;
+  letter-spacing: 0;
+  margin-top: 35rpx;
+}
+
+.block_right {
+  font-size: 24rpx;
+  color: #555;
+  letter-spacing: 0;
+  text-align: right;
+  margin-right: 56rpx;
+}
+
+.block_right text {
+  font-size: 44rpx;
+  color: #555;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.t1 {
+  top: 24%;
+}
+.t2 {
+  top: 43%;
+}
+
+.t3 {
+  top: 61%;
+}
+
+.t4 {
+  top: 80%;
+}
+/* iphonex兼容 */
+.ipx1{
+  top: 24%;
+}
+.ipx2{
+  top: 40%;
+}
+.ipx3{
+  top: 55%;
+}
+.ipx4{
+  top: 70%;
+}

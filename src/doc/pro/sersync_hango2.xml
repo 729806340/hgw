@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<head version="2.5">
+    <host hostip="localhost" port="8011" />
+    <debug start="false"/>
+    <fileSystem xfs="false"/>
+    <filter start="true">
+        <exclude expression="(.*)\.svn" />
+        <exclude expression="(.*)\.gz" />
+        <exclude expression="/data/cache/*"/>
+        <exclude expression="/data/upload/*"/>
+        <exclude expression="/v1(.*)"/>
+    </filter>
+    <inotify>
+        <delete start="true"/>
+        <createFolder start="true"/>
+        <createFile start="true"/>
+        <closeWrite start="true"/>
+        <moveFrom start="true"/>
+        <moveTo start="true"/>
+        <attrib start="false"/>
+        <modify start="false"/>
+    </inotify>
+
+    <sersync>
+        <localpath watch="/home/wwwroot/hangowa.com/v2/src/">
+            <remote ip="192.168.12.101" name="hango2"/>
+            <remote ip="192.168.12.102" name="hango2"/>
+            <remote ip="192.168.12.103" name="hango2"/>
+            <remote ip="192.168.12.104" name="hango2"/>
+        </localpath>
+        <rsync>
+            <commonParams params="-aruz"/>
+            <auth start="true" users="root" passwordfile="/usr/local/sersync/rsync.pass"/>
+            <userDefinedPort start="false" port="874"/>
+            <timeout start="true" time="1200"/>
+            <ssh start="false"/>
+        </rsync>
+        <failLog path="/usr/local/sersync/logs/umelook_rsync_fail_log.sh" timeToExecute="60"/>
+        <crontab start="false" schedule="600">
+            <crontabfilter start="false">
+                <exclude expression="(.*)\.svn" />
+                <exclude expression="(.*)\.gz" />
+                <exclude expression="/data/cache/*"/>
+                <exclude expression="/data/upload/*"/>
+                <exclude expression="/v1(.*)"/>
+            </crontabfilter>
+        </crontab>
+        <plugin start="false" name="command"/>
+    </sersync>
+
+    <plugin name="command">
+        <param prefix="/bin/sh" suffix="" ignoreError="true"/>
+        <filter start="false">
+            <exclude expression="(.*)\.svn" />
+            <exclude expression="(.*)\.gz" />
+            <exclude expression="/data/cache/*"/>
+            <exclude expression="/data/upload/*"/>
+            <exclude expression="/v1(.*)"/>
+        </filter>
+    </plugin>
+
+    <plugin name="socket">
+        <localpath watch="/opt/tongbu">
+            <deshost ip="192.168.138.20" port="8009"/>
+        </localpath>
+    </plugin>
+    <plugin name="refreshCDN">
+        <localpath watch="/data0/htdocs/cms.xoyo.com/site/">
+            <cdninfo domainname="ccms.chinacache.com" port="80" username="xxxx" passwd="xxxx"/>
+            <sendurl base="http://pic.xoyo.com/cms"/>
+            <regexurl regex="false" match="cms.xoyo.com/site([/a-zA-Z0-9]*).xoyo.com/images"/>
+        </localpath>
+    </plugin>
+</head>

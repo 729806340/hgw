@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta content="telephone=no,email=no" name="format-detection">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+	<script type="text/javascript" src="js/flexible.js"></script>
+	<script type="text/javascript" src="js/fastclick.js"></script>
+	<script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js" ></script>
+	<style>
+		body{
+			background-image: url(images/img-bg-invite.png);
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="main">
+		<img class="invite-title block" src="images/img-invite.png"/>
+		<div class="ticket-box">
+			<img class="block bc" src="images/img-quan1.png"/>
+			<img class="block bc" src="images/img-quan2.png"/>
+			<img class="block bc" src="images/img-quan3.png"/>
+		</div>
+		<div class="paddinglr">
+			<div class="invite-bottom-box">
+				<a class="block bc tc btn-invite cowhite font16" href="">邀请好友</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function(){
+		var windowHeight = $(window).height();
+		$("body").css("height",windowHeight);
+	});
+</script>
+</html>

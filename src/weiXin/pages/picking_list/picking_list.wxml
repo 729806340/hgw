@@ -1,0 +1,43 @@
+<!--pages/picking_list/picking_list.wxml-->
+<scroll-view class="scroll" scroll-y bindscrolltolower='bindpushList'>
+  <view class='block'>
+    <view class='contont'>
+      <!-- 用户 -->
+      <view class='tiemBox'>
+        <view class='lBox'>
+          <image src='{{infoList.wx_user_avatar}}'></image>
+          <view class='r'>
+            <view class='t_1'>{{infoList.wx_nick_name}}</view>
+            <view class='t_2'>{{infoList.phone}}</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for='{{dataList}}'>
+        <view class="order_listBox">
+          <!-- 用户取货 -->
+          <view class="cart">
+            <block wx:for='{{item.order_goods}}' wx:for-item='goods' wx:key='q'>
+              <view class="cart_item">
+                <image src='{{goods.goods_image_url}}'></image>
+                <view class="b">
+                  <view class="b_1">{{goods.goods_name}} </view>
+                  <view class="b_2">{{goods.goods_spec}}</view>
+                  <view class="b_3" wx:if='{{item.send_date}}'>发货日期：{{goods.send_date}}</view>
+                </view>
+                <view class='S'>x {{goods.goods_num}}</view>
+              </view>
+            </block>  
+          </view>
+          <!-- 下单时间 编号-->
+          <view class='card'>
+            <view>下单时间：{{item.add_time}}</view>
+            <view>订单编号：{{item.order_sn}}</view>
+          </view> 
+        </view>
+      </block>
+    </view>
+    <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+    <button type="primary" class='btn' bindtap="confirmClick" wx:if='{{dataList.length > 0}}'>确认已经收货</button>
+  </view>
+</scroll-view>
+ 

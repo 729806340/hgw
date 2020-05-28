@@ -1,0 +1,15 @@
+  
+  <view class='border'></view>
+    <view class="text">点击图片预览，可发送至群里。</view>
+    
+    <!-- 海报 -->
+    <!-- 海报 -->
+  <!-- <view class="zz"  style="z-index:9999" bindtap="haibaohide"></view>
+  <view class="canvasBox" wx:if='{{if_haibao}}'>
+    <canvas canvas-id='myCanvas' style='width:414px;height:736px;opacity: 0;'></canvas>
+  </view> -->
+  <view class='cont' id='canvas-container'>
+    <canvas canvas-id="myCanvas" style='width:{{300*rpx}}px;height:{{490*rpx}}px; ' />
+  </view>
+  <!-- <image src="{{tempFilePath}}" class="canvasimg" mode="aspectFit" ></image> -->
+    <view class='fenxiang' bindtap='saveShareImg'>保存海报</view>

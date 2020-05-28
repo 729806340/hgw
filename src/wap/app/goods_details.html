@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>农谷鲜</title>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <link rel="stylesheet" type="text/css" href="css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="css/mui.css"/>
+    <link rel="stylesheet" type="text/css" href="css/main.css"/>
+    <script type="text/javascript" src="js/flexible.js"></script>
+    <script type="text/javascript" src="js/fastclick.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery/jquery.md5.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <style>
+        #details iframe {
+            position: absolute;
+            height: 100%;
+            bottom:1.3333rem;
+            left:0;
+        }
+    </style>
+</head>
+
+<body>
+<div class="apptop clearfix bgwhite paddinglr"><img class="logo-top fl" src="images/img-logo.png"/>
+    <div class="fl app-title">
+        <h2 class="font14 cob3">农谷鲜-特色农产品</h2>
+        <h3 class="font12 cob9">真品真实惠</h3></div>
+    <a class="fr block btn-download tc font12" id="downloadApp" href="javascript:void(0);"> <img class="" src="images/img-bg-down.png"/> 立即下载 </a>
+</div>
+<ul class="bgwhite tc top-tab">
+    <li class="inb font16 lh100 cob6 top-tab-active">商品</li>
+    <li class="inb font16 lh100 cob6">详情</li>
+</ul>
+<div class="content1">
+    <div class="com-box" id="goods">
+        <div id="slider" class="mui-slider">
+            <div class="mui-slider-group mui-slider-loop" id="goods_images">
+                <!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+                <!--<div class="mui-slider-item mui-slider-item-duplicate">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png" data-preview-src="" data-preview-group="1"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 第一张 &ndash;&gt;-->
+                <!--<div class="mui-slider-item">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png" data-preview-src="" data-preview-group="1"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 第二张 &ndash;&gt;-->
+                <!--<div class="mui-slider-item">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png" data-preview-src="" data-preview-group="1"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 第三张 &ndash;&gt;-->
+                <!--<div class="mui-slider-item">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png" data-preview-src="" data-preview-group="1"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 第四张 &ndash;&gt;-->
+                <!--<div class="mui-slider-item">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png" data-preview-src="" data-preview-group="1"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 第五张 &ndash;&gt;-->
+                <!--<div class="mui-slider-item">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png"> </a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) &ndash;&gt;-->
+                <!--<div class="mui-slider-item mui-slider-item-duplicate">-->
+                    <!--<a href="#"> <img src="images/img-banner0.png"> </a>-->
+                <!--</div>-->
+            </div>
+            <div class="mui-slider-indicator" id="goods_doc">
+                <!--<div class="mui-indicator mui-active"></div>-->
+                <!--<div class="mui-indicator"></div>-->
+                <!--<div class="mui-indicator"></div>-->
+                <!--<div class="mui-indicator"></div>-->
+                <!--<div class="mui-indicator"></div>-->
+            </div>
+        </div>
+        <div class="bgwhite paddinglr line">
+            <h2 class="font15 cob3 lh150 fb goods-title" id="goods_name"><!--特产稻香长粒大米10斤 非转基因长粒大米香糯清甜香滑【荆门农谷鲜】--></h2>
+            <!--<h5 class="font11 cob6 lh100">【特价商品不接券】</h5>-->
+            <div class="price clearfix lh100"><span class="font18 fb fl" id="goods_price">￥0.00</span> <label
+                    class="font12 cob9 fl" id="goods_marketprice">￥0.00</label></div>
+            <ul class="clearfix lh200">
+                <li class="fl font11 cob6 w33" id="goods_hair_info_content"><!-- 快递：免运费 --></li>
+                <li class="fl font11 cob6 w33 tc" id="goods_salenum"><!-- 销量：901笔 --></li>
+                <li class="fl font11 cob6 w33 tr" id="area_name"><!-- 湖北武汉 --></li>
+            </ul>
+        </div>
+        <div class="paddinglr line gift-box bgwhite">
+            <img class="fl icon-gift" src="images/img-gift.png" id="gift_body" style="display:none"/>
+            <h5 class="fl font13" id="gift_array"><!-- 活动：满150减50 --></h5></div>
+        <div class="bgwhite">
+            <div class="clearfix comment-title paddinglr">
+                <h4 class="fl cob3 font12">商品评价</h4></div>
+            <div class="line"></div>
+        </div>
+        <ul class="bgwhite comment-view paddinglr" id="commentContent">
+            <li class="comment-view-cell">
+                <div class="clearfix comment-view-top">
+                    <img class="fl headimg" id="member_avatar" src="images/img-head00.png"/>
+                    <div class="fl cob3 name font11" id="geval_frommembername">汉购网小粉丝</div>
+                    <!--<a class="fr cob9 btn-comment font10" href=""> <img src="images/icon-evaluate.png" /> <span class="">550</span> </a>-->
+                    <!--<a class="fr cob9 font10" href=""> <img src="images/icon-zan1.png" /> <span class="">150</span> </a>-->
+                </div>
+                <p class="cob6 comment-text block font12" id="geval_content"></p>
+            </li>
+        </ul>
+        <div class="tc look-comment bgwhite line">
+            <a class="font12 cob9 lh100 inb" id="eval_other">查看全部评价</a>
+        </div>
+        <!--<div class="tc cob9 font11 bgwhite pull-bottom"><img src="images/icon-arrowtop.png"/>上拉查看图文详情</div>-->
+    </div>
+
+    <!--<div class="com-box w none" id="details"> <img class="w block" src="images/img-01.png" /> </div>-->
+    <div class="com-box w none" id="details">
+        <iframe id="" class="w " src="http://www3.hangowa.com/appApi/?method=goods.body&goods_id=101284"></iframe>
+    </div>
+</div>
+<a class="block w tc font14 cowhite btn-buy" id="openApp" href="javascript:void(0);">立即去APP购买</a>
+</body>
+<script type="text/javascript" src="js/mui.min.js"></script>
+<script type="text/javascript" src="js/mui.zoom.js"></script>
+<script type="text/javascript" src="js/mui.previewimage.js"></script>
+<script type="text/javascript" src="js/app/goods_details.js"></script>
+<script>
+    //预览图片
+    mui.previewImage();
+//    var slider = mui("#slider");
+    //tab切换
+    $(".top-tab li").click(function () {
+        $(this).addClass('top-tab-active').siblings().removeClass('top-tab-active');
+        var index = $(this).index();
+        $('.content1 .com-box').hide();
+        $('.content1 .com-box:eq(' + index + ')').show();
+    });
+//    mui("#slider").slider({deceleration: 0.0005});
+
+
+//    var gallery = mui('.mui-slider');
+//    gallery.slider({
+//        interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+//    });
+    //上滑显示详情
+//    $(window).scroll(function () {
+//        var scrollTop = $(this).scrollTop();
+//        var scrollHeight = $(document).height();
+//        var windowHeight = $(this).height();
+//        if (scrollTop + windowHeight - scrollHeight < 10) {
+//            mui(".content1").on('swipeup', '#goods', function () {
+//                $("#details").show();
+//            })
+//        }
+//    });
+</script>
+
+</html>

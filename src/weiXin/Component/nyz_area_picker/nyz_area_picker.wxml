@@ -1,0 +1,5 @@
+<picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{value}}" range="{{multiArray}}" class='pick_layout'>
+  <view class="{{value[0]==0?'picker1':'picker'}}">
+    {{(value[2] == 0)?defaultText:multiArray[0][value[0]]+'-'+multiArray[1][value[1]]+'-'+multiArray[2][value[2]]}}
+  </view>
+</picker>

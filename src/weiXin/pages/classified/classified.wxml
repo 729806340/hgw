@@ -1,0 +1,14 @@
+<view class='col'>
+<!-- 分类 -->
+<scroll-view scroll-x class="scroll-header" scroll-with-animation scroll-left="{{scrollLeftNumber}}" scroll-into-view="{{toView}}">
+    <view class="classText {{gc_id_3 == 0?'ons':''}}" bindtap="tabClickAll">
+      全部
+    </view>
+  <block wx:key="unqui" wx:for="{{gc_child_list}}">
+    <view data-index="{{index}}" class="classText {{gc_id_3 === index?'ons':''}}" bindtap="tabClick" id='n{{item.gc_id}}'>{{item.gc_name}}</view>
+  </block>
+</scroll-view>
+</view>
+<scroll-view scroll-y class='scroll_right' bindscrolltoupper="refresh" bindscrolltolower="getMore">
+  <goods_item goods_list="{{goods_list}}" is_bottom="{{is_bottom}}"></goods_item>
+</scroll-view>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>好粮谷</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-1.8.3.min.js"></script>
+	<script src="js/distpicker.data.js"></script>
+	<script src="js/distpicker.js"></script>
+	<script src="js/main.js"></script>
+	<script src="js/layer/layer.js"></script>
+</head>
+<body>
+	<div class="top_title">好粮谷代餐粉</div>
+	<img src="img/1.png" alt="" class="top_imgBox">
+
+	<div class="inputBox">
+		<input type="text" data='name' placeholder="收货人姓名" class="name">
+		<div class="kong"></div>
+		<input type="number" data='phone' placeholder="收货人联系方式" class="phone">
+		<div class="region_text">您的所在城市<span>*</span></div>
+		<div id="distpicker" class="regionBox">
+			<select data-province="---选择省---"></select>
+     		<select data-city="---选择市---"></select>
+     		<select data-district="---选择区----"></select>
+		</div>
+		<textarea rows="2" class="addBox" placeholder="您的详细收货地址，例如：xx街道"></textarea>
+		<div class="region_text">口味选择<span>*</span></div>
+		<div class="flavorBox">
+			<div class="radio"><input type="radio"  name="flavor" value="蓝莓" />蓝莓</div>
+			<div class="radio"><input type="radio" name="flavor" value="奇亚籽" />奇亚籽</div>
+			<div class="radio"><input type="radio" name="flavor" value="小麦苗" />小麦苗</div>
+		</div>
+		<div class="region_text">支付方式<span>*</span></div>
+		<div class="payBox">
+			<div class="radio" style="width: 2.2rem;"><input type="radio"  name="pay" value="wx" /><img src="img/wx.png" alt="">微信支付</div>
+			<div class="radio" style="width: 2.2rem;"><input type="radio" name="pay" value="ali" /><img src="img/ali.png" alt="">支付宝支付</div>
+		</div>
+		<div class="btnBox" id="btn">确定</div>
+	</div>
+	<img src="img/2.png" alt="" class="cenIMG">
+	<img src="img/3.png" alt="" class="cenIMG">
+	<img src="img/4.png" alt="" class="cenIMG">
+	<img src="img/5.png" alt="" class="cenIMG">
+</body>
+<script>
+	//城市三级联动初始化
+	$("#distpicker").distpicker({autoSelect: false});
+
+	$(".radio").click(function(){
+		var index = $(".radio").index(this)
+		$(".radio").eq(index).children("input").attr("checked",true)
+	})
+
+	var name = '' //姓名
+	var phone = '' //电话
+	var region = ["","",""] //省市区
+	var add = '' //详细地址
+	var type_flavor = '' //口味
+	var type_pay = '' //支付方式
+
+	$("select").change(function(){
+		for(var i=0;i<$("select").length;i++){
+			var select_val = $("select").eq(i).val()
+			var chilrdren_val = $("select").eq(i).children(":first").val()
+			if(select_val == chilrdren_val){
+				region[i] = ''
+			}else{
+				region[i] = $("select").eq(i).val()
+			}
+		}
+	})
+
+	//提交
+	$("#btn").click(function(){
+		name = $(".name").val() //姓名
+		phone = $(".phone").val() //电话
+		add = $(".addBox").val() //详细地址
+		if(name == ''){
+			layer.msg('请填写收货人姓名',{time:2000});
+			return
+		}
+		if(!/^1[34578]\d{9}$/.test(phone)){
+			layer.msg('请输入正确的手机格式',{time:2000});
+			return
+		}
+		for(var i=0;i<region.length;i++){
+			if(region[i] == ''){
+				layer.msg('省市区请填写完整',{time:2000});
+				return
+			}
+		}
+		if(add == ''){
+			layer.msg('请填写详细收货地址',{time:2000});
+			return
+		}
+	    type_flavor=$('input:radio[name="flavor"]:checked').val();
+	    if(type_flavor==null){
+	    	layer.msg('请选择口味',{time:2000});
+	        return false;
+	    }
+	    type_pay= $('input:radio[name="pay"]:checked').val();
+	    if(type_pay==null){
+	    	layer.msg('请选择支付方式',{time:2000});
+	        return false;
+	    }
+	    layer.msg('提交成功',{time:2000});
+	    console.log("姓名--",name)
+	    console.log("电话--",phone)
+	    console.log("省市区--",region)
+	    console.log("详细地址--",add)
+	    console.log("口味--",type_flavor);  
+	    console.log("支付方式--",type_pay);    
+	});
+</script>
+</html>

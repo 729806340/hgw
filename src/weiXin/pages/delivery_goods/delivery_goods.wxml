@@ -1,0 +1,62 @@
+<!--pages/delivery_goods/delivery_goods.wxml-->
+<view class='head'>
+    <!-- 手机号，搜索框 -->
+        <view class='dis'>
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class='picker'>
+              <view class='iph'>{{array[index]}}</view>
+              <image src='../../weixinImg/assets/shengyu.png'></image>
+            </view>
+          </picker> 
+          <!--搜索框-->
+          <view class='search_layout'>
+            <input class='search_txt' bindconfirm='searchClick' placeholder="请输入微信昵称/姓名/手机号" confirm-type="search"  bindinput='searchVal'/>
+            <icon type="search" size="14" class='icon_search' bindtap='searchClick'></icon>
+          </view>
+        </view>
+     <!-- 提（未）走    -->
+      <view class='bill'>
+        <view class='classText {{currentData == "wait_take" ? "isActive" : ""}}' 
+              data-current = "wait_take" bindtap='checkCurrent'>
+              未提走</view>
+        <view class='classText  {{currentData == "have_take" ? "isActive" : ""}}'
+              data-current = "have_take" bindtap='checkCurrent'>
+              已提走</view>
+      </view>
+</view>
+
+<scroll-view class="Statistics" scroll-y bindscrolltolower='bindpushList'>
+  <block wx:for='{{dataList}}'>
+    <view class="listBox">
+      <view class="list_userBox">
+        <view class="list_u_left">
+          <image src="{{item.member_info.wx_user_avatar}}"></image>
+          <view class="r">
+            <view class="t">{{item.member_info.wx_nick_name}}</view>
+            <view class="t_2">{{item.member_info.reciver_name}}  {{item.member_info.buyer_phone}}</view>
+          </view>
+        </view>
+      </view>
+      <block wx:for='{{item.order_goods}}' wx:for-item='goods'>
+        <view class="list_goodsBox">
+          <image src="{{goods.goods_image_url}}" class="list_g_img"></image>
+          <view class="list_g_info">
+            <view class="list_g_name">{{goods.goods_name}}</view>
+            <view class="list_g_gg">{{goods.goods_spec}}</view>
+            <view class="list_g_gg" wx:if='{{goods.send_date}}'>发货日期：{{goods.send_date}}</view>
+          </view>
+          <view class="list_g_prc">
+            <view class="t">x {{goods.goods_num}}</view>
+          </view>
+        </view>
+      </block>
+      <view class="order_numBox">
+      </view>
+      <view class="user_phone">
+        <text>下单时间：{{item.add_time}}</text>
+      </view>
+      <view class="user_address">订单编号：{{item.order_sn}}</view>
+    </view>
+  </block>
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>

@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /v1
+Disallow: /article-promotions

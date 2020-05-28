@@ -1,0 +1,47 @@
+/* pages/offline_pay_she/offline_pay_she.wxss */
+.imgBox{
+  width: 100%;
+  background: #fff;
+}
+.pay1{
+  margin: 0 auto;
+  padding: 60rpx 0;
+}
+.pay1 image{
+  width: 200rpx;
+  height: 200rpx;
+  display: block;
+  margin: 0 auto;
+}
+.pay1 view{
+  color: #333;
+  font-size: 28rpx;
+  text-align: center;
+  padding-top: 30rpx;
+}
+.goorder{
+  width: 90%;
+  height: 80rpx;
+  border: 1px solid #24B058;
+  background: #24B058;
+  color: #fff;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 0 auto;
+  margin-top: 60rpx;
+  border-radius: 80rpx;
+}
+.goindex{
+  width: 90%;
+  height: 80rpx;
+  border: 1px solid #24B058;
+  background: #fff;
+  color: #24B058;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  margin: 0 auto;
+  margin-top: 40rpx;
+  border-radius: 80rpx;
+}

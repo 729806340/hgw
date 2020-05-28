@@ -1,0 +1,27 @@
+<!--pages/undex_line/undex_line.wxml-->
+<view class="undex_line">
+    <scroll-view enable-back-to-top="true" scroll-y class="{{Xclass==true?'t_scrolls':'t_scroll'}}" bindscrolltolower="getMore" wx:if="{{!info_dress}}">
+        <block wx:for="{{chain_list}}" wx:key="uq4">
+            <view class="undex_item" bindtap="goshop" data-id = "{{item.chain_id}}">
+                <image src='{{item.chain_img}}' mode='widthFix'></image>
+                <view class="undex_text">
+                    <view class="t5">
+                        <view class="t5_dress">{{item.chain_name}}</view>
+                    </view>
+                    <view class="t6">{{item.chain_address}}</view>
+                </view>
+                <view class="t5_road" wx:if="{{item.distance}}">{{item.distance}}</view>
+            </view>
+        </block>
+        <view class='list_bottom' wx:if="{{is_bottom}}">
+            <view style='-webkit-flex:1'></view>
+            <view class='line'></view>
+            <view class='list_bottom_t'>已经到底了</view>
+            <view class='line'></view>
+            <view style='-webkit-flex:1'></view>
+        </view>
+    </scroll-view>
+    <button class="getuser_dress"  wx:if="{{info_dress}}" bindtap="getUserLocation">请重新获取您的地址信息</button>
+    <image class="undex_bot_img" src="../../weixinImg/mdch_img@2x.png" mode="widthFix"></image>
+</view>
+<showdemo wx:if="{{Atatus!=1}}" callTel="1" showModal="{{showModal}}"></showdemo>

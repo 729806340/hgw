@@ -1,0 +1,95 @@
+/* pages/withdrawRecord/withdrawRecord.wxss */
+
+.scroll {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.scroll .cell {
+  display: flex;
+  padding: 20rpx 38rpx;
+  border-bottom: 2rpx solid #ededed;
+  justify-content: space-between;
+  align-items: center;
+  background: white
+}
+
+.scroll .cell .left {
+  display: flex;
+  flex-direction: column;
+  font-size: 36rpx;
+  color: #666666;
+}
+
+.scroll .cell .left .time {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 12rpx;
+}
+
+.scroll .cell .right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 36rpx;
+  color: #333333;
+}
+
+.scroll .cell .right .status {
+  font-size: 24rpx;
+  margin-top: 12rpx;
+}
+
+.doing {
+  color: #2EB772;
+}
+
+.failure {
+  color: #FE5A4C;
+}
+
+.complated {
+  color: #999999;
+}
+
+.column_null {
+  position: fixed;
+  align-self: center;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column_null_img {
+  width: 280rpx;
+  height: 280rpx;
+  margin-top: 250rpx;
+}
+
+.column_null_txt {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 40rpx;
+}
+
+.list_bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.line {
+  width: 100rpx;
+  height: 2rpx;
+  background: #f0f0f0;
+}
+
+.list_bottom_t {
+  font-size: 26rpx;
+  color: #aaa;
+  margin: 20rpx;
+}

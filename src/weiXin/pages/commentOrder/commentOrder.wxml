@@ -1,0 +1,90 @@
+<view class='root'>
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <scroll-view scroll-y class='scroll'>
+       <!-- 店铺评分 -->
+    <view class='shop_com'>
+      <view class='shop_top'>
+        <image src='../../weixinImg/dppf_icon@2x.png'></image>
+        <text>店铺评分</text>
+      </view>
+      <view class='shop_btm'>
+        <view class='star_grade'>
+          <text class='txt_desc'>描述相符</text>
+          <view class='starsB'>
+          <block wx:for="{{stroe_desccredit}}">
+            <image  catchtap='shop' data-id="des" data-index="{{index+1}}" src='../../weixinImg/spscdj_icon@2x.png'></image>
+          </block>
+          <block wx:for="{{des}}">
+            <image catchtap='shop' data-id="dess" data-index="{{index+1}}" src='../../weixinImg/spscl_icon@2x.png'></image>
+          </block>
+          </view>
+        </view>
+         <view class='star_grade'>
+          <text class='txt_desc'>服务态度</text>
+          <view class='starsB'>
+            <block wx:for="{{store_servicecredit}}">
+             <image catchtap='shop' data-id="ser" data-index="{{index+1}}" src='../../weixinImg/spscdj_icon@2x.png'></image>
+           </block>
+            <block wx:for="{{ser}}">
+             <image catchtap='shop' data-id="sers" data-index="{{index+1}}" src='../../weixinImg/spscl_icon@2x.png'></image>
+           </block>
+          </view>
+        </view>
+         <view class='star_grade'>
+          <text class='txt_desc'>发货速度</text>
+         <view class='starsB'>
+            <block wx:for="{{store_deliverycredit}}">
+              <image catchtap='shop' data-id="del" data-index="{{index+1}}" src='../../weixinImg/spscdj_icon@2x.png'></image>
+            </block>
+            <block wx:for="{{del}}">
+               <image catchtap='shop' data-id="dels" data-index="{{index+1}}" src='../../weixinImg/spscl_icon@2x.png'></image>
+             </block>
+          </view>
+        </view>
+      </view>
+    <!-- 商品评论区域 -->
+      <view class='goods_com' wx:for="{{order_goods}}" wx:for-index="index" wx:if="{{order_goods.length!=0}}">
+        <view class='goods_top'>
+          <image src='{{item.goods_image_url}}' class='goods_pic'></image>
+          
+          <view class="col">
+            <view class='goods_txt'>{{item.goods_name}}</view>
+            <view class="mol">
+              <view class='goods_txt'>商品评分</view>
+              <view class='stars'>
+              <block wx:for="{{list[index].commodityNum}}" wx:for-index="orindex">
+                    <image catchtap='commodity' data-id='coy' data-index="{{index}}" data-in="{{orindex+1}}" src='../../weixinImg/star1_icon@2x.png'></image>
+              </block>
+              <block wx:for="{{list[index].Num}}" wx:for-index="orindex">
+                  <image catchtap='commodity' data-id='coys' data-index="{{index}}" data-in="{{orindex+1}}" src='../../weixinImg/sppfstar2_icon@2x.png'></image>
+              </block>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class='goods_middle'>
+          <textarea bindinput='ly_input' data-index="{{index}}" maxlength="{{max}}" placeholder='亲，写点什么吧，您的意见对其他买家有很大帮助！' placeholder-class='placeholder' class='mid_txta'></textarea>
+        </view>
+        <view class='goods_btm clearfix'>
+          <block wx:for="{{productInfo[index]}}" wx:for-index="proindex">
+              <view class="btm_pics">
+                <image wx:if="{{item.src}}" catchtap="show" src='{{item.src}}' data-index="{{index}}" data-porindex="{{proindex}}" class='btm_pic'></image>
+                <view catchtap='clearImg' wx:if="{{item.checked}}" data-index="{{index}}"  data-porindex="{{proindex}}" class="deltel">
+                    <image src="../../weixinImg/pldelete_icon@2x.png" class="img"></image>
+                </view>
+              </view>
+          </block>
+          <view class='add_pic' bindtap="addimg" data-index='{{index}}'>
+            <image src='../../weixinImg/camera_icon@2x.png'></image>
+            <text>添加图片</text>
+          </view>
+        </view>
+        <view class='gray_line'></view>
+      </view>
+    </view>
+ </scroll-view>
+    <view class='submit_com'>
+      <button formType="submit" class='submit_btn'>提交</button>
+    </view>
+  </form>
+</view>

@@ -1,0 +1,15 @@
+<view>
+  <view class="input-item">
+    <label>
+      <input class="input-text" name="cardNum" placeholder-class='placeholder' bindinput='getCardValue' value='{{card}}' placeholder="请输入平台红包卡密号" type="text" />
+    </label>
+  </view>
+  <view class="input-item">
+    <label>
+      <input class="input-text " placeholder-class='placeholder' name="security-code" placeholder="请输入4位验证码" bindinput='getCodeValue' value='{{code}}' />
+      <!-- <button class='get-code' bindtap='getVerificationCode' disabled='{{disabled}}'>{{codename}}</button> -->
+      <canvas class='get-code canvas' style="width:{{cvs.width}};height:{{cvs.height}};" canvas-id="canvas" bindtap='onReady'></canvas>
+    </label>
+  </view>
+  <button bindtap='confirm'  disabled='{{disabled}}'>确认</button>
+</view>

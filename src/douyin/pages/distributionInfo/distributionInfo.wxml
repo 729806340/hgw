@@ -1,0 +1,33 @@
+<view class='root'>
+  <scroll-view scroll-y class='scroll'>
+  <view class='distribute_title'>
+    <image src='../../weixinImg/wlgs_icon@2x.png'></image>
+    <view class='dt'>
+      <text class='distri_company'>物流公司：{{express_name}}</text>
+      <text class='distri_num'>运单号码：{{shipping_code}}</text>
+    </view>
+  </view>
+  
+  <view class='process' wx:for="{{deliver_info}}" wx:key="{{item.time}}">
+    <view class='time'>
+      <view class='time_exact {{index!=0?"":"green"}}'>
+        <view class='month'>{{item.y}}</view>
+        <view class='hour'>{{item.h}}</view>
+      </view>
+    </view>
+    <view class='process_img'>
+      <view class='greenDot' wx:if="{{index==0}}">
+        <view class='dotted'></view>
+      </view>
+      <view class='greenLine' wx:if="{{index==0}}"></view>
+      <view class='greyDot' wx:if="{{index!=0}}"></view>
+      <view class='greyLine' wx:if="{{index!=0}}"></view>
+    </view>
+    <view class='process_content'>
+        <view class="{{index==0?'green_con':'green_cons'}}">
+          {{item.context}}
+        </view>
+    </view>
+  </view>
+  </scroll-view>
+</view>

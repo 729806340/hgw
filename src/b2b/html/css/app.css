@@ -1,0 +1,32 @@
+*{
+            margin:0;
+            padding:0;
+        }
+        body{
+            overflow: hidden;
+        }
+        #wrap > div{
+            width: 10rem;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #fff;
+            transition: all 0.3s ease;
+        }
+        #dots{
+            position: fixed;
+            right: 5px;
+            top: 40%;
+            z-index: 9;
+        }
+        #dots span{
+            display: block;
+            height: 0.2rem;
+            width: 0.2rem;
+            border: 1px solid #000;
+            border-radius: 50%;
+            margin-bottom: 3px;
+        }
+        #dots .now{
+            background: #555;
+        }

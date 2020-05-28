@@ -1,0 +1,87 @@
+<view>
+  <view class="root" wx:if="{{shop_list.length>0}}">
+    <!-- 购物车列表 -->
+    <scroll-view scroll-y class='scroll'>
+    <view wx:for="{{shop_list}}" wx:for-index="index1" wx:key="{{item.store_id}}">
+    <view class='col1'>
+        <block>
+          <view class='goods_title_row' data-item="{{item}}">
+            <view class='goods_title0'>
+              <image src="{{item.checked?'../../weixinImg/swmr1_img@2x.png':'../../weixinImg/swmr2_img@2x.png'}}" class='img_circle' catchtap='checkAll' data-id='{{index1}}'></image>
+              <image src='../../weixinImg/dptb_icon@2x.png' class='img_shop'></image>
+              <view class='shop_name'>{{item.store_name}}</view>
+              <image src='../../weixinImg/dpmore_icon@2x.png' class='img_more'></image>
+
+            </view>
+            <!-- <view class='goods_.title1' bindtap="goquan">
+              <view class='t10'>领劵</view>
+            </view> -->
+          </view>
+          <block wx:for="{{item.goods}}" wx:for-item="data" wx:key="{{data.goods_id}}">
+            <!-- 商品item -->
+            <view class='row2'>
+              <image src="{{data.checked?'../../weixinImg/swmr1_img@2x.png':'../../weixinImg/swmr2_img@2x.png'}}" class='img_circle' bindtap='choose' data-index='{{index}}' data-lop='{{index1}}'></image>
+              <image src='{{data.goods_image_url}}' class='img_goods' mode='aspectFit' bindtap='goGoodsDetail' data-item='{{data}}'></image>
+              <view class='col3' bindtap='goGoodsDetail' data-item='{{data}}'>
+                <image src='../../weixinImg/deletesp_icon@2x.png' class='img_del' catchtap='icon_delete' data-id='{{data.cart_id}}' data-index='{{index}}' data-lop='{{index1}}' data-goodsid="{{data.goods_id}}"></image>
+                <view class='t5'>{{data.goods_name}}</view>
+                <view class='t6' wx:if="{{data.goods_spec}}">{{data.goods_spec}}</view>
+                <view class='t20' wx:if="{{data.xianshi_info.xianshi_name!='' && data.xianshi_info.xianshi_limit > 0}}">
+                  限时购：{{data.xianshi_info.xianshi_limit}}件
+                </view>
+                <view class='row8'>
+                  <view class='col4'>
+                    <view class='row5' wx:if="{{data.xianshi_info.xianshi_name!=''}}">
+                      <image src='../../weixinImg/ms_icon@2x.png'></image>
+                      <view class='t3'>￥{{data.xianshi_info.xianshi_price}}</view>
+                      <text class='num_before'>￥{{data.xianshi_info.goods_price}}</text>
+                    </view>
+                    <view class='row5' wx:else>
+                      <view class='t3'>￥{{data.goods_price}}</view>
+                    </view>
+                  </view>
+                  <view class='row6' catchtap='catchtap'>
+                    <view class='del' data-item='{{data.cart_id}}' bindtap='del' data-index='{{index}}' data-numer='{{index1}}'>
+                      <image src='../../weixinImg/minus@2x.png'></image>
+                    </view>
+                    <input class='num' type="number" value='{{data.goods_num}}' bindchange='bindManual' data-item='{{data.cart_id}}' data-index='{{index}}' data-lop='{{index1}}'/>
+                    <view class='add' data-item='{{data.goods_id}}' bindtap='add' data-index='{{index}}' data-numer='{{index1}}'>
+                      <image src='../../weixinImg/plus@2x.png'></image>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <view class='gray_line' wx:if="{{index<cart_list.length-1}}"></view>
+        </block>
+      </view>
+    </view>
+    </scroll-view>
+    <view class='row3'>
+      <view class='row11'>
+        <image src="{{all_check?'../../weixinImg/swmr1_img@2x.png':'../../weixinImg/swmr2_img@2x.png'}}" class='img_circle' bindtap='chooseAllGoods'></image>
+        <view class='t1'>全选</view>
+      </view>
+      <view class='col2'>
+        <view class='row4'>
+          <view class='t2'>
+            合计:
+          </view>
+          <view class='t3'>￥{{cart.num}}</view>
+        </view>
+        <view class='t4'>
+          (共{{cart.cart_count}}件商品)</view>
+      </view>
+
+      <view class="{{check_list.length>0?'btn_submit':'btn_forbit'}}" bindtap='goSureOrder'>结算</view>
+    </view>
+  </view>
+  <view class='noData' wx:else>
+    <view>
+      <image src='../../weixinImg/gwc_w_img@2x.png'></image>
+    </view>
+    <view>购物车是空的</view>
+    <view class='btn_null' bindtap='goClass'>去购买</view>
+  </view>
+</view>

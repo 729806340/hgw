@@ -1,0 +1,32 @@
+<view class='block' wx:if="{{favorites_list.length}}">
+  <scroll-view scroll-y class='scroll' bindscrolltolower="getMore">
+    <view class='store_block' wx:for="{{favorites_list}}" wx:key="unique" bindtap='goShop' data-id='{{item.store_id}}'>
+      <image src='{{item.store_avatar_url}}' class='storeImg'></image>
+      <view class='txt_con'>
+        <text class='store_name'>{{item.store_name}}</text>
+        <view class='grand'>
+          <view class='grand_block'>
+            <text class='des'>描述相符</text>
+            <text class='coin'>{{item.store_credit.store_desccredit.credit}}</text>
+          </view>
+          <view class='grand_block'>
+            <text class='des'>服务态度</text>
+            <text class='coin'>{{item.store_credit.store_servicecredit.credit}}</text>
+          </view>
+          <view class='grand_block'>
+            <text class='des'>发货速度</text>
+            <text class='coin'>{{item.store_credit.store_deliverycredit.credit}}</text>
+          </view>
+        </view>
+      </view>
+      <image src='../../weixinImg/deletesp_icon@2x.png' class='delete' data-index='{{index}}' bindtap='deleteStore'></image>
+    </view>
+  </scroll-view>
+</view>
+
+<view class='noData' wx:else>
+  <view>
+    <image src='../../weixinImg/dpsc_w_img@2x.png'></image>
+  </view>
+  <view>您还没有收藏店铺</view>
+</view>

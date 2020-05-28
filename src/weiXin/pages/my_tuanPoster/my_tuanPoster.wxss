@@ -1,0 +1,47 @@
+page {
+  background-color: white;
+}
+.border{
+
+   border-top: 1rpx solid #DDDDDD ;
+}
+ .text{
+   color: #999;
+   font-size: 24rpx;
+   padding:30rpx 20rpx;
+   margin: 0 50rpx;
+
+ }
+.cont {
+  width: 80%;
+  height:736px;
+  text-align: center;
+  margin:  auto;
+  /* position: fixed;
+  top: -2000rpx; */
+  left: 0rpx;
+  z-index: 9;
+}
+
+.fenxiang{
+  font-size: 32rpx;
+  height: 114rpx;
+  line-height: 114rpx;
+  text-align: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  background-color: #2CCC60;
+  color: white;
+}
+.canvasimg{
+  width: 580rpx;
+  height: 1030rpx;
+  position: fixed;
+  top: 60rpx;
+  left:86rpx;
+  z-index: 9999;
+  border-radius: 10rpx 10rpx 0 0;
+  overflow: hidden;
+}

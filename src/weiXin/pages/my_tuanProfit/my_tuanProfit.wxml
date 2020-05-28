@@ -1,0 +1,35 @@
+<scroll-view scroll-y="true" class="scroll" bindscrolltolower='bindpushList'> 
+  <view class='headBox'>
+    <view class="head_info">
+      <image src="{{dataList.member_info.wx_user_avatar}}" class="info_img"></image>
+      <view class="info_nameBox">
+        <view class="info_name">{{dataList.member_info.wx_nick_name}}</view>
+        <view class="info_address">
+          <image src="../../weixinImg/add_s.png"></image>
+          <view>{{dataList.address_info.area}}{{dataList.address_info.address}}{{dataList.address_info.building}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="head_prc">
+      <text class="t">预计本团收益：</text>
+      <text class="t_2">￥</text>
+      <text class="t_3">{{dataList.earn_money}}</text>
+    </view>
+  </view>
+
+  <view class="goodsBox">
+    <block wx:for='{{goodsList}}'>
+      <view class="goods_item">
+        <image src="{{item.goods_image_url}}" class="goods_img"></image>
+        <view class="goods_nameBox">
+          <view class="goods_n">{{item.goods_name}}</view>
+          <view class="goods_g">{{item.goods_num}}件，共{{item.goods_pay_price}}元，收益比例{{item.earn_rate}}%</view>
+        </view>
+        <view class="goods_com">+ {{item.shequ_commis_amount}}</view>
+      </view>
+    </block>
+  </view>
+
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>
+

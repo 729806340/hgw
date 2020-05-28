@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+
+/*.page{display: none;}*/
+
+.goods-info table{width: 100%;}
+.goods-info h4{border-bottom: 1px solid #ccc;}
+.goods-info tr{border-bottom: 1px solid #ccc; padding: 5px 0;}
+.distribution-template{display: none;}
+
+.distribution-item{border-bottom: 1px solid #ccc;}
+.distribution-item select{width: 90px;}
+.distribution-item input{width: 60px;}
+.distribution-item .row{height: 32px;padding: 5px 0;}
+
+.distribution-add{ text-align: center;padding: 5px;}
+.distribution-submit {padding: 10px; text-align: center;}

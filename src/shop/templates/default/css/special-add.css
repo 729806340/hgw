@@ -1,0 +1,91 @@
+/*2016-07-28*/
+
+
+.cms-special-detail-content br{ display: none; visibility: hidden; }
+
+/*通用模板01*/
+
+.global-template01{ margin: 50px auto;}
+.global-template01 .row-2{ display: block;}
+.global-template01 .row-2 div{ float: left;}
+.global-template01 .pro-list{ width: 1200px; overflow: hidden; margin-top: 50px;}
+.global-template01 .pro-list ul{ width: 1220px;}
+.global-template01 .pro-list ul li{ float: left; width: 280px; height: 380px; background: #fff; border-radius:10px; overflow: hidden; margin: 0 25px 20px 0;}
+.global-template01 .pro-list ul li:hover{ box-shadow: 0px 0px 6px #ccc;}
+.global-template01 .pro-list ul li .pro-pic{ width: 280px; height: 280px; display: table-cell; vertical-align: middle; text-align: center;}
+.global-template01 .pro-list ul li .pro-pic img{ max-width: 220px;}
+.global-template01 .pro-list ul li .pro-info{ width: 250px; margin: 10px auto 0 auto;}
+.global-template01 .pro-list ul li .pro-info .pro-name{ width: 250px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.global-template01 .pro-list ul li .pro-info .pro-name a{ font-size: 14px; white-space: nowrap;}
+.global-template01 .pro-list ul li .pro-info .pro-price{ margin-top: 10px;}
+.global-template01 .pro-list ul li .pro-info .pro-price span{ display: inline-block; margin-right: 10px;}
+.global-template01 .pro-list ul li .pro-info .pro-price .price-tag{ background: #00a53c; padding: 1px 5px; color: #fff;}
+.global-template01 .pro-list ul li .pro-info .pro-price .going-price{ font-size: 24px; color: #fe6601;}
+.global-template01 .pro-list ul li .pro-info .pro-price .going-price i{ font-size: 18px;}
+.global-template01 .pro-list ul li .pro-info .pro-price .original-price{ text-decoration: line-through;}
+
+
+/*通用模板02*/
+.global-template02{ margin: 50px auto;}
+.global-template02 .row-2{ display: block;}
+.global-template02 .row-2 div{ float: left;}
+.global-template02 .pro-list{ width: 1200px; overflow: hidden; margin-top: 50px;}
+.global-template02 .pro-list ul{ width: 1220px;}
+.global-template02 .pro-list ul li{ float: left; width: 280px; height: 380px; background: #fff; /*border-radius:10px;*/ overflow: hidden; margin: 0 25px 20px 0;}
+/*.global-template02 .pro-list ul li:hover{ box-shadow: 0px 0px 6px #ccc;}*/
+.global-template02 .pro-list ul li .pro-pic{ width: 280px; height: 280px; display: table-cell; vertical-align: middle; text-align: center;}
+.global-template02 .pro-list ul li .pro-pic img{ max-width: 220px;}
+.global-template02 .pro-list ul li .pro-info{ width: 250px; margin: 10px auto 0 auto;}
+.global-template02 .pro-list ul li .pro-info .pro-name{ width: 250px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; border-bottom: solid 1px #d9d9d9; height: 25px; padding-bottom: 3px;}
+.global-template02 .pro-list ul li .pro-info .pro-name a{ font-size: 18px; white-space: nowrap;}
+.global-template02 .pro-list ul li .pro-info .pro-price{ margin-top: 10px;}
+.global-template02 .pro-list ul li .pro-info .pro-price span{ display: inline-block; margin-right: 10px;}
+.global-template02 .pro-list ul li .pro-info .pro-price .price-tag{ background: #00a53c; padding: 1px 5px; color: #fff;}
+.global-template02 .pro-list ul li .pro-info .pro-price .going-price{ font-size: 24px; color: #fe6601;}
+.global-template02 .pro-list ul li .pro-info .pro-price .going-price i{ font-size: 18px;}
+.global-template02 .pro-list ul li .pro-info .pro-price .original-price{ text-decoration: line-through;}
+	
+
+/*通用模板03*/
+.global-template03{ margin: 50px auto;}
+.global-template03 .row-2{ display: block;}
+.global-template03 .row-2 div{ float: left;}
+.global-template03 .pro-list{ width: 1200px; overflow: hidden; margin-top: 50px;}
+.global-template03 .pro-list ul{ width: 1220px;}
+.global-template03 .pro-list ul li{ float: left; width: 280px; height: 380px; background: #fff; border-radius:10px; overflow: hidden; margin: 0 25px 20px 0;}
+.global-template03 .pro-list ul li:hover{ box-shadow: 0px 0px 6px #ccc;}
+.global-template03 .pro-list ul li .pro-pic{ width: 280px; height: 280px; display: table-cell; vertical-align: middle; text-align: center;}
+.global-template03 .pro-list ul li .pro-pic img{ max-width: 220px;}
+.global-template03 .pro-list ul li .pro-info{ width: 250px; margin: 10px auto 0 auto;}
+.global-template03 .pro-list ul li .pro-info .pro-name{ width: 250px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.global-template03 .pro-list ul li .pro-info .pro-name a{ font-size: 14px; white-space: nowrap;}
+.global-template03 .pro-list ul li .pro-info .pro-price{ margin-top: 10px;}
+.global-template03 .pro-list ul li .pro-info .pro-price span{ display: inline-block; margin-right: 10px;}
+.global-template03 .pro-list ul li .pro-info .pro-price .price-tag{ background: #00a53c; padding: 1px 5px; color: #fff;}
+.global-template03 .pro-list ul li .pro-info .pro-price .going-price{ font-size: 24px; color: #fe6601;}
+.global-template03 .pro-list ul li .pro-info .pro-price .going-price i{ font-size: 18px;}
+.global-template03 .pro-list ul li .pro-info .pro-price .original-price{ text-decoration: line-through;}
+	
+
+
+/*通用模板04*/
+
+.global-template04{ margin:0 auto 50px auto;}
+.global-template04 .row-2{ display: block;}
+.global-template04 .row-2 div{ float: left;}
+.global-template04 .pro-list{ width: 1200px; overflow: hidden; margin-top: 50px;}
+.global-template04 .pro-list ul{ width: 1220px;}
+.global-template04 .pro-list ul li{ float: left; width: 295px; height: 380px; background: #fff; border-radius:10px; overflow: hidden; margin: 0 10px 10px 0;}
+.global-template04 .pro-list ul li:hover{ box-shadow: 0px 0px 6px #ccc;}
+.global-template04 .pro-list ul li .pro-pic{ width: 295px; height: 280px; display: table-cell; vertical-align: middle; text-align: center;}
+.global-template04 .pro-list ul li .pro-pic img{ max-width: 220px;}
+.global-template04 .pro-list ul li .pro-info{ width: 250px; margin: 10px 0 0 10px;}
+.global-template04 .pro-list ul li .pro-info .pro-name{ width: 250px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden;}
+.global-template04 .pro-list ul li .pro-info .pro-name a{ font-size: 14px; white-space: nowrap;}
+.global-template04 .pro-list ul li .pro-info .pro-price{ margin-top: 10px; position:relative;}
+.global-template04 .pro-list ul li .pro-info .pro-price span{ display: inline-block; margin-right: 10px;}
+.global-template04 .pro-list ul li .pro-info .pro-price .price-tag{ background: #00a53c; padding: 1px 5px; color: #fff; display:none;}
+.global-template04 .pro-list ul li .pro-info .pro-price .going-price{ font-size: 22px;  color: #fe6601; font-weight:bold; width:100%;}
+.global-template04 .pro-list ul li .pro-info .pro-price .going-price i{ font-size: 14px; font-weight:normal;}
+.global-template04 .pro-list ul li .pro-info .pro-price .original-price{ text-decoration: line-through; font-family:"宋体"; color:#b0a8a8;}
+.global-template04 .pro-list ul li .pro-info .pro-price .pro-m{ width:110px; height:40px; line-height:40px; border-radius:20px; background:#F30; color:#fff; position:absolute; top:2px; left:158px; text-align:center; font-size:15px; font-weight:bold;}

@@ -1,0 +1,73 @@
+/* pages/pc_login/pc_login.wxss */
+.login{
+  width: 70%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 80rpx;
+  color: #fff;
+  font-size: 26rpx;
+  border: 1rpx solid #24B058;
+  background: #24B058;
+  margin: 80rpx auto 50rpx;
+}
+.cancel{
+  width: 70%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 80rpx;
+  color: #24B058;
+  font-size: 26rpx;
+  border: 1rpx solid #24B058;
+  background: #fff;
+  margin: 0 auto;
+} 
+.zz{
+  background: rgba(0,0,0,.6);
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+.loginBox{
+  position: fixed;
+  top: 260rpx;
+  left: 124rpx;
+  z-index: 9999;
+  height: 500rpx;
+  width: 500rpx;
+}
+.loginBox image{
+  height: 500rpx;
+  width: 500rpx;
+  position: absolute;
+  top: 0;
+  border-radius: 10rpx;
+}
+.login_tit{
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+  position: absolute;
+  top: 140rpx;
+  z-index: 99999;
+  width: 100%;
+}
+.header_login{
+  width: 300rpx;
+  height: 80rpx;
+  background: #24B058;
+  line-height: 80rpx;
+  color: #fff;
+  font-size: 30rpx;
+  display: block;
+  margin: 0 auto;
+  margin-top: 240rpx;
+}
+.logo{
+  width: 400rpx;
+  display: block;
+  margin: 100rpx auto 0;
+}

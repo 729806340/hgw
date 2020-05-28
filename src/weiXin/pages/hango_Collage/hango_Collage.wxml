@@ -1,0 +1,35 @@
+<!--pages/hango_Collage/hango_Collage.wxml-->
+<view class="collage">
+    <scroll-view scroll-y class="scroll" bindscrolltolower="getMore" wx:if="{{goods_list.length>0}}">
+        <view class="collage-container">
+            <block wx:for="{{goods_list}}" wx:key="uq4">
+                <view class="collage-item">
+                    <image class="collageImg" catchtap="goGoodsDetail"  data-id="{{item.goods_id}}" src="{{item.goods_image}}" mode="widthFix"></image>
+                    <view class="goodsDetail">
+                        <view class="goodstext">
+                            <text class="goodsname">[{{item.limit_user}}人拼]</text>
+                            {{item.goods_name}}
+                        </view>
+                        <view class="goodsprice">
+                            <view class="price">
+                                ¥<text>{{item.goods_price}}</text>
+                            </view>
+                            <button class="btn_collage" data-id="{{item.goods_id}}" catchtap="goGoodsDetail">去开团</button>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <view class='list_bottom' wx:if="{{is_bottom}}">
+                <view style='-webkit-flex:1'></view>
+                <view class='line'></view>
+                <view class='list_bottom_t'>已经到底了</view>
+                <view class='line'></view>
+                <view style='-webkit-flex:1'></view>
+            </view>
+        </view>
+    </scroll-view>
+    <view class="no_list" wx:else>
+        <image src="{{no_img}}" mode="aspectFill"></image>
+        <text>尚未开始，敬请期待！</text>
+    </view>
+</view>

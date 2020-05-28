@@ -1,0 +1,254 @@
+<!--pages/goodsDetail_tuan/goodsDetail_tuan.wxml-->
+<block >
+<view class='box' >
+  <scroll-view scroll-y class='scroll' >
+      <!-- 轮播图 -->
+      <swiper indicator-dots="{{indicatorDots}}"
+              autoplay interval="{{interval}}" duration="{{duration}}" class='back'>
+              <block wx:for="{{totalData.goods_image}}" wx:key="*this">
+                <swiper-item>
+                  <image src="{{item}}" class="slide-image" mode="widthFix" />
+                </swiper-item>
+              </block>
+      </swiper>
+          <!-- 价格时间 -->
+          <view class='Pri' >
+              <view class='price'>
+                <view class='p_1'>
+                    <view class='mini'>￥</view>
+                    <view class='pr'>{{goods_info.goods_price}}</view>
+                </view>   
+                <view class='p_2'>￥{{goods_info.goods_marketprice}}</view> 
+              </view>
+              <view class='data'>
+                <view class='d_1' wx:if='{{if_timeShow}}'>{{time_text}}</view>
+                <view class='d_2' wx:if='{{if_timeShow}}'> 
+                      <view class='color'>{{time[0]}}</view>
+                      <view>天</view>
+                      <view class='color'>{{time[1]}}</view>：
+                      <view class='color'>{{time[2]}}</view>：
+                      <view class='color'>{{time[3]}}</view>    
+                </view>
+                <view class='d_3' wx:if='{{!if_timeShow}}'>活动已结束</view>
+              </view>
+          </view>
+
+          <!-- 介绍 -->
+          <view class='text'>
+            <view class='mag'>
+              <view class='big'>{{goods_info.goods_name}}</view>
+            <view class='txt'>
+              <view class='sales'>累计销量：{{goods_info.goods_salenum}}</view>
+              <view class='surplus'>
+                  <!-- <view class='img'>
+                    <image class='i_3 mi' src='../../weixinImg/txmr_img@2x.png'></image>
+                    <image class='i_2 mi' src='../../weixinImg/txmr_img@2x.png'></image>
+                    <image class='i_1 mi' src='../../weixinImg/txmr_img@2x.png'></image>
+                  </view> -->
+                  <view class='s_2'>已团{{totalData.config_tuan_sales}}/剩余{{goods_info.goods_storage}}</view>
+              </view>
+            </view>
+            </view>
+          </view>
+
+
+<!-- 规格 -->
+  <view class='cont'> 
+    <view class='left'>
+        <view class='l_1' wx:if='{{spec_all.length > 0}}'>规格：</view>
+        <view class='l_2'>预计到货时间：</view>
+    </view>
+    <view class='right'>
+        <view class='r_1' bindtap="showModal">
+          <view class='s_2' wx:if='{{spec_all.length > 0}}'>{{spec_name}}</view>
+          <view class='s_3' wx:if='{{spec_all.length > 0}}'>
+              <image src='../../weixinImg/jdzk_icon@2x.png'></image>
+          </view>
+        </view>
+        <view class='r_2'>
+          <view class='dat_a'>{{totalData.send_product_date}}</view>
+          <view class='share'  bindtap="shareshow">
+            <image class='fx' src='../../weixinImg/fx22.png'></image>
+            <view class='fen'>分享</view>
+          </view>
+        </view>
+    </view>
+  </view>
+<!-- 评论 -->
+  <view class='ping' wx:if='{{totalData.goods_eval_list.length != 0}}'>
+      <view class='lun'>
+        <view class='lun_1'>用户评论<text>({{totalData.goods_eval_count}})</text></view>
+        <view class='lun_2' bindtap='allEvaluate'>
+          <view class='more'>查看更多</view>
+          <image class='s-im' src='../../weixinImg/jdzk_icon@2x.png'></image>
+        </view>
+      </view>
+     
+        <scroll-view class="scroll-view_H" scroll-x>
+         <block >
+            <view class='view_H_row' wx:for="{{totalData.goods_eval_list}}" wx:for-item='item'>
+              <view class='s_1'>
+                <image class='s_img' src='{{item.member_avatar }}'></image>
+                <view class='s_name'>{{item.geval_frommembername }}</view>
+                <block >
+                    <view class='starsB'>
+                      <block wx:for="55555" wx:for-index='x_index' wx:for-item='x_item'>
+                        <image wx:if='{{x_index<item.geval_scores}}' class='s_xin' src='../../weixinImg/spscdj_icon@2x.png'></image>
+                      </block>
+                  </view>
+                </block> 
+              </view>
+              <view class='s_2dat'>{{item.geval_addtime_str}}</view>
+              <view class='s_3'>{{item.geval_content}}</view>
+              <view class='s_4'>
+                <image class='s_simg' src='{{item.geval_image }}'></image>
+              </view>
+            </view>
+          </block>
+        </scroll-view>    
+      
+  </view>
+
+  <rich-text nodes="{{goods_info.mobile_body}}" class="richtext"></rich-text>
+
+  </scroll-view>
+</view>
+<!-- 下组件 -->
+<view class='bottom'>
+  <view class='bg'>
+    <view class='b_1' bindtap="gopath" data-path='../index_she/index_she'>
+      <image src='../../weixinImg/Group10.png'></image>
+      <view class='sy'>首页</view>
+    </view>
+    <view class='b_2' bindtap="gopath" data-path='../shoppingCar/shoppingCar'>
+      <image src='../../weixinImg/Group12.png'></image>
+      <view class='cart'>购物车</view>
+      <view class="carts_num" wx:if='{{count>0}}'>{{count}}</view>
+    </view>
+  </view>
+  <view class='Cart' wx:if='{{totalData.goods_info.carts_num==0}}'>
+     <view class='C_1 {{!if_timeShow?"C_del":""}}' bindtap="add" data-type='add' wx:if='{{totalData.store_info.is_shequ_tuan==1}}'>加入购物车</view>
+     <view class='C_2 {{!if_timeShow?"C_del":""}}' bindtap="gopay" wx:if='{{totalData.store_info.is_shequ_tuan!=1}}'>立即购买</view>
+  </view>
+  <view class='Cart_adddel' wx:if='{{totalData.goods_info.carts_num>0}}'>
+     <view class='del' bindtap="add" data-type='del'>-</view>
+     <view class="text">{{totalData.goods_info.carts_num}}</view>
+     <view class='add' bindtap="add" data-type='add'>+</view>
+  </view>
+</view>
+</block>
+
+  <!-- 规格弹窗 -->
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{specStatus}}"></view>
+<view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{specStatus}}">
+  <view class='screen_a'>
+    <!-- <view class='commo_title'>
+      <image src='{{current_spc_img_url}}'></image>
+      <view class='ct-con'>
+        <text class='c-price'>￥159.00</text>
+        <text class='ct-c'>库存2000件</text>
+        <text class='ct-c'>已选：100g</text>
+      </view>
+    </view> -->
+    <view class='choose_color'>
+      <block wx:for="{{spec_all}}" wx:key="unique">
+        <text class='c_txt'>{{item.spec_name}}</text>
+        <scroll-view  scroll-y>
+          <view class='row_flex'>
+            <block  wx:for="{{item.values}}" wx:for-item="item_child" wx:for-index='item_index' wx:key="uniq">
+              <view class='c_green' wx:if="{{spec_id[index] == item_child.spec_value_id}}">
+                {{item_child.spec_value_name}}
+              </view>
+              <view class="c_normal" bindtap="changeSpc" data-index='{{index}}' data-spec_value_id="{{item_child.spec_value_id}}" wx:if="{{spec_id[index] != item_child.spec_value_id}}">
+                {{item_child.spec_value_name}}
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+      </block>
+    </view>
+    <!-- <view class='quantity'>
+      <text class='c_txt'>数量</text>
+      <view class='addArea'>
+        <view class='minus' data-type="del" bindtap="add">
+          <image src='../../weixinImg/minus_icon@2x.png'></image>
+        </view>
+        <view class='inpus'>0</view>
+        <view class='add' data-type="add" bindtap="add">
+          <image src='../../weixinImg/plus_icon@2x.png'></image>
+        </view>
+      </view>
+    </view>
+    <button class='confirm' bindtap="hideModal">确定</button> -->
+  </view>
+</view>
+
+  <!-- 海报 -->
+  <view class="zz" wx:if='{{if_haibao}}' style="z-index:9999" bindtap="haibaohide"></view>
+  <view class="canvasBox">
+    <canvas canvas-id='share' style='width:414px;height:736px;opacity: 0;'></canvas>
+  </view>
+  <image src="{{shareImgPath}}" class="canvasimg" mode="aspectFit" wx:if='{{if_haibao}}'></image>
+  <button class='fenxiang' bindtap='save' wx:if='{{if_haibao}}'>保存图片到相册</button>
+
+
+
+  <!-- 分享弹窗 -->
+  <view class="zz" wx:if="{{share_show}}" bindtap="sharehide"></view>
+  <view class="shareBox" wx:if="{{share_show}}">
+    <view class="sharetit">分享</view>
+    <view class="sharebtnBox">
+      <view class="shareitem">
+        <button data-name="shareBtn" open-type="share" bindtap="sharehide">
+          <image src="../../weixinImg/fxwx.png"></image>
+          微信好友
+        </button>
+      </view>
+      <view class="shareitem" bindtap="haibaoshow">
+        <image src="../../weixinImg/fxhb.png"></image>
+        <view>生成海报</view>
+      </view>
+    </view>
+    <view class="shareqx" bindtap="sharehide">取消</view>
+  </view>
+
+  <!-- 不同团长弹窗 -->
+  <view class='zz' catchtap='hide' wx:if='{{if_show}}'></view>
+  <view class="row" wx:if='{{if_show}}'>
+    <view class="toptextBox">
+      <view class="t">当前不是您的常用自提点</view>
+      <view class="b">请确认是否更换取货团长</view>
+    </view>
+    <view class="itemBox" style="margin-bottom: 26rpx;">
+      <view class="itme_text">当前访问：</view>
+      <view class="item_Box">
+        <image src="../../weixinImg/txmr_img@2x.png" class="item_img"></image>
+        <view class="item_address">
+          <view class="item_name">周康</view>
+          <view class="item_a">武汉市蔡甸区新天大道凤凰山知音首府三期邻里便利店</view>
+        </view>
+        <view class="item_numBox">
+          <view class="item_km">3.6km</view>
+          <view class="item_sel">选择他</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="itemBox">
+      <view class="itme_text">默认自提点：</view>
+      <!-- <view class="item_Box">
+        <image src="../../weixinImg/txmr_img@2x.png" class="item_img"></image>
+        <view class="item_address">
+          <view class="item_name">周康</view>
+          <view class="item_a">武汉市蔡甸区新天大道凤凰山知音首府三期邻里便利店</view>
+        </view>
+        <view class="item_numBox">
+          <view class="item_km">3.6km</view>
+          <view class="item_sel">选择他</view>
+        </view>
+      </view> -->
+      <view class="zanwu">还未设置默认自提点</view>
+    </view>
+  </view>
+
+

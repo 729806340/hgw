@@ -1,0 +1,64 @@
+<?php defined('ByShopWWI') or exit('Access Invalid!');?>
+<?php if($item_edit_flag) { ?>
+
+<div class="explanation" id="explanation">
+  <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+    <h4 title="<?php echo $lang['nc_prompts_title'];?>"><?php echo $lang['nc_prompts'];?></h4>
+  </div>
+  <ul>
+    <li>鼠标移动到内容上出现编辑按钮可以对内容进行修改</li>
+    <li>操作完成后点击保存编辑按钮进行保存</li>
+  </ul>
+</div>
+<?php } ?>
+<div class="index_block home1">
+  <?php if($item_edit_flag) { ?>
+  <h3>模型版块布局A</h3>
+  <?php } ?>
+  <div class="title">
+    <?php if($item_edit_flag) { ?>
+    <h5>标题：</h5>
+    <input id="home1_title" type="text" class="txt w200" name="item_data[title]" value="<?php echo $item_data['title'];?>">
+    <?php } else { ?>
+    <span><?php echo $item_data['title'];?></span>
+    <?php } ?>
+  </div>
+  <div class="title">
+    <?php if($item_edit_flag) { ?>
+    <h5>副标题：</h5>
+    <input id="home1_stitle" type="text" class="txt w200" name="item_data[stitle]" value="<?php echo $item_data['stitle'];?>">
+    <?php } else { ?>
+    <span><?php echo $item_data['stitle'];?></span>
+    <?php } ?>
+  </div>
+  <div class="title">
+    <?php if($item_edit_flag) { ?>
+    <h5>样式：(请填写约定样式名称)</h5>
+    <input id="home1_style" type="text" class="txt w200" name="item_data[style]" value="<?php echo $item_data['style'];?>">
+    <?php } else { ?>
+    <span><?php echo $item_data['style'];?></span>
+    <?php } ?>
+  </div>
+  <div class="title">
+    <?php if($item_edit_flag) { ?>
+    <h5>图标：(请填写图标URL或者名称)</h5>
+    <input id="home1_lcurl" type="text" class="txt w200" name="item_data[lcurl]" value="<?php echo $item_data['lcurl'];?>">
+    <?php } else { ?>
+    <span><?php echo $item_data['lcurl'];?></span>
+    <?php } ?>
+  </div>
+  <div nctype="item_content" class="content">
+    <?php if($item_edit_flag) { ?>
+    <h5>内容：</h5>
+    <?php } ?>
+    <div nctype="item_image" class="item"> <img nctype="image" src="<?php echo getMbSpecialImageUrl($item_data['image']);?>" alt="">
+      <?php if($item_edit_flag) { ?>
+      <input nctype="image_name" name="item_data[image]" type="hidden" value="<?php echo $item_data['image'];?>">
+      <input nctype="image_type" name="item_data[type]" type="hidden" value="<?php echo $item_data['type'];?>">
+      <input nctype="image_data" name="item_data[data]" type="hidden" value="<?php echo $item_data['data'];?>">
+      <a nctype="btn_del_item_image" href="javascript:;" style="display:hidden;margin-right:60px;"><i class="fa fa-trash-o"></i>删除</a>
+      <a nctype="btn_edit_item_image" data-desc="640*260" href="javascript:;" style="display:hidden;"><i class="fa fa-pencil-square-o"></i>编辑</a>
+      <?php } ?>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<view class="navBox">
+  <view class="nav_item {{tab==1?'nav_item_a':''}}" bindtap="tabClick" data-tab='1'>待平台审核</view>
+  <view class="nav_item {{tab==2?'nav_item_a':''}}" bindtap="tabClick" data-tab='2'>待商家审核</view>
+  <view class="nav_item {{tab==3?'nav_item_a':''}}" bindtap="tabClick" data-tab='3'>已完成</view>
+</view>
+
+<view class="root">
+  <view class='column_null' wx:if="{{refund_list.length==0}}">
+    <image class='column_null_img' mode='aspectFit' src='../../weixinImg/wddd_w_img@2x.png'></image>
+    <view class='column_null_txt'>您还没有订单</view>
+  </view>
+  <scroll-view scroll-y class='scroll' bindscrolltolower="handlescrolltolower">
+    <block wx:for="{{refund_list}}">
+      <view class="yuan" wx:if="{{item.shequ_tuan_member.length>0}}">
+         <image src="{{item.shequ_tuan_member.wx_user_avatar}}"></image>
+         <view class="wx_nick_name">{{item.shequ_tuan_member.wx_nick_name}}</view>
+      </view>
+      <view class='goods_title_row'>
+        <view class='shop_name'>退款编号：{{item.refund_sn}}</view>
+        <view style='flex:1'></view>
+        <view class='shop_t2'>{{item.add_time}}</view>
+      </view>
+      <block wx:for="{{item.goods_list}}" wx:for-item="goods_item" wx:if="{{item.goods_list.length!=0}}">
+        <view class='order_goods_row' bindtap='goGoodsDetail' data-item='{{goods_item}}'>
+          <image src='{{goods_item.goods_img_360}}' class='order_goods_img' mode='aspectFit'></image>
+          <view class='column'>
+            <view class='order_goods_t1'>
+              {{goods_item.goods_name}}
+            </view>
+            <view class='quantity'>规格：{{goods_item.goods_spec==""?'默认':goods_item.goods_spec}}</view>
+          </view>
+        </view>
+      </block>
+      <view class='info_b_t1' wx:if="{{item.goods_list.length==0}}">订单编号：
+        <text class='ba_txt'>{{item.order_sn}}</text>
+      </view>
+      <view class='info_b_t2' wx:if="{{item.goods_list.length==0}}">下单时间： 
+        <text class='ba_txt'>{{item.order_add_time}}</text>
+      </view>
+      <view class='goods_bottom_row'>
+         <image class='img_icon' src='../../weixinImg/lbjtk_icon@2x.png'></image>
+         <view class='goods_bottom_row_t1'>{{item.refund_type}} {{item.refund_state}}</view>
+         <view style='flex:1'></view>
+         <view class='goods_bottom_row_t1'>退款金额</view>
+         <view class='goods_bottom_row_t2'>￥{{item.refund_amount}}</view>
+       </view>
+
+      <view class='row2'>
+        <view style='flex:1'></view>
+        <view class='btn_no' bindtap='goQuitDetail' data-id='{{item.refund_id}}'>查看详情</view>
+
+      </view>
+    </block>
+  </scroll-view>
+</view>

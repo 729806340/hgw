@@ -1,0 +1,26 @@
+<!--pages/withdrawRecord/withdrawRecord.wxml-->
+<view class="root">
+  <form bindsubmit="formSubmit" report-submit="true">
+    <view class="top">
+      <view class="amount">
+        <text>可提现佣金</text>
+        <view class="decimal">
+          <text class="price">¥{{integer_bit}}</text>
+        <text class="unit">.{{decimal_place}} 元</text>
+        </view>
+      </view>
+    </view>
+    <view class="withdraw">
+      <text>提现金额</text>
+      <view class="container">
+        <text>￥</text>
+        <input name="applyAmount" type="number" placeholder='输入提现金额' placeholder-class='placeholder' maxlength="30" value="{{input_amount}}"></input>
+        <button bindtap="totalAmount">全部提现</button>
+      </view>
+    </view>
+    <view class="content">
+      <text>提现以微信红包方式发您微信上面，预计24小时到账</text>
+      <button formType="submit">确认提现</button>
+    </view>
+  </form>
+</view>

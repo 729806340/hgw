@@ -1,0 +1,93 @@
+page{
+  background: #fff;
+}
+.integrate_title{
+  height: 154rpx;
+  width: 100%;
+}
+.integrate_title image {
+  height: 154rpx;
+  width: 100%;
+  position: relative;
+}
+
+.inte_info {
+  position: absolute;
+  right: 24rpx;
+  top: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.inte_info text {
+  font-size: 30rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: right;
+  font-weight: lighter;
+}
+
+.inte_num {
+  font-size: 44rpx !important;
+}
+
+.integrate_con {
+  width: 100%;
+  height: 154rpx;
+  border-bottom: 1rpx solid #ededed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  background: #fff;
+}
+
+.l_con {
+  display: flex;
+  flex-direction: column;
+  align-content: left;
+  align-items: left;
+  margin-left: 24rpx;
+}
+
+.nor{
+  font-size: 28rpx;
+  color: #222;
+}
+
+.r_con {
+  display: flex;
+  flex-direction: column;
+  margin-right: 24rpx;
+}
+
+.red {
+  font-size: 44rpx;
+  color: #ec5765;
+  text-align: right;
+}
+
+.smallB {
+  font-size: 26rpx;
+  color: #bbb;
+  letter-spacing: 0;
+  text-align: right;
+  line-height: 42rpx;
+}
+
+.small7 {
+  font-size: 22rpx;
+  color: #777;
+  line-height: 42rpx;
+  margin-top: 16rpx;
+}
+
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 24rpx;
+}

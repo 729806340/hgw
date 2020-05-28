@@ -1,0 +1,45 @@
+<!--auth-info.wxml-->
+<view class="auth-info-container">
+  <form bindsubmit="formSubmit" report-submit="true">
+    <view class="input-item store-name">
+      <label>
+        <text class="l-text-name">收货人</text>
+        <input class="input-text" name="addressName" placeholder-class='placeholder' value='{{true_name}}' placeholder="收货人的真实姓名" type="text" />
+      </label>
+    </view>
+
+    <view class="input-item boss">
+      <label>
+        <text class="l-text-name">联系方式</text>
+        <input class="input-text" name="bossPhone" placeholder-class='placeholder' type='number' placeholder="手机号码" value='{{mob_phone}}' />
+      </label>
+    </view>
+    <view class="input-item region" style="display:flex;">
+      <text class="l-text-name">所在地区</text>
+      <nyz_area_picker provinces="{{provinces}}" citys="{{citys}}" areas="{{areas}}" multiArray="{{multiArray}}" value="{{value}}">
+       <view class='area_row'>
+          <view class="{{s_map==''?'address_t1':'address_t2'}}">请选择</view>
+          <view style='-webkit-flex:1'></view>
+          <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit' wx:if="{{!order.if_refund_cancel}}"></image>
+        </view>
+      </nyz_area_picker>
+    </view>
+    <view class="input_item_row">
+      <text class="input_item_name">详细地址</text>
+      <view class='address_col'>
+        <textarea class="address_t2" placeholder-class='address_t1' placeholder="请输入详细地址信息、如门牌号、小区、楼栋号、单元室等"  name="address_detail" value='{{addressDetail}}' bindinput='handleinput' maxlength='30'></textarea>
+      </view>
+    </view>
+    <view class="input-item boss">
+      <label>
+        <text class="l-text-name">设为默认地址</text>
+        <switch checked bindchange="switchChange" color='#68D465' checked="{{switch_chekced}}" class='switch' />
+      </label>
+    </view>
+
+
+    <view class="submit-box">
+      <button class="submit-btn" formType="submit">提交</button>
+    </view>
+  </form>
+</view>

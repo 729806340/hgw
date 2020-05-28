@@ -1,0 +1,96 @@
+<view class='coupons'>
+  <!-- tab标签 -->
+  <scroll-view scroll-x class='scroll' scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+    <view class='scroll_bg'>
+      <block wx:for="{{tabs}}" wx:for-index='idx' wx:key="unq">
+        <text data-current='{{idx}}' class="{{currentTab==idx ? 'select' : 'unselect'}}" bindtap='swichNav'>
+          {{item}}
+        </text>
+      </block>
+    </view>
+  </scroll-view>
+
+  <swiper circular='true' current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+    <block wx:for="{{tabs}}" wx:key="unq1">
+      <swiper-item class="swiper-item">
+        <block>
+          <template is="home0" data="{{coupon_list:coupon_list}}" />
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<template name='home0'>
+  <view class='non_coupon' wx:if="{{coupon_list.length==0}}">
+    <image src='/weixinImg/mydjq_icon@2x.png'></image>
+    <text class='c_remind'>您还没有相关的代金券</text>
+    <text class='d_remind'>店铺代金券可享受商品折扣</text>
+  </view>
+  <scroll-view scroll-y="true" class='t_scroll' bindscrolltoupper="refresh" bindscrolltolower="getMore" wx:else>
+    <view wx:for="{{coupon_list}}" wx:key="unqui">
+      <view class='c_block' data-item='{{item}}' bindtap='goUse' data-id='{{item.store_id}}'>
+        <view class='top_b' wx:if="{{item.voucher_state == 1}}">
+          <image src='{{item.voucher_t_customimg}}'></image>
+          <view class='shop_b'>
+            <text class='s_name'>{{item.store_name}}</text>
+            <text class='s_title'>有效期：</text>
+            <text class='s_title'>{{item.voucher_start_date}}-{{item.voucher_end_date}}</text>
+          </view>
+          <view class='price_b'>
+            <view>
+              <text class='dollar'>￥</text>
+              <text class='money'>{{item.voucher_price}}</text>
+            </view>
+            <text class='p_limit'>满{{item.voucher_limit}}可用</text>
+          </view>
+        </view>
+        <view class='top_b' wx:if="{{item.voucher_state == 2}}">
+          <image src='{{item.voucher_t_customimg}}'></image>
+          <view class='shop_b'>
+            <text class='s_name grey'>{{item.store_name}}</text>
+            <text class='s_title grey'>有效期：</text>
+            <text class='s_title grey'>{{item.voucher_start_date}}-{{item.voucher_end_date}}</text>
+          </view>
+          <view class='price_b'>
+            <image src='/weixinImg/ysy_img@2x.png'></image>
+            <view>
+              <text class='dollar grey'>￥</text>
+              <text class='money grey'>{{item.voucher_price}}</text>
+            </view>
+            <text class='p_limit'>满{{item.voucher_limit}}可用</text>
+          </view>
+        </view>
+        <view class='top_b' wx:if="{{item.voucher_state == 3 || item.voucher_state == 4}}">
+          <image src='{{item.voucher_t_customimg}}'></image>
+          <view class='shop_b'>
+            <text class='s_name grey'>{{item.store_name}}</text>
+            <text class='s_title grey'>有效期：</text>
+            <text class='s_title grey'>{{item.voucher_start_date}}-{{item.voucher_end_date}}</text>
+          </view>
+          <view class='price_b'>
+            <image src='/weixinImg/ygq_img@2x.png'></image>
+            <view>
+              <text class='dollar grey'>￥</text>
+              <text class='money grey'>{{item.voucher_price}}</text>
+            </view>
+            <text class='p_limit'>满{{item.voucher_limit}}可用</text>
+          </view>
+        </view>
+        <view class='bottom_b'>
+          <view class='b_left'>{{item.voucher_title}}</view>
+          <view class='b_right' wx:if="{{item.voucher_state == 1}}">去使用
+            <image src='/weixinImg/qsy_icon@2x.png'></image>
+          </view>
+          <view class='b_right grey' wx:if="{{item.voucher_state == 2}}">已使用</view>
+          <view class='b_right grey' wx:if="{{item.voucher_state == 3 || item.voucher_state == 4}}">已过期</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+
+<view class='btn_bottom'>
+  <button bindtap='getCoupon'>领取代金券</button>
+</view>

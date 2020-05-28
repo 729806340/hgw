@@ -1,0 +1,41 @@
+<view class="root">
+
+  <image class='img' wx:if="{{fin==1}}" src='../../weixinImg/zfcg_img@2x.png' mode="aspectFit"></image>
+  <image class='img' wx:else src='../../weixinImg/zfsb_img@2x.png' mode="aspectFit"></image>
+
+  <view class='big_text' wx:if="{{fin==1}}">支付成功</view>
+  <view class='fail_text' wx:else>支付失败</view>
+  
+  
+  <view class='finish_row'>
+    <view class='finish_t1'>交易金额：</view>
+    <view class='finish_t3'>¥{{order_info.pay_amount}}</view>
+  </view>
+
+  <view class='finish_row'>
+    <view class='finish_t1'>订单编号：</view>
+    <view class='finish_t3'>{{order_info.pay_sn}}</view>
+  </view>
+
+  <view class='finish_row'>
+    <view class='finish_t1'>交易方式：</view>
+    <view class='finish_t3'>{{order_info.pay_type}}</view>
+  </view>
+
+  <view class='finish_row'>
+    <view class='finish_t1'>下单时间：</view>
+    <view class='finish_t3'>{{order_info.pay_time}}</view>
+  </view>
+
+  <view class='finish_bottom'>
+    
+    <view class='btn_left' bindtap='goOrder' wx:if="{{fin==1}}">
+      查看订单
+    </view>
+    <view class='{{clicK==true?"btn_left":"btn_right"}}' bindtap='gopay' wx:else data-pay_sn="{{order_info.pay_sn}}">{{time==0?'重新支付':time+'s后重新支付'}}</view>
+    <view class='btn_right' bindtap='goHome'>
+      回到首页
+    </view>
+  </view>
+
+</view>

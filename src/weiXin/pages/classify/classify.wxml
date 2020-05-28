@@ -1,0 +1,32 @@
+<!--classify.wxml-->
+<view class="classify-container">
+  <view class='col' >
+    <!-- 分类 -->
+    <scroll-view scroll-x class="scroll-header" scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+      <block wx:key="unqui" wx:for="{{parent_list}}">
+        <view data-index="{{item.gc_id}}" class="classText {{gc_id == item.gc_id?'ons':''}}" bindtap="tabClick">
+          {{item.gc_name}}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <view class='class-content'>
+    <!-- 下级分类 -->
+    <scroll-view scroll-x class="scroll-left">
+      <view class='scroll_left_col'>
+        <block wx:key="unqui" wx:for="{{child_list}}">
+          <view class='picBlock' data-id="{{item.gc_id}}"bindtap="switchTab" >
+            <image src='{{item.gc_pic}}' class='colImg'></image>
+            <text>{{item.gc_name}}</text>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+    <!-- 商品列表 -->
+    <scroll-view scroll-y class='scroll_right'>
+    <view class='img'><image src='../../weixinImg/jrrm_icon@2x.png' class='hotImg'></image></view>
+    <goods_item goods_list="{{hot_goods}}" is_bottom="{{is_bottom}}"></goods_item>
+    </scroll-view>
+  </view>
+</view>

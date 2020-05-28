@@ -1,0 +1,113 @@
+page{
+  box-sizing: border-box;
+}
+.Box{
+  width: 100vw;
+  height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.infoBox{
+  width: 100%;
+  padding: 34rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin-bottom: 24rpx;
+}
+.info_itemBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.info_i_tit{
+  font-size: 28rpx;
+  color: #333;
+  width: 30%;
+}
+.info_i_get{
+  width: 70%;
+  color: #333;
+  font-size: 28rpx;
+}
+.goodsBox{
+  width: 100%;
+  padding: 22rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  margin-bottom: 24rpx;
+}
+.goods_num{
+  font-size: 28rpx;
+  color: #333;
+  padding-bottom: 26rpx;
+  border-bottom: 2rpx solid #dddddd;
+}
+.goods_num text{
+  color: #FE5A4C;
+}
+.list_goodsBox{
+  width: 100%;
+  display: flex;
+  margin-top: 24rpx;
+}
+.list_g_img{
+  width: 116rpx;
+  height: 116rpx;
+}
+.list_g_info{
+  padding: 0 20rpx;
+  width: 426rpx;
+  height: 116rpx;
+}
+.list_g_name{
+  font-size: 28rpx;
+  color: #333;
+  width: 100%;
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.list_g_gg{
+  font-size: 20rpx;
+  color: #666;
+  width: 100%;
+  margin-top: 12rpx;
+}
+.list_g_prc{
+  height: 116rpx;
+  width: 80rpx;
+  text-align: right;
+}
+.list_g_prc .t{
+  font-size: 28rpx;
+  color: #333;
+}
+.list_g_prc .t_2{
+  font-size: 20rpx;
+  color: #666;
+}
+.btnBox{
+  width: 640rpx;
+  height: 76rpx;
+  text-align: center;
+  line-height: 76rpx;
+  background: #2CCC60;
+  color: #fff;
+  font-size: 28rpx;
+  border-radius: 76rpx;
+  margin: 30rpx auto;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

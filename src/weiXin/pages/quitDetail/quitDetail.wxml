@@ -1,0 +1,66 @@
+<view class="root">
+  <scroll-view scroll-y class='scroll'>
+    <view class='goods_bottom_row'>
+      <image class='img_icon' src='../../weixinImg/jtk_icon@2x.png'></image>
+      <view class='goods_bottom_row_t1'>{{refund.refund_type}} {{refund.refund_state}}</view>
+    </view>
+
+
+    <view class='title_t'>售后进度</view>
+    <view class='detail_top'>
+
+      <view class='detail_top_row2'>
+        <image class='detail_top_img' src='../../weixinImg/true_icon@2x.png'></image>
+        <view class='detail_top_line'></view>
+        <!-- 商家审核图标 -->
+        <image class='detail_top_img' src="../../weixinImg/true_icon@2x.png" wx:if="{{refund.refund_show_state>1}}"></image>
+        <image class='detail_top_img' src="../../weixinImg/ing_icon@2x.png" wx:if="{{refund.refund_show_state==0}}"></image>
+        <image class='detail_top_img' src="../../weixinImg/error_icon@2x.png" wx:if="{{refund.refund_show_state==1}}"></image>
+        <view class="{{refund.refund_show_state>1?'detail_top_line':'detail_top_line1'}}"></view>
+        <image class='detail_top_img' src="../../weixinImg/true_icon@2x.png" wx:if="{{refund.refund_show_state==3}}"></image>
+        <image class='detail_top_img' src="../../weixinImg/ing_icon@2x.png" wx:if="{{refund.refund_show_state<3}}"></image>
+        <view class="{{refund.refund_show_state==3?'detail_top_line':'detail_top_line1'}}"></view>
+        <image class='detail_top_img' src="{{refund.refund_show_state==3?'../../weixinImg/true_icon@2x.png':'../../weixinImg/ing_icon@2x.png'}}"></image>
+      </view>
+      <view class='detail_top_row1'>
+        <view class='detail_top_t1'>提交申请</view>
+        <view style='flex:1'></view>
+        <view wx:if="{{refund.refund_show_state==0}}" class="detail_top_t2">商家审核</view>
+        <view wx:if="{{refund.refund_show_state==1}}" class="detail_top_t3">商家审核</view>
+        <view wx:if="{{refund.refund_show_state>1}}" class="detail_top_t1">商家审核</view>
+        <view style='flex:1'></view>
+        <view wx:if="{{refund.refund_show_state<3}}" class="detail_top_t2">平台审核</view>
+        <view wx:if="{{refund.refund_show_state==3}}" class="detail_top_t1">平台审核</view>
+        <view style='flex:1'></view>
+        <view wx:if="{{refund.refund_show_state<3}}" class="detail_top_t2">已完成</view>
+        <view wx:if="{{refund.refund_show_state==3}}" class="detail_top_t1">售后完成</view>
+      </view>
+
+    </view>
+    <view class='title_t'>退款信息</view>
+    <view class='info_b_t1'>退款编号：{{refund.refund_sn}}</view>
+    <view class='info_b_t1'>订单原因：{{refund.reason_info}}</view>
+    <view class='info_b_t1'>退款金额：￥{{refund.refund_amount}}</view>
+    <!-- //refund.shequ_return_amount != 0 -->
+    <view class='info_b_t1' wx:if="{{!tz_id && refund.shequ_return_amount != 0}}">扣除佣金：￥<text class="info_b_t1_text">{{refund.shequ_return_amount}}</text></view>
+    <view class='info_b_t1'>退款说明：{{refund.buyer_message}}</view>
+    <view class='photo_row'>
+      <view class='photo_row_t1'>凭证上传：</view>
+      <view class='photo_row1'>
+        <block wx:for="{{pic_list}}">
+          <image src='{{item}}' class='img_photo' bindtap='previewImage'  data-item='{{item}}'></image>
+        </block>
+      </view>
+
+
+    </view>
+    <view class='title_t'>商家退款处理</view>
+    <view class='info_b_t1'>审核状态：{{refund.seller_state}}</view>
+    <view class='info_b_t2'>商家备注：{{refund.seller_message}}</view>
+    <view class='gray_line'></view>
+    <view class='title_t'>平台退款处理</view>
+    <view class='info_b_t1'>平台确认：{{refund.admin_state}}</view>
+    <view class='info_b_t2'>平台备注：{{refund.admin_message}}</view>
+    <view class='gray_line'></view>
+  </scroll-view>
+</view>

@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,minimum-scale=1" />
+    <title>领取红包</title>
+    <link rel="stylesheet" type="text/css" href="../../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../../css/nctouch_member.css">
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../../js/config.js?20180907"></script>
+<script type="text/javascript" src="../../js/zepto.min.js"></script>
+<script type="text/javascript" src="../../js/template.js"></script>
+<script type="text/javascript" src="../../js/common.js"></script>
+<script>
+    $(function() {
+        var key = getCookie('key');
+
+        if (!key) {
+            window.location.href = WapSiteUrl+'/tmpl/member/login.html';
+            return;
+        }
+
+        var t_id = getQueryString('rpacket_t_id');
+        if (t_id <= 0) {
+            window.location.href = WapSiteUrl+'/index.html';
+            return;
+        }
+
+        $.ajax({
+            type:'post',
+            url:ApiUrl+"/index.php?act=member_redpacket&op=rp_get",
+            data:{key:key,rpacket_t_id:t_id},
+            dataType:'json',
+            success:function(result){
+                console.log(result);
+                if(result.code == 200){
+                    location.href = WapSiteUrl+'/tmpl/member/redpacket_list.html';
+                }else{
+                    location.href = WapSiteUrl+'/tmpl/member/redpacket_list.html';
+                    return;
+                }
+            }
+        });
+
+
+    });
+
+</script>
+</html>

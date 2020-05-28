@@ -1,0 +1,36 @@
+<!--pages/my_commission/my_commission.wxml-->
+<view class='content'>
+  <view class='balance'>账户余额</view>
+  <view class='parice'>
+    <view class='Y'>￥</view>
+    <view class='numb'>{{dataList.cash}}</view>
+  </view>
+</view>
+
+<!-- 我的银行卡 -->
+<view class='Card'>
+  <view class="Card_row">
+    <!-- <view class='block' bindtap="goBank" style="border-bottom:2rpx solid #E8E8E8;">
+      <view class='left'>
+        <image class='icon' src='../../weixinImg/mjly_icon@2x.png'></image>
+        <view class='me'>我的银行卡</view>
+      </view>  
+      <image class='choose' src='../../weixinImg/choose_icon@2x.png'></image>
+    </view> -->
+    <view class='block' bindtap="goWithdrawal">
+      <view class='left'>
+        <image class='icon' src='../../weixinImg/mjly_icon@2x.png'></image>
+        <view class='me'>提现记录</view>
+       </view>  
+      <image class='choose' src='../../weixinImg/choose_icon@2x.png'></image>
+    </view>
+  </view>
+</view>
+
+<view class='Bot'>
+ <button type="primary" class='btn' bindtap="cashOut">提现申请</button>
+ <view class='T'>
+     <image class='t_1' src='../../weixinImg/tixian.png'></image>
+     <view class='t_2'>提现说明</view>
+ </view>
+</view>

@@ -1,0 +1,78 @@
+<view class='limit_title'>
+<image mode='aspectFill' class="new_limitimage" wx:if="{{top_img!=''}}" src="{{top_img}}"></image>
+  <scroll-view scroll-x class='scroll_x'>
+    <block wx:for='{{kill_list}}' wx:key='qui' data-item='{{item}}' wx:if="{{kill_list.length>=3}}">
+      <view class="title_rank {{current_xianshi_id==item.config_xianshi_id?'red':''}}" data-item='{{item}}' bindtap='statusChange'>
+        <text class="time">{{item.start_time_text}}</text>
+        <text class="limit_status">{{item.xianshi_state_text}}</text>
+      </view>
+    </block>
+    <view wx:if="{{kill_list.length<3}}">
+      <block wx:for='{{kill_list}}' wx:key='qui' >
+        <view class="title_rank {{current_xianshi_id==item.config_xianshi_id?'red':''}}" data-item='{{item}}' bindtap='statusChange'>
+          <text class="time">{{item.start_time_text}}</text>
+          <text class="limit_status">{{item.xianshi_state_text}}</text>
+        </view>
+      </block>
+      <block wx:for="{{last_xianshi}}">
+        <view class="title_rank new_ng">
+          <text class="time1  gray">敬请期待</text>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class="one_pc"></view>
+</view>
+
+<view class='rank_title_row'>
+  <view class='rank_top_t1'>{{current_my_text}}</view>
+  <!-- <view class='xs_time_row' wx:if='{{current_Status>2}}'> -->
+  <view class='xs_time_row' wx:if='{{current_Status>=2}}'>
+    <view class='time_1'>{{rest_time[0]}}</view>
+    <view class='time_2'>:</view>
+    <view class='time_1'>{{rest_time[1]}}</view>
+    <view class='time_2'>:</view>
+    <view class='time_1'>{{rest_time[2]}}</view>
+  </view>
+</view>
+<view class="one_pc"></view>
+<view class='limit_goods'>
+  <scroll-view scroll-y class='scroll'>
+    <block wx:if='{{goods_list.length > 0}}' wx:for='{{goods_list}}' wx:key='unqui'>
+      <view class='goods_block'>
+        <image src='{{item.goods_image}}' class='g_img' bindtap='goGoodsDetail' data-item='{{item}}'></image>
+        <view class='g_info' bindtap='goGoodsDetail' data-item='{{item}}'>
+          <text class='g_name'>{{item.goods_name}}</text>
+          <text class='g_space' wx:if="{{item.goods_spec!=''}}">{{item.goods_spec}}</text>
+          <view class='price'>
+            <text class='g_price'>¥{{item.xianshi_price}}</text>
+            <text class='g_pre'>¥{{item.goods_price}}</text>
+          </view>
+          <text class='limit_price' wx:if="{{item.xianshi_limit>0}}">每人限{{item.xianshi_limit}}件</text>
+        </view>
+        <view class='willStart' wx:if='{{current_Status == 3}}'>即将开始</view>
+        <view class='soldout' wx:if='{{current_Status == 1}}'>已结束</view>
+        <view class='soldout' wx:if='{{current_Status == 2 && item.xianshi_storage == 0}}'>已抢光</view>
+        <view class='getnow' wx:if='{{current_Status == 2 && item.xianshi_storage > 0  && item.cart_num == 0}}'  bindtap='bindPlus' data-item="{{item}}" data-index='{{index}}'>马上抢</view>
+        <view class="stepper" wx:if="{{current_Status == 2 && item.cart_num > 0}}">
+          <!-- 减号 -->
+          <text catchtap="bindMinus" data-index='{{index}}' data-item='{{item}}'>-</text>
+          <view style='-webkit-flex:1'></view>
+          <!-- 数值 -->
+          <input type="number" bindchange="bindManual" value="{{item.cart_num}}" data-item='{{item}}' data-index='{{index}}' />
+          <view style='-webkit-flex:1'></view>
+          <!-- 加号 -->
+          <text catchtap="bindPlus" data-item='{{item}}' data-index='{{index}}'>+</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+</view>
+<view class='cart' bindtap='goCart'>
+  <view style='flex:1'></view>
+  <image class='cart_img' bindtap='goCart' src='../../weixinImg/xxgwc_icon@2x.png'></image>
+  <view style='flex:1;position:relative'>
+    <view class='nod'>{{quantities}}</view>
+  </view>
+</view>

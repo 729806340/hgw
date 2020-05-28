@@ -1,0 +1,38 @@
+<scroll-view scroll-y class="scroll" bindscrolltolower='pushList'>
+  <block wx:for='{{dataList}}'>
+    <view class='rowBox'>
+      <view class="item_Top">
+        <view class="l">
+          <view class="t">团购ID：{{item.tuan_info.config_tuan_id}}</view>
+          <view class="b">{{item.tuan_info.config_start_time_text}}</view>
+        </view>
+        <view class="r" wx:if='{{index==0 && if_timeShow}}'>
+          <text class="tit">距离本团结束：</text>
+          <view>{{time[0]}}</view>
+          <text class="t_2">天</text>
+          <view>{{time[1]}}</view>
+          <text class="t_2">:</text>
+          <view>{{time[2]}}</view>
+          <text class="t_2">:</text>
+          <view>{{time[3]}}</view>
+        </view>
+        <view class="r" wx:if='{{index==0 && !if_timeShow}}'>
+          <text class="tit">活动已结束</text>
+        </view>
+        <view class="r" wx:if='{{index>0}}'>
+          <text class="tit">活动已结束</text>
+        </view>
+      </view>
+      <view class="item_cBox">
+        <block wx:for='{{item.goods_list}}' wx:for-item='goods'>
+          <image src="{{goods.goods_image_url}}" bindtap="goDetail" data-id='{{goods.goods_id}}'></image>
+        </block>
+      </view>
+      <view class="item_bBox">
+        <view class="num">参团人数：{{item.buy_num}}</view>
+        <view class="btn" bindtap="goOrder" data-id='{{item.tuan_info.config_tuan_id}}'>团员订单</view>
+      </view>
+    </view>
+  </block>
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>

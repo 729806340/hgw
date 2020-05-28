@@ -1,0 +1,130 @@
+/* pages/my_sales/my_sales.wxss */
+page{
+  box-sizing: border-box;
+  /* padding-top: 120rpx; */
+}
+.bill{
+  width: 100vw;
+  background: #fff;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-family: PingFangSC-Medium;
+  font-size: 14px;
+  color: #333333;
+  letter-spacing: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.bill view{
+  width: 33%;
+  text-align: center;
+}
+.Text{
+  padding:38rpx 0;
+}
+.classText{
+    display: inline-block;
+    font-size: 28rpx;
+    padding:38rpx 0;
+    text-align:center;
+    /* margin: 0 20rpx; */
+    color: #333333;
+    border-bottom: 4rpx solid #fff;
+}
+.isActive{
+  color: #2CCC60;
+  border-bottom: 4rpx solid #2CCC60;
+}
+.content{
+  margin: 18rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+}
+.content .content_t{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+
+  ont-family: PingFangSC-Medium;
+  font-size: 12px;
+  color: #333333;
+  letter-spacing: 0;
+
+  border-bottom: 1rpx solid #E8E8E8;
+}
+
+.content .content_t view{
+    flex: 0 0 calc(33.3% - 10px);
+    text-align: center;
+    padding: 20rpx ;
+    box-sizing: border-box;
+    margin: 0 10rpx;
+    font-size: 24rpx;
+}
+.content .content_y .content_1 view{
+    flex: 0 0 calc(33.3% - 10px);
+    text-align: center;
+    margin: 0 10rpx;
+    font-size: 24rpx;
+}
+.content .content_y .content_2 view{
+    flex: 0 0 calc(33.3% - 10px);
+    text-align: center;
+    margin: 0 10rpx;
+    font-size: 24rpx;
+}
+.content .content_y .content_2 .T .t{
+   font-size: 24rpx;
+   color: #333333;
+}
+.content .content_y .content_2 .T .b{
+   font-size: 20rpx;
+   color: #999;
+}
+
+.Statistics{
+  padding-top: 120rpx;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+}
+.content .content_y{
+  font-family: PingFangSC-Medium;
+  font-size: 12px;
+  color: #333333;
+  letter-spacing: 0;
+  padding-bottom:40rpx;
+}
+ .content .content_y .content_1{
+
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding-top: 40rpx;
+   position: relative;
+ }
+ .content .content_y .color{
+  color: #FF523A;
+}
+
+ .content .content_y .content_2{
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding-top: 40rpx;
+   position: relative;
+ }
+
+ .open{
+    font-family: PingFangSC-Regular;
+    font-size: 9px;
+    color: rgba(189, 183, 183, 0.753);
+    letter-spacing: 0;
+    line-height: 17px;
+ }
+

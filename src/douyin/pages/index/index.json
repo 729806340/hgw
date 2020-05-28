@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "汉购臻选",
+  "navigationBarBackgroundColor":"#2EB772",
+  "navigationBarTextStyle":"white",
+  "usingComponents": {
+    "goods_item": "../../Component/goods_item/goods_item",
+    "showdemo": "../../Component/showdemo/showdemo",
+    "pot_laayer": "../../Component/pot_laayer/pot_laayer"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "light",
+  "backgroundColor": "#2EB772"
+}

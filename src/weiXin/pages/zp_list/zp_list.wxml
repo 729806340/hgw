@@ -1,0 +1,20 @@
+<view class="root">
+  <block wx:for="{{goods}}">
+    <view class='row'>
+      <image src='{{item.goods_image}}' class='img' mode='aspectFit'></image>
+      <view class='col'>
+        <view class='row1'>
+          <view class='z_t'>赠</view>
+          <view class='name'>{{item.goods_name}}</view>
+        </view>
+        <view style='flex:1'></view>
+
+        <view class='row2'>
+          <view class='name1'>x{{item.goods_num}}</view>
+          <view style='flex:1'></view>
+          <view class='price'>价值：¥{{item.goods_price}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

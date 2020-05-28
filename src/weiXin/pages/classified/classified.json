@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "分类详情",
+  "usingComponents": {
+    "category_item": "../../Component/category_item/category_item",
+    "goods_item": "../../Component/goods_item/goods_item"
+  }
+}

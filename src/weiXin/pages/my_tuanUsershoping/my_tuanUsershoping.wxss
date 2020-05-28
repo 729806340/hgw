@@ -1,0 +1,112 @@
+page{
+ 
+}
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box; 
+}
+.headBox{
+  width: 100%;
+  padding: 0 22rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10rpx;
+  margin-bottom: 24rpx;
+}
+.head_info{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.info_img{
+  width: 124rpx;
+  height: 124rpx;
+  margin-right: 28rpx;
+}
+.info_nameBox{
+
+}
+.info_name{
+  color: #333;
+  font-size: 36rpx;
+}
+.info_address{
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.info_address image{
+  width: 18rpx;
+  height: 18rpx;
+  margin-right: 10rpx;
+}
+.info_address view{
+  color: #666;
+  font-size: 20rpx;
+}
+.head_prc{
+  display: flex;
+  align-items: center;
+  border-top: 2rpx solid #DDDDDD;
+  padding: 16rpx 28rpx;
+  box-sizing: border-box;
+}
+.head_prc .t{
+  color: #666;
+  font-size: 24rpx;
+}
+.head_prc .t_2{
+  color: #FF523A;
+  font-size: 28rpx;
+}
+.head_prc .t_3{
+  color: #FF523A;
+  font-size: 38rpx;
+}
+.goodsBox{
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 10rpx;
+}
+.goods_item{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #DDDDDD;
+}
+.goods_img{
+  width: 100rpx;
+  height: 100rpx;
+}
+.goods_nameBox{
+  padding: 0 20rpx;
+  width: 410rpx;
+}
+.goods_n{
+  color: #333;
+  font-size: 24rpx;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.goods_g{
+  color: #999;
+  font-size: 20rpx;
+  margin-top: 6rpx;
+}
+.goods_com{
+  font-size: 28rpx;
+  color: #FF523A;
+  width: 120rpx;
+  text-align: right;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

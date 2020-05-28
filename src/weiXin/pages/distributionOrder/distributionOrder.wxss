@@ -1,0 +1,158 @@
+/* pages/distributionOrder/distributionOrder.wxss */
+
+.root {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 100000;
+}
+
+.header {
+  width: 100%;
+  height: 154rpx;
+  background: #fff;
+  padding: 0 38rpx;
+  background-image: linear-gradient(to right, #FF9683,#FF8F50);
+  box-sizing: border-box;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center
+}
+
+.header .item {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  font-size: 28rpx;
+  color: white
+}
+
+.header .item .price {
+  font-size: 44rpx;
+  margin-top: 10rpx;
+}
+
+.header .item button {
+  width: 200rpx;
+  height: 52rpx;
+  border-radius: 26rpx;
+  font-size: 24rpx;
+  color: #FD9575;
+  align-self: flex-end
+}
+
+.segment {
+  width: 100%;
+  height: 122rpx;
+  background: white;
+  display:flex;
+  border-bottom: 2rpx solid #ededed;
+}
+
+.top-btn {
+  flex: 1;
+  line-height: 102rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.selected_color {
+  color: #2EB772;
+  border-bottom: 2rpx solid #7BDAAA;
+}
+
+/* .selected {
+  width: 86rpx;
+  border-bottom: 2rpx solid #7BDAAA;
+  margin: auto;
+} */
+
+.scroll {
+  width: 100vw;
+  padding-top: 276rpx;
+  padding-bottom: 0;
+  box-sizing: border-box;
+  height: 100vh;
+}
+
+.scroll .cell {
+  display: flex;
+  padding: 32rpx 24rpx;
+  border-bottom: 2rpx solid #ededed;
+  justify-content: space-between;
+  align-items: center;
+  background: white
+}
+
+.scroll .cell .left {
+  font-size: 26rpx;
+  color: #777777;
+}
+
+.scroll .cell .left .name {
+  margin-top: 18rpx;
+}
+
+.scroll .cell .left .time {
+  font-size: 12px;
+  color: #BBBBBB;
+  margin-top: 18rpx;
+}
+
+.scroll .cell .price {
+  font-size: 44rpx;
+  color: #FE5A4C;
+}
+
+.list_bottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.line {
+  width: 100rpx;
+  height: 2rpx;
+  background: #f0f0f0;
+}
+
+.list_bottom_t {
+  font-size: 26rpx;
+  color: #aaa;
+  margin: 20rpx;
+}
+
+.column_null {
+  position: fixed;
+  align-self: center;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.column_null_img {
+  width: 280rpx;
+  height: 280rpx;
+  margin-top: 250rpx;
+}
+
+.column_null_txt {
+  font-size: 26rpx;
+  color: #999;
+  margin-top: 40rpx;
+}

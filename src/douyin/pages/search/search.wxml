@@ -1,0 +1,82 @@
+<view class="root">
+  <!--搜索框-->
+  <view class='search_layout'>
+    <view class='search_row'>
+      <icon type="search" size="14" class='icon_search'></icon>
+      <input class='search_txt' placeholder="{{store_id==''?'搜索菜品名称'+store_id:'店内搜索'}}" bindconfirm='inputHandle' bindinput='handleinput' focus="true" confirm-type="search" type='text' value="{{search_txt}}" />
+    </view>
+     <button class='btn' bindtap='inputHandle'>搜索</button>
+  </view>
+
+  <scroll-view scroll-y class='scroll' wx:if="{{is_home}}">
+    <view class='col1'>
+      <view class='history_col'>
+        <view class='his_row1'>
+          <view class='his_t1'>
+            历史搜索
+          </view>
+          <view style='flex:1'></view>
+          <view class='his_t2' bindtap='clean_t'>清除</view>
+        </view>
+        <view class='his_row2'>
+          <block wx:for="{{local_search_list}}" wx:key='qui'>
+            <view class='his_t3' bindtap='click_search' data-t='{{item}}'>{{item}} </view>
+          </block>
+        </view>
+      </view>
+      <view class='gray_line'></view>
+      <view class='history_col'>
+        <view class='his_row1'>
+          <view class='his_t1'>
+            热门搜索
+          </view>
+        </view>
+        <view class='his_row2'>
+          <block wx:for="{{hot_list}}" wx:key='qui'>
+            <view class='his_t3' bindtap='click_search' data-t='{{item}}'>{{item}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 搜索结果 -->
+  <view class='noData' wx:if="{{has_null}}">
+  <view>
+    <image src='../../weixinImg/wddd_w_img@2x.png'></image>
+  </view>
+  <view>为搜到您想要的商品请换一个关键词试试</view>
+</view>
+
+  <scroll-view scroll-y class='scroll' wx:if="{{!is_home&&!has_null}}" bindscrolltolower="handlescrolltolower">
+
+    <view class='col1'>
+      <goods_item goods_list="{{detail}}" is_bottom="{{is_bottom}}"> </goods_item>
+    </view>
+
+  </scroll-view>
+
+
+  <!-- 底部 -->
+  <!-- <view class='search_bottom'>
+
+    <view style='flex:1'></view>
+    <view class='search_bottom_col'>
+      <view class='search_bottom_row'>
+        <view class='search_bottom_t1'>合计:</view>
+        <view class='search_bottom_t2'>￥{{sum}}</view>
+      </view>
+      <view class='search_bottom_t3'>(共{{cart_count}}件商品)</view>
+    </view>
+    <view class='search_bottom_btn' bindtap='goCar'>去购物车</view>
+
+  </view>
+  <view class='bottom_circle' bindtap='goCar'>
+    <view class='cart_count'>{{cart_count}}</view>
+    <view style='flex:1'></view>
+    <image src='../../weixinImg/gwc_icon@2x.png' class='img_cart'></image>
+    <view style='flex:1'></view>
+
+  </view> -->
+
+</view>

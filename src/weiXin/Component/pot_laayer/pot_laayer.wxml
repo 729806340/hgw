@@ -1,0 +1,11 @@
+<view wx:for="{{data}}" wx:key="index">
+  <view class="commodity_screen" wx:if="{{showModal}}"></view>
+  <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModal}}">
+    <image class="delete" src='../../weixinImg/tc_icon@2x.png' mode='aspectFit' catchtap="hideModal" wx:if="{{display}}"></image>
+      <!-- <view class="scroll-header"> -->
+        <!-- <block wx:for="{{data}}" wx:key="index"> -->
+          <image class="coupon" src='{{item.list.image}}' bindtap='GoSome'  data-data='{{item.list.data}}' data-type="{{item.list.type}}"></image>
+        <!-- </block> -->
+      <!-- </view> -->
+  </view>
+</view>

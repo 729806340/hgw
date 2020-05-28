@@ -1,0 +1,55 @@
+<view wx:if="{{has_address}}">
+  <scroll-view scroll-y="true" class='scroll'>
+    <view class='goods_address'>
+      <block wx:for="{{address_list}}" wx:key="key">
+        <view class='address_block'>
+          <view class='address_up' data-item="{{item}}" bindtap="chooseAddress">
+            <view class='add_info'>
+              <text class='add_name'>{{item.true_name}}</text>
+              <text class='add_num'>{{item.mob_phone}}</text>
+            </view>
+            <view class='add_add'>{{item.area_info}} {{item.address}}</view>
+          </view>
+          <view class='address_down' wx:if="{{flag==1}}">
+            <view class='block_left'>
+              <label class='radioImg' bindtap='click' data-item='{{item}}' data-index='{{index}}'>
+                <radio color="#2eb772" checked='{{item.is_default==1}}'></radio>
+              </label>
+              <text>默认地址</text>
+            </view>
+            <view class='block_right'>
+              <view class='edit_block' bindtap='addressEdite' data-item='{{item}}'>
+                <image src='/weixinImg/edit_icon@2x.png'></image>
+                <text>编辑</text>
+              </view>
+              <view class='dele_block' bindtap='addressDetele' data-item='{{item}}'  data-index='{{index}}'>
+                <image src='/weixinImg/deletegl_icon@2x.png'></image>
+                <text>删除</text>
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class='address_bottom'>
+    <button bindtap='addAddress'>新增收货地址</button>
+    <button bindtap='wx_addAddress' style="background:#F64234;">获取微信收货地址</button>
+  </view>
+</view>
+
+<view class='noData' wx:else>
+  <view>
+    <image src='../../weixinImg/mddz_w_img2@2x.png'></image>
+  </view>
+  <view>您还没有收货地址</view>
+  <view class="addBox_new">
+    <view class='addShop_Btn' bindtap='addAddress'>
+      <text>新增收货地址</text>
+    </view>
+    <view class='addShop_Btn' bindtap='wx_addAddress' style="background:#F64234;">
+      <text>获取微信收货地址</text>
+    </view>
+  </view>
+</view>

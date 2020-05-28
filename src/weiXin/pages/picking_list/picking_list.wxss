@@ -1,0 +1,136 @@
+/* pages/picking_list/picking_list.wxss */
+/* pages/code_result/code_result.wxss */
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.contont{
+  width: 100%;
+  background: #FFFFFF;
+}
+page{
+
+}
+.tiemBox{
+  width: 100%;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tiemBox .lBox{
+  display: flex;
+  align-items: center;
+}
+.tiemBox .lBox image{
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.tiemBox .lBox .r{
+  
+}
+.tiemBox .lBox .r .t_1{
+  font-size: 38rpx;
+  color: #333;
+}
+.tiemBox .lBox .r .t_2{
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+.rimgBox{
+  width: 18rpx;
+  height: 30rpx;
+}
+
+
+
+.cart{
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1rpx solid #E8E8E8;
+}
+.cart .cart_item{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.cart .cart_item image{
+  width: 116rpx;
+  height: 116rpx;
+}
+.cart .cart_item .b{
+  padding: 0 20rpx;
+  width: 430rpx;
+  height: 116rpx;
+}
+.cart .cart_item .b .b_1{
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 0;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.cart .cart_item .b .b_2,
+.cart .cart_item .b .b_3{
+  font-family: PingFangSC-Regular;
+  font-size: 20rpx;
+  color: #666666;
+  letter-spacing: 0;
+}
+.cart .cart_item  .S{
+  width: 70rpx;
+  height: 116rpx;
+  font-size: 28rpx;
+  color: #333333;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.card{
+  font-family: PingFangSC-Regular;
+  font-size: 24rpx;
+  color: #999999;
+  letter-spacing: 0;
+  text-align: left;
+  padding: 40rpx 38rpx;
+}
+.btn{
+  width: 640rpx;
+  height: 76rpx;
+  border-radius: 75rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+   margin: 50rpx auto 0;
+   font-size: 28rpx;
+   color: #fff;
+}
+.block{
+  padding-bottom: 50rpx;
+}
+.order_listBox{
+  width: 100%;
+  padding: 24rpx;
+  box-sizing: border-box;
+  border-top: 2rpx solid #ddd;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

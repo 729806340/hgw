@@ -1,0 +1,81 @@
+page{
+  background: #fff;
+}
+.cn {
+  border-top: 1rpx solid #ddd;
+}
+
+.cn_title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 134rpx auto 0;
+}
+
+.cn_title image {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 44rpx;
+  margin-left: 74rpx;
+}
+
+.cn_title text {
+  width: 462rpx;
+  font-size: 24rpx;
+  color: #bbb;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+
+.cn_input {
+  display: flex;
+  flex-direction: column;
+  margin: 104rpx 74rpx 0 74rpx;
+}
+
+label {
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-align: center;
+  box-align: center;
+  border-bottom: 1rpx solid #ededed;
+  padding: 30rpx 0;
+}
+
+.input-text {
+  display: block;
+  border: none;
+  font-size: 30rpx;
+  height: 80rpx;
+  width: 480rpx;
+}
+
+.placeholder {
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.l-text-name {
+  font-size: 30rpx;
+  color: #222;
+  display: block;
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+button {
+  width: 602rpx;
+  height: 88rpx;
+  background: #2eb772;
+  border-radius: 5px;
+  font-size: 32rpx;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  margin: 80rpx auto;
+}
+.btn_disabled{
+  background: #E0E0E0 !important;
+}

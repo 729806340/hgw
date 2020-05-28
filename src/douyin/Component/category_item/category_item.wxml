@@ -1,0 +1,40 @@
+<view class='col'>
+  <!-- 分类 -->
+  <scroll-view scroll-x class="scroll-header" scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+    <block>
+      <view data-index="{{index}}" class="classText ons" bindtap="tabClick">
+        全部
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊肉
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊肚
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腰子
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+      <view data-index="{{index}}" class="classText" bindtap="tabClick">
+        羊腿
+      </view>
+    </block>
+  </scroll-view>
+</view>

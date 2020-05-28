@@ -1,0 +1,20 @@
+<view class='bindPhone' wx:if="{{no_phone}}">
+  <view class='telephone'>
+   <input class="telephone_input" name="telephone" placeholder="手机号" placeholder-class='pa' bindinput="getPhoneValue" value='{{phone}}'></input>
+  </view>
+  <view class='testCode'>
+     <input class="testCode_input" name="textcode" placeholder="请输入短信验证码" placeholder-class='pa'  bindinput="getCodeValue" value='{{code}}' ></input>
+     <button class="getCode getAllowed" bindtap='getVerificationCode' disabled='{{disabled}}'>{{codename}}</button>
+    <!-- <view class='alreadyGot'><text>60s</text>后重发</view> -->
+  </view>
+  <button class='bindNow binded' bindtap='register'>立即绑定</button>
+  <view class='bottomInfo'>
+    <image src='/weixinImg/zhaq_icon@2x.png'></image>
+    <text>温馨提示：汉购网老用户请输入原登录手机号进行绑定，关注微信公众</text>
+  </view>
+</view>
+<view class='alreadyBinded' wx:else>
+  <image src='/weixinImg/bdsj_img@2x.png'></image>
+  <text class='abTxt'>已绑定手机号码</text>
+  <text class='abNum'>{{phone_number}}</text>
+</view>

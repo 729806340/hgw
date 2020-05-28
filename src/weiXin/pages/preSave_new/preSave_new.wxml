@@ -1,0 +1,45 @@
+<!-- <view class='pre_title'>
+  <image src='/weixinImg/yck_icon@2x.png'></image>
+  <view class='pre_num'>
+    <text class='pre_num_y'>预存款</text>
+    <view class='pre_num_z'>{{available_predeposit}}
+      <text class='dollar'>元</text>
+    </view>
+  </view>
+  <button class='charge_btn' bindtap='chargeBtn'>充值</button>
+</view>
+<view class='pre_content'>
+  <view class='pre_list'>
+    <view class="{{chosen==1?'chosen':''}}" data-name='1' bindtap='chosen'>账户余额</view>
+    <view class="{{chosen==2?'chosen':''}}" data-name='2' bindtap='chosenDetail'>充值明细</view>
+  </view>
+  <scroll-view class='rest' wx:if="{{chosen==1}}" scroll-y="true" class='scroll' bindscrolltolower="getLogMore">
+    <view wx:for="{{logList}}" wx:key="unique">
+      <view class='r_con'>
+        <view class='rest_order'>
+          <text>{{item.lg_desc}}</text>
+        </view>
+        <view class='detail_num red_num'>
+          <view class='red_num' wx:if="{{item.lg_av_amount > 0}}">{{item.lg_av_amount}}</view>
+          <view class='green_num' wx:if="{{item.lg_av_amount < 0}}">{{item.lg_av_amount}}</view>
+          <text class='detail_time'>{{item.lg_add_time}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <scroll-view class='detail scroll' scroll-y="true" wx:elif="{{chosen==2}}" bindscrolltolower="getRechargeMore">
+    <view wx:for="{{rechargeList}}" wx:key="unique">
+      <view class='r_con'>
+        <view class='rest_order'>
+          <text class='font28'>{{item.pdr_payment_name}}：</text>
+          <text>充值单号：<text>{{item.pdr_sn}}</text>
+          </text>
+        </view>
+        <view class='detail_num red_num'>
+          <text>{{item.pdr_amount}}</text>
+          <text class='detail_time'>{{item.pdr_payment_time}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view> -->

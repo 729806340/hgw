@@ -1,0 +1,1354 @@
+<!doctype html>
+<html lang="zh">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="360-site-verification" content="ec7175246571f9d93b70f7f441504732" />
+    <title>汉购网 - 汉购中国 优质县域特色商品直供</title>
+    <meta name="keywords" content="汉购网," />
+    <meta name="description" content="汉购网," />
+    <meta name="renderer" content="webkit">
+    <meta name="renderer" content="ie-stand">
+    <style type="text/css">
+        body {
+            _behavior: url(http://www.hangowa.com/templates/default/css/csshover.htc);
+        }
+
+    </style>
+    <link href="http://www.hangowa.com/templates/default/css/base.css" rel="stylesheet" type="text/css">
+    <link href="http://www.hangowa.com/templates/default/css/home_header.css" rel="stylesheet" type="text/css">
+    <link href="http://www.hangowa.com/resource/font/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--[if IE 7]>
+  <link rel="stylesheet" href="http://www.hangowa.com/resource/font/font-awesome/css/font-awesome-ie7.min.css">
+<![endif]-->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="http://www.hangowa.com/data/resource/js/html5shiv.js"></script>
+      <script src="http://www.hangowa.com/data/resource/js/respond.min.js"></script>
+<![endif]-->
+    <script>
+        var COOKIE_PRE = 'hango_';
+        var _CHARSET = 'utf-8';
+        var LOGIN_SITE_URL = 'http://www.hangowa.com/member';
+        var MEMBER_SITE_URL = 'http://www.hangowa.com/member';
+        var SITEURL = 'http://www.hangowa.com';
+        var SHOP_SITE_URL = 'http://www.hangowa.com';
+        var RESOURCE_SITE_URL = 'http://www.hangowa.com/data/resource';
+        var RESOURCE_SITE_URL = 'http://www.hangowa.com/data/resource';
+        var SHOP_TEMPLATES_URL = 'http://www.hangowa.com/templates/default';
+
+    </script>
+    <script src="http://www.hangowa.com/data/resource/js/jquery.js"></script>
+    <script src="http://www.hangowa.com/data/resource/js/common.js" charset="utf-8"></script>
+    <script src="http://www.hangowa.com/data/resource/js/jquery-ui/jquery.ui.js"></script>
+    <script src="http://www.hangowa.com/data/resource/js/jquery.validation.min.js"></script>
+    <script src="http://www.hangowa.com/data/resource/js/dialog/dialog.js" id="dialog_js" charset="utf-8"></script>
+    <script type="text/javascript">
+        var PRICE_FORMAT = '&yen;%s';
+        $(function() {
+            //首页左侧分类菜单
+            $(".category ul.menu").find("li").each(
+                function() {
+                    $(this).hover(
+                        function() {
+                            var cat_id = $(this).attr("cat_id");
+                            var menu = $(this).find("div[cat_menu_id='" + cat_id + "']");
+
+                            $(this).find(".class").animate({
+                                marginLeft: "10px"
+                            })
+                            menu.show();
+                            $(this).addClass("hover");
+                            var menu_height = menu.height();
+                            if (menu_height < 60) menu.height(80);
+                            menu_height = menu.height();
+                            var li_top = $(this).position().top;
+                            $(menu).css("top", -li_top + 50);
+                        },
+                        function() {
+                            $(this).find(".class").animate({
+                                marginLeft: ""
+                            })
+                            $(this).removeClass("hover");
+                            var cat_id = $(this).attr("cat_id");
+                            $(this).find("div[cat_menu_id='" + cat_id + "']").hide();
+                        }
+                    );
+                }
+            );
+            $(".mod_minicart").hover(function() {
+                    $("#nofollow,#minicart_list").addClass("on");
+                },
+                function() {
+                    $("#nofollow,#minicart_list").removeClass("on");
+                });
+            $('.mod_minicart').mouseover(function() { // 运行加载购物车
+                load_cart_information();
+                $(this).unbind('mouseover');
+            });
+
+            $('#button').click(function() {
+                if ($('#keyword').val() == '') {
+                    if ($('#keyword').attr('data-value') == '') {
+                        return false
+                    } else {
+                        window.location.href = "http://www.hangowa.com/index.php?act=search&op=index&keyword=" + $('#keyword').attr('data-value');
+                        return false;
+                    }
+                }
+            });
+            $(".head-search-bar").hover(null,
+                function() {
+                    $('#search-tip').hide();
+                });
+            // input ajax tips
+            $('#keyword').focus(function() {
+                $('#search-tip').show()
+            }).autocomplete({
+                //minLength:0,
+                source: function(request, response) {
+                    $.getJSON('http://www.hangowa.com/index.php?act=search&op=auto_complete', request, function(data, status, xhr) {
+                        $('#top_search_box > ul').unwrap();
+                        response(data);
+                        if (status == 'success') {
+                            $('#search-tip').hide();
+                            $(".head-search-bar").unbind('mouseover');
+                            $('body > ul:last').wrap("<div id='top_search_box'></div>").css({
+                                'zIndex': '1000',
+                                'width': '362px'
+                            });
+
+                            //追加店铺搜索
+                            //var keyword = $('#keyword').val();
+                            //var $htmlLi = $("<li class=\"ui-menu-item\" role=\"menuitem\"><a class=\"ui-corner-all\" tabindex=\"-1\" href=\"http://www.baidu.com\">搜索店铺："+keyword+"</a></li>");
+                            //var $ul = $(".ui-autocomplete");
+                            //$ul.append($htmlLi);
+                        }
+                    });
+                },
+                select: function(ev, ui) {
+                    var t = ui.item.label.indexOf('店铺');
+                    if (t > 0) {
+                        var keyword = $('#keyword').val();
+                        location.href = "http://www.hangowa.com/?act=search&op=store&keyword=" + keyword;
+                    } else {
+                        $('#keyword').val(ui.item.label);
+                        $('#top_search_form').submit();
+                    }
+                }
+            });
+            $('#search-his-del').on('click', function() {
+                $.cookie('hango_his_sh', null, {
+                    path: '/'
+                });
+                $('#search-his-list').empty();
+            });
+        });
+
+    </script>
+</head>
+
+<body>
+    <!-- PublicTopLayout Begin -->
+
+    <script type="text/javascript">
+        $(function() {
+            Hangowa.initial();
+            Hangowa.initialUser();
+            Hangowa.updateCartCount();
+        });
+
+    </script>
+    <div id="append_parent"></div>
+    <div id="ajaxwaitid"></div>
+    <div id="ncToolbar" class="nc-appbar">
+        <div class="nc-appbar-tabs" id="appBarTabs">
+            <div class="ever">
+                <div class="cart"><a href="javascript:void(0);" id="rtoolbar_cart"><span class="icon"></span> <span class="name">购物车</span><i id="rtoobar_cart_count" class="new_msg" style="display:none;"></i></a></div>
+                <div class="compare"><a href="javascript:void(0);" id="compare"><span class="icon"></span><span class="tit">商品对比</span></a></div>
+            </div>
+            <div class="variation">
+                <div class="middle">
+                    <div id="bar-user-info">
+                        <div class="user" onclick="Hangowa.barUserInfo()">
+                            <a href="javascript:void(0);">
+                                <div class="avatar"><img src="/data/upload/shop/common/default_user_portrait.gif" /></div>
+                                <span class="tit">我的账户</span>
+                            </a>
+                        </div>
+                        <div class="user-info" style="display:none;"><i class="arrow"></i>
+                            <div class="avatar"><img src="/data/upload/shop/common/default_user_portrait.gif" />
+                                <div class="frame"></div>
+                            </div>
+                            <dl>
+                                <dt>Hi, <span id="bar-user-name"></span></dt>
+                                <dd>当前等级：<strong id="bar-user-level"></strong></dd>
+                                <dd>当前经验值：<strong id="bar-user-exp"></strong></dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div id="bar-user-login">
+
+                        <div class="user" nctype="a-barLoginBox">
+                            <a href="javascript:void(0);">
+                                <div class="avatar"><img src="/data/upload/shop/common/default_user_portrait.gif" /></div>
+                                <span class="tit">会员登录</span>
+                            </a>
+                        </div>
+                        <div class="user-login-box" nctype="barLoginBox" style="display:none;"> <i class="arrow"></i> <a href="javascript:void(0);" class="close-a" nctype="close-barLoginBox" title="关闭">X</a>
+                            <form id="login_form" method="post" action="http://www.hangowa.com/member/?act=login&op=login" onsubmit="ajaxpost('login_form', '', '', 'onerror')">
+                                <input type='hidden' name='formhash' value='GPNrDHAP6ZF8K5KXv33HP9tDwT3a8G5' /> <input type="hidden" name="form_submit" value="ok" />
+                                <input name="nchash" type="hidden" value="">
+                                <dl>
+                                    <dt><strong>登录名</strong></dt>
+                                    <dd>
+                                        <input type="text" class="text" autocomplete="off" name="user_name" autofocus>
+                                        <label></label>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt><strong>登录密码</strong><a href="http://www.hangowa.com/member/?act=login&op=forget_password" target="_blank">忘记登录密码？</a></dt>
+                                    <dd>
+                                        <input type="password" class="text" name="password" autocomplete="off">
+                                        <label></label>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt><strong>验证码</strong><a href="javascript:void(0)" class="ml5" onclick="javascript:document.getElementById('codeimage').src='index.php?act=seccode&amp;op=makecode&amp;nchash=&amp;t=' + Math.random();">更换验证码</a></dt>
+                                    <dd>
+                                        <input type="text" name="captcha" autocomplete="off" class="text w130" id="captcha" maxlength="4" size="10">
+                                        <img src="" name="codeimage" border="0" id="codeimage" class="vt">
+                                        <label></label>
+                                    </dd>
+                                </dl>
+                                <div class="bottom">
+                                    <input type="submit" class="submit" value="确认">
+                                    <input type="hidden" value="" name="ref_url">
+                                    <a href="http://www.hangowa.com/member/?act=login&op=register&" target="_blank">注册新用户</a>
+                                    <h4></h4>
+                                    <a href="javascript:void(0);" onclick="ajax_form('weixin_form', '微信账号登录', 'http://www.hangowa.com/member/?act=connect_wx&op=index', 360);" title="微信账号登录" class="mr20">微信</a>
+                                    <a href="http://www.hangowa.com/member/api.php?act=toqq" title="QQ账号登录" class="mr20">QQ账号</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="prech">&nbsp;</div>
+                    <div class="chat"><a href="javascript:void(0);" id="chat_show_user"><span class="icon"></span><i id="new_msg" class="new_msg" style="display:none;"></i><span class="tit">在线联系</span></a></div>
+                </div>
+                <div class="l_qrcode"><a href="javascript:void(0);" class=""><span class="icon"></span><code><img src="http://www.hangowa.com/data/upload/mobile/05234711548071503.png"></code></a></div>
+                <div class="gotop"><a href="javascript:void(0);" id="gotop"><span class="icon"></span><span class="tit">返回顶部</span></a></div>
+            </div>
+            <div class="content-box" id="content-compare">
+                <div class="top">
+                    <h3>商品对比</h3>
+                    <a href="javascript:void(0);" class="close" title="隐藏"></a>
+                </div>
+                <div id="comparelist"></div>
+            </div>
+            <div class="content-box" id="content-cart">
+                <div class="top">
+                    <h3>我的购物车</h3>
+                    <a href="javascript:void(0);" class="close" title="隐藏"></a>
+                </div>
+                <div id="rtoolbar_cartlist"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        //返回顶部
+        $(function() {
+            $("#gotop").hide();
+            //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+            $(function() {
+                $(window).scroll(function() {
+                    if ($(window).scrollTop() > 100) {
+                        $("#gotop").fadeIn(1000);
+                    } else {
+                        $("#gotop").fadeOut(1000);
+                    }
+                });
+                //当点击跳转链接后，回到页面顶部位置
+                $("#gotop").click(function() {
+                    $('body,html').animate({
+                            scrollTop: 0
+                        },
+                        1000);
+                    return false;
+                });
+            });
+
+            $("#chat_show_user").click(function() {
+                /*会员登录了之后没有会员值，只有强制刷新网页的时候才有会员值*/
+                var arr = {
+                    uid: uid,
+                    uname: name
+                };
+                NTKF.im_updatePageInfo(arr);
+                NTKF.im_openInPageChat('hf_1000_1508484886546');
+            })
+        })
+
+    </script>
+
+
+    <script type="text/javascript">
+        //登录开关状态
+        var connect_qq = "1";
+        var connect_sn = "0";
+        var connect_wx = "1";
+        $(function() {
+            $(".l_qrcode a").hover(function() {
+                    $(this).addClass("hover");
+                },
+                function() {
+                    $(this).removeClass("hover");
+                });
+
+        });
+
+
+
+
+        /*backTop=function (btnId){
+        	var btn=document.getElementById(btnId);
+        	var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        	window.onscroll=set;
+        	btn.onclick=function (){
+        		btn.style.opacity="0.5";
+        		window.onscroll=null;
+        		this.timer=setInterval(function(){
+        		    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        			scrollTop-=Math.ceil(scrollTop*0.1);
+        			if(scrollTop==0) clearInterval(btn.timer,window.onscroll=set);
+        			if (document.documentElement.scrollTop > 0) document.documentElement.scrollTop=scrollTop;
+        			if (document.body.scrollTop > 0) document.body.scrollTop=scrollTop;
+        		},10);
+        	};
+        	function set(){
+        	    scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        	    btn.style.opacity=scrollTop?'1':"0.5";
+        	}
+        };
+        backTop('gotop');*/
+
+        //动画显示边条内容区域
+        $(function() {
+            ncToolbar();
+            $(window).resize(function() {
+                ncToolbar();
+            });
+
+            function ncToolbar() {
+                if ($(window).width() >= 1240) {
+                    $('#appBarTabs >.variation').show();
+                } else {
+                    $('#appBarTabs >.variation').hide();
+                }
+            }
+            $('#appBarTabs').hover(
+                function() {
+                    $('#appBarTabs >.variation').show();
+                },
+                function() {
+                    ncToolbar();
+                }
+            );
+            $("#compare").click(function() {
+                if ($("#content-compare").css('right') == '-210px') {
+                    loadCompare(false);
+                    $('#content-cart').animate({
+                        'right': '-210px'
+                    });
+                    $("#content-compare").animate({
+                        right: '35px'
+                    });
+                } else {
+                    $(".close").click();
+                    $(".chat-list").css("display", 'none');
+                }
+            });
+            $("#rtoolbar_cart").click(function() {
+                if ($("#content-cart").css('right') == '-210px') {
+                    $('#content-compare').animate({
+                        'right': '-210px'
+                    });
+                    $("#content-cart").animate({
+                        right: '35px'
+                    });
+                    if (!$("#rtoolbar_cartlist").html()) {
+                        $("#rtoolbar_cartlist").load('index.php?act=cart&op=ajax_load&type=html');
+                    }
+                } else {
+                    $(".close").click();
+                    $(".chat-list").css("display", 'none');
+                }
+            });
+            $(".close").click(function() {
+                $(".content-box").animate({
+                    right: '-210px'
+                });
+            });
+
+            $(".quick-menu dl").hover(function() {
+                    $(this).addClass("hover");
+                },
+                function() {
+                    $(this).removeClass("hover");
+                });
+            $(".links_a").hover(function() {
+                    $(this).addClass("hover");
+                },
+                function() {
+                    $(this).removeClass("hover");
+                });
+
+            // 右侧bar用户信息
+            $('div[nctype="a-barUserInfo"]').click(function() {
+                $('div[nctype="barUserInfo"]').toggle();
+            });
+            // 右侧bar登录
+            $('div[nctype="a-barLoginBox"]').click(function() {
+                $('div[nctype="barLoginBox"]').toggle();
+                document.getElementById('codeimage').src = 'index.php?act=seccode&op=makecode&nchash=&t=' + Math.random();
+            });
+            $('a[nctype="close-barLoginBox"]').click(function() {
+                $('div[nctype="barLoginBox"]').toggle();
+            });
+        });
+
+    </script>
+
+    <!--<div class="visit-hint wrapper"></div>-->
+
+    <div class="public-top-layout w">
+        <div class="topbar wrapper">
+            <div class="user-entry">
+                <div id="user-info" style="display: none;">
+                    您好 <span>
+                  <a href="http://www.hangowa.com/?act=member&op=home" id="top-username"></a>
+      </span> ，欢迎来到 <a href="http://www.hangowa.com" title="首页" alt="首页"><span>汉购网</span></a> <span>[<a href="http://www.hangowa.com/member/?act=login&op=logout">退出</a>] </span>
+                </div>
+                <div id="user-login">
+                    您好，欢迎来到 <a href="http://www.hangowa.com" title="首页" alt="首页">
+					汉购网				</a>
+                    <span class="other">
+            <a href="http://www.hangowa.com/member/api.php?act=toqq" title="QQ账号登录" class="qq"><i></i></a>
+                           <a href="javascript:void(0);" onclick="ajax_form('weixin_form', '微信账号登录', 'http://www.hangowa.com/member/?act=connect_wx&op=index', 360);" title="微信账号登录" class="wx"><i></i></a>      </span>
+                    <span class="login-link"><a href="http://www.hangowa.com/member/?act=login&op=index">请登录</a></span> <span class="login-link"><a href="http://www.hangowa.com/member/?act=login&op=register">立即注册</a></span>
+                </div>
+            </div>
+            <div class="quick-menu">
+                <!--<dl class="down_app">
+				<dt><em class="ico_tel"></em><a href="/wap">移动端</a><i></i></dt>
+				<dd>
+					<div class="qrcode"><img src="http://www.hangowa.com/data/upload/shop/common/mb_app.png"></div>
+					<div class="hint">
+						<h4>扫描二维码</h4> 下载手机客户端
+					</div>
+					<div class="addurl">
+																	</div>
+				</dd>
+			</dl>-->
+                <dl>
+                    <dt><em class="ico_shop"></em>
+			<a href="http://www.hangowa.com/index.php?act=show_joinin&op=index">商家入驻</a></dt>
+                </dl>
+                <dl>
+                    <dt><em class="ico_order"></em><a href="http://www.hangowa.com/index.php?act=member_order">我的订单</a><i></i></dt>
+                    <dd>
+                        <ul>
+                            <li><a href="http://www.hangowa.com/index.php?act=member_order&state_type=state_new">待付款订单</a></li>
+                            <li><a href="http://www.hangowa.com/index.php?act=member_order&state_type=state_send">待确认收货</a></li>
+                            <li><a href="http://www.hangowa.com/index.php?act=member_order&state_type=state_noeval">待评价交易</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><em class="ico_center"></em><a href="/index.php?act=member&op=home">个人中心</a></dt>
+                </dl>
+                <!--<dl>
+        <dt><em class="ico_store"></em><a href="http://www.hangowa.com/index.php?act=member_favorite_goods&op=fglist">我的收藏</a><i></i></dt>
+        <dd>
+          <ul>
+            <li><a href="http://www.hangowa.com/index.php?act=member_favorite_goods&op=fglist">商品收藏</a></li>
+            <li><a href="http://www.hangowa.com/index.php?act=member_favorite_store&op=fslist">店铺收藏</a></li>
+          </ul>
+        </dd>
+      </dl>-->
+                <dl>
+                    <dt><em class="ico_service"></em>客户服务<i></i></dt>
+                    <dd>
+                        <ul>
+                            <li><a href="http://www.hangowa.com/member/article_cate-2.html">帮助中心</a></li>
+                            <li><a href="http://www.hangowa.com/member/article_cate-5.html">售后服务</a></li>
+                            <li><a href="http://www.hangowa.com/member/article_cate-6.html">客服中心</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl class="weixin">
+                    <dt>关注我们<i></i></dt>
+                    <dd>
+                        <h4>扫描二维码<br/> 关注商城微信号
+                        </h4>
+                        <img src="http://www.hangowa.com/data/upload/mobile/05234711548071503.png"> </dd>
+                </dl>
+                <!-- 				<dl><dt><a href="/v1/" target="_blank">旧版网站入口...</a></dt></dl> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- PublicHeadLayout Begin -->
+    <div class="header-wrap">
+        <header class="public-head-layout wrapper">
+            <h1 class="site-logo">
+                <a href="http://www.hangowa.com"><img src="http://www.hangowa.com/data/upload/shop/common/05264938636616549.jpg" class="pngFix"></a>
+            </h1>
+            <div class="logo-test"></div>
+
+            <div class="head-search-layout">
+                <div class="head-search-bar" id="head-search-bar">
+                    <div class="hd_serach_tab" id="hdSearchTab">
+                        <!--<ul><li act="search" class="current"><span>商品</span><i class="arrow"></i></li><li act="store_list"><span>店铺</span></li></ul>-->
+                        <i></i>
+                    </div>
+
+                    <form action="http://www.hangowa.com" method="get" class="search-form" id="top_search_form">
+                        <input name="act" id="search_act" value="search" type="hidden">
+                        <input name="keyword" id="keyword" type="text" class="input-text" value="" maxlength="60" x-webkit-speech lang="zh-CN" onwebkitspeechchange="foo()" placeholder="农谷鲜" data-value="%E5%86%9C%E8%B0%B7%E9%B2%9C" x-webkit-grammar="builtin:search" autocomplete="off" />
+                        <input type="submit" id="button" value="搜索" class="input-submit">
+                    </form>
+                    <!--<form action="http://www.hangowa.com" method="get">
+			<div class="search-box">
+				<input name="keyword" id="keyword" type="text" class="search-text" value="" placeholder="农谷鲜" data-value="%E5%86%9C%E8%B0%B7%E9%B2%9C" />
+				<input id="" class="" type="submit" />
+			</div>
+		</form>-->
+
+                    <div class="search-tip" id="search-tip">
+                        <div class="search-history">
+                            <div class="title">历史纪录<a href="javascript:void(0);" id="search-his-del">清除</a></div>
+                            <ul id="search-his-list">
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E5%92%B8%E9%B8%AD%E8%9B%8B">咸鸭蛋</a></li>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E6%B2%B9">油</a></li>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E9%9B%B6%E9%A3%9F">零食</a></li>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E9%94%85%E5%B7%B4">锅巴</a></li>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E6%89%8B%E5%B7%A5%E9%94%85%E5%B7%B4">手工锅巴</a></li>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E7%BE%8A%E5%A5%B6%E7%B2%89">羊奶粉</a></li>
+                            </ul>
+                        </div>
+                        <div class="search-hot">
+
+                            <div class="title">热门搜索...</div>
+                            <ul>
+                                <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E5%86%9C%E8%B0%B7%E9%B2%9C">农谷鲜</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="keyword">
+                    <ul>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E9%B8%A1%E8%9B%8B">鸡蛋</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E8%B1%86%E7%9A%AE">豆皮</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E5%95%A4%E9%85%92">啤酒</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E8%8B%B9%E6%9E%9C">苹果</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E5%9C%9F%E8%B1%86">土豆</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E7%B1%B3">米</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E6%B2%B9">油</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E7%83%AD%E5%B9%B2%E9%9D%A2">热干面</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E9%BE%99%E8%99%BE">龙虾</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E9%94%85%E5%B7%B4">锅巴</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E7%BD%90%E5%A4%B4">罐头</a></li>
+                        <li><a href="http://www.hangowa.com/?act=search&op=index&keyword=%E5%A4%8F%E6%A9%99">夏橙</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="advantage">
+                <ul>
+                    <li>100%正品 真品真实惠</li>
+                    <li>产地直供 原汁原味</li>
+                    <li>优质配送</li>
+                </ul>
+            </div>
+            <!--    <div class="head-user-menu">
+      <dl class="my-cart">
+                <dt><span class="ico"></span>购物车结算<i class="arrow"></i></dt>
+        <dd>
+          <div class="sub-title">
+            <h4>最新加入的商品</h4>
+          </div>
+          <div class="incart-goods-box">
+            <div class="incart-goods"> <img class="loading" src="http://www.hangowa.com/templates/default/images/loading.gif" /> </div>
+          </div>
+          <div class="checkout"> <span class="total-price">共<i>0</i>种商品</span><a href="http://www.hangowa.com/index.php?act=cart" class="btn-cart">结算购物车中的商品</a> </div>
+        </dd>
+      </dl>
+    </div>-->
+        </header>
+    </div>
+    <!-- PublicHeadLayout End -->
+
+    <!-- publicNavLayout Begin -->
+    <nav class="public-nav-layout ">
+        <div class="wrapper">
+            <div class="all-category">
+                <div class="title">
+                    <!--<i></i>-->
+                    <h3><a href="http://www.hangowa.com/category.html">全部分类</a></h3><i></i>
+                </div>
+                <div class="category">
+                    <ul class="menu">
+                        <li cat_id="35" class="odd">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664138817664236.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/cate-1136-0-0-0-0-0-0-0-0.html">生鲜水果</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="35">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BE%8A%E8%82%89">肉类</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BE%8A%E8%82%89">羊肉</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BE%8A%E8%82%9A">羊肚</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BE%8A%E8%85%BF">羊腿</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BE%8A%E8%85%B0%E5%AD%90">羊腰子</a>
+                                            <a href="">牛肉</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%85%94%E8%82%89">兔肉</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%B0%B4%E6%9E%9C">水果</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%8C%95%E7%8C%B4%E6%A1%83">猕猴桃</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%A6%B4%E8%8E%B2">榴莲</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%9F%91%E6%A9%98">柑橘</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%A5%BF%E6%9F%9A">西柚</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%9F%B3%E6%A6%B4">石榴</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%A4%A9%E6%B0%B4">苹果</a>
+                                            <a href="">梨子</a>
+                                            <a href="">橙子</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%9C%B0%E7%93%9C">地瓜</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%A4%A7%E9%97%B8%E8%9F%B9">海鲜/水产品</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%A4%A7%E9%97%B8%E8%9F%B9">大闸蟹</a>
+                                            <a href="">龙虾</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%94%AC%E8%8F%9C">蔬菜</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%9C%9F%E8%B1%86">土豆</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E4%BB%80%E9%94%A6">什锦蔬菜</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                        <li cat_id="38" class="even">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664139079936762.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/cate-6-0-0-0-0-0-0-0-0.html">蛋奶速食</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="38">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-6-0-0-0-0-0-0-0-0.html">方便速食</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%BD%90%E5%A4%B4">罐头</a>
+                                            <a href="http://www.hangowa.com/cate-61-0-0-0-0-0-0-0-0.html">方便主食</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%9B%8B">蛋类</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B8%A1%E8%9B%8B">土鸡蛋</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%92%B8%E9%B8%AD%E8%9B%8B">咸鸭蛋</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                        <li cat_id="39" class="odd">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664139395659941.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/cate-11-0-0-0-0-0-0-0-0.html">休闲零食</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="39">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%86%89%E9%B1%BC">肉类零食</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%8C%B6%E9%A6%99%E9%B8%A1">茶香鸡</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%83%AD%E6%B2%B3%E9%86%89%E9%B1%BC">郭河醉鱼</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%B8%85%E6%B1%9F">清江野鱼</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B8%AD%E9%94%81%E9%AA%A8">鸭锁骨</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B8%AD%E7%BF%85">鸭翅</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B8%AD%E8%84%96">鸭脖</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%8C%B6%E9%A6%99%E9%B8%AD">茶香鸭</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=search&amp;keyword=%E4%B8%A4%E5%8F%AA%E8%80%81%E9%A5%95">糕点</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%9C%88%E9%A5%BC">月饼</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%9B%B2%E5%A5%87">曲奇饼干</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%85%A5">香酥</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%A5%B6%E9%85%AA%E8%96%84%E9%A5%BC">奶酪薄饼</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                        <li cat_id="40" class="even">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664139690189478.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/cate-1060-0-0-0-0-0-0-0-0.html">粮油杂货</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="40">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                        <span><a href=" http://www.hangowa.com/cate-1135-0-0-0-0-0-0-0-0.html" title="食用油">食用油</a></span>
+                                        <span><a href=" http://www.hangowa.com/cate-1090-0-0-0-0-0-0-0-0.html" title="挂面">挂面</a></span>
+                                        <span><a href=" http://www.hangowa.com/cate-1091-0-0-0-0-0-0-0-0.html" title="大米">大米</a></span>
+                                        <span><a href=" http://www.hangowa.com/cate-1093-0-0-0-0-0-0-0-0.html" title="粗粮">粗粮</a></span>
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-1060-0-0-0-0-0-0-0-0.html">粮油</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/cate-1135-0-0-0-0-0-0-0-0.html">食用油</a>
+                                            <a href="http://www.hangowa.com/cate-1090-0-0-0-0-0-0-0-0.html">挂面</a>
+                                            <a href="http://www.hangowa.com/cate-1091-0-0-0-0-0-0-0-0.html">大米</a>
+                                            <a href="http://www.hangowa.com/cate-1093-0-0-0-0-0-0-0-0.html">粗粮</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%9B%BD%E5%AE%9D%E6%A1%A5%E7%B1%B3">国宝桥米</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%A6%8F%E4%B8%B4%E9%97%A8">福临门</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%87%91%E9%BE%99%E9%B1%BC">金龙鱼</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E4%B8%87%E6%98%9F">万星</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E4%BA%9A%E8%B1%A1">亚象</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%A6%8F%E8%BE%BE%E5%9D%8A">福达坊</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B2%81%E8%8A%B1">鲁花</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-1093-0-0-0-0-0-0-0-0.html">干货</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%9E%A3">枣类</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%B9%B2%E8%8F%9C">干菜</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%9C%A8%E8%80%B3">木耳</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%8F%8C">食用菌</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%8F%87">菇类</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-5-0-0-0-0-0-0-0-0.html">调味品</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/cate-35-0-0-0-0-0-0-0-0.html">酱料</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                        <li cat_id="41" class="odd">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664142223257793.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/cate-1109-0-0-0-0-0-0-0-0.html">酒水饮品</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="41">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-1058-0-0-0-0-0-0-0-0.html">茗茶</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/cate-1080-0-0-0-0-0-0-0-0.html">红茶</a>
+                                            <a href="http://www.hangowa.com/cate-1082-0-0-0-0-0-0-0-0.html">水果茶/果味茶</a>
+                                            <a href="http://www.hangowa.com/cate-1083-0-0-0-0-0-0-0-0.html">绿茶</a>
+                                            <a href="http://www.hangowa.com/cate-1084-0-0-0-0-0-0-0-0.html">花草茶</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/cate-10-0-0-0-0-0-0-0-0.html">冲调谷物/饮品</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/cate-123-0-0-0-0-0-0-0-0.html">冲饮品</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                        <li cat_id="152" class="even">
+                            <div class="class">
+                                <span class="ico"><img src="http://www.hangowa.com/data/upload/shop/goods_category/05664142541437704.png" width="16" height="16"></span>
+                                <h4><a href=" http://www.hangowa.com/?act=special&amp;op=show&amp;special_id=103">名优特色馆</a></h4>
+                                <span class="arrow"></span></div>
+                            <div class="sub-class" cat_menu_id="152">
+                                <div class="sub-class-content">
+                                    <div class="recommend-class">
+                                    </div>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/shop-15.html">农谷鲜-荆门特色</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/item-101046.html">大米</a>
+                                            <a href="http://www.hangowa.com/item-101363.html">鸡蛋</a>
+                                            <a href="http://www.hangowa.com/item-103036.html">莲子</a>
+                                            <a href="http://www.hangowa.com/item-102877.html">红薯</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/shop-48.html">土家购-鹤峰特色</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%B9%A4%E7%87%95">豆皮</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%B2%89%E6%9D%A1">粉条</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E7%AB%8B%E9%87%8E">腊货</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E9%AB%98%E5%B1%B1%E8%8C%B6">茶叶</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/shop-10.html">宜味淘-宜昌特色</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/shop_view-10-17-0-0-0.html">橙子</a>
+                                            <a href="http://www.hangowa.com/shop_view-10-17-0-0-0.html">桔子</a>
+                                            <a href="http://www.hangowa.com/shop_view-10-20-0-0-0.html">香菇</a>
+                                            <a href="http://www.hangowa.com/shop_view-10-19-0-0-0.html">牛肉酱</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/shop-138.html">神农架-高山特色</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=special&amp;op=show&amp;special_id=103">板栗</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%B1%87%E9%87%8E">蜂蜜</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%9B%9B%E5%AD%A3%E6%B0%B4">矿泉水</a>
+                                        </dd>
+                                    </dl>
+                                    <dl>
+                                        <dt>
+                                        <h3><a href="http://www.hangowa.com/?act=special&amp;op=show&amp;special_id=101">保  康-襄阳特色</a></h3>
+                                        </dt>
+                                        <dd class="goods-class">
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E4%BF%9D%E5%BA%B7%E5%B1%B1%E6%A0%B8%E6%A1%83">核桃</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E8%8D%86%E5%B1%B1%E9%94%A6">茶叶</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E6%A9%A1%E5%AD%90%E7%B2%89">橡子粉</a>
+                                            <a href="http://www.hangowa.com/?act=search&amp;keyword=%E5%B0%8F%E9%BA%A6%E9%85%B1">小麦酱</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="sub-class-right">
+                                    <div class="adv-promotions">
+                                    </div>
+                                </div>
+                        </li>
+                    </ul>
+                    </div>
+                    </div>
+                    <ul class="site-menu">
+                        <li><a href="http://www.hangowa.com"><span>首页</span></a></li>
+                        <!--<li class="navitems-on"><a href="http://www.hangowa.com/tm.html" > <span>特卖</span></a></li>-->
+                        <li class="nav_hot">
+                            <a href="" target="_blank">
+        湖北特色馆</a></li>
+                        <li class="nav_hot">
+                            <a href="http://www.hangochina.com/" target="_blank">
+        汉购国际</a></li>
+                        <li class="nav_new">
+                            <a href="http://b2b.hangowa.com/" target="_blank">
+        汉购农猫</a></li>
+                        <li class="nav_hot">
+                            <a href="http://www.hangowa.com/?act=special&amp;op=show&amp;special_id=107" target="_blank">
+        汉购红锚</a></li>
+                        <li class="nav_hot">
+                            <a href="http://www.hangowa.com/?act=special&amp;op=show&amp;special_id=103" target="_blank">
+        县域特产-优品扶植</a></li>
+                    </ul>
+                    <div class="con-cart">
+                        <a target="_self" href="http://www.hangowa.com/index.php?act=cart" class="cart-btn">
+                            <i class="cart-icon"></i>
+                            <em class="cart-num" id="top-cart-count">0</em>
+                            <span>购物车</span>
+                        </a>
+                    </div>
+                    <!--<div class="mod_minicart" style="">
+		<a id="nofollow" target="_self" href="http://www.hangowa.com/index.php?act=cart" class="mini_cart_btn">
+                        <i class="cart_icon"></i> 
+			<em class="cart_num">0</em>
+			<span>购物车</span>
+		</a>
+		<div id="minicart_list" class="minicart_list">
+			<div class="spacer"></div>
+			<div class="list_detail">
+
+				<ul><img class="loading" src="http://www.hangowa.com/templates/default/images/loading.gif" /></ul> 
+				<div class="checkout_box">
+                    <p class="fl">共<em class="tNum">0</em>件商品,合计：<em class="tSum">0</em></p>
+					<a rel="nofollow" class="checkout_btn" href="http://www.hangowa.com/index.php?act=cart" target="_self"> 去结算 </a>
+				</div>
+				<div style="" class="none_tips">
+					<i> </i>
+					<p>购物车中没有商品，赶紧去选购！</p>
+				</div>
+			</div>
+		</div>
+	</div> -->
+                    </div>
+    </nav>
+    <div class="nch-breadcrumb-layout">
+    </div>
+    <link href="http://www.hangowa.com/member/templates/default/css/member.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/member.js"></script>
+
+    <link href="http://www.hangowa.com/templates/default/css/wwi-main.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        .public-nav-layout,
+        .classtab a.curr,
+        .head-search-bar .search-form,
+        .public-nav-layout .category .hover .class {
+            /*background: #a2375f;*/
+        }
+        
+        .public-head-layout .logo-test {
+            color: #a2375f
+        }
+        
+        .public-nav-layout .category .sub-class {
+            border-color: #a2375f;
+        }
+
+    </style>
+    <!--<link href="style/reset.css" rel="stylesheet" type="text/css" />-->
+    <link href="style/index.css" rel="stylesheet" type="text/css" />
+
+    <div class="hm-body">
+        <div class="banner">
+            <a href="#"><img src="images/banner.jpg" /></a>
+        </div>
+        <div class="content">
+            <div class="hm-title product-title">
+                <p class="line"></p>
+                <h2>我们的产品</h2>
+                <h3>our product</h3>
+            </div>
+            <div class="product-list">
+                <ul class="clearfix">
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic01.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic02.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic03.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic04.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic05.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic06.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic07.jpg" /></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0);"><img src="images/product-pic08.jpg" /></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="hm-title join-title">
+                <p class="line"></p>
+                <h2>加入我们</h2>
+                <h3>join us</h3>
+            </div>
+            <div class="joinUs clearfix">
+            
+                    <ul>
+                        <li class="name f-item clearfix">
+                            <div class="l-title">
+                                <div><span>公司名称</span></div>
+                            </div>
+                            <div class="r-content">
+                                <input type="text" name="company_name" />
+                            </div>
+                        </li>
+                        <li class="contacts f-item clearfix">
+                            <div class="l-title">
+                                <div><span>联系人</span></div>
+                            </div>
+                            <div class="r-content">
+                                <input type="text" name="linkman" />
+                            </div>
+                        </li>
+                        <li class="phone f-item clearfix">
+                            <div class="l-title">
+                                <div><span>联系电话</span></div>
+                            </div>
+                            <div class="r-content">
+                                <input type="text" name="phone" />
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="submit-btn"><button>申请加盟</button></div>
+                
+            </div>
+            <div class="hm-title about-title">
+                <p class="line"></p>
+                <h2>关于我们</h2>
+                <h3>about us</h3>
+            </div>
+            <div class="quickMark clearfix">
+                <div><img src="images/quickMark01.jpg">
+                    <p>微信商城</p>
+                </div>
+                <div><img src="images/quickMark02.jpg">
+                    <p>公众号</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $(".submit-btn").click(function() {
+                var company_name=$('input[name="company_name"]').val();
+                var linkman=$('input[name="linkman"]').val();
+                var phone=$('input[name="phone"]').val();
+                    $.ajax({
+                    type: 'POST',
+                    url: 'http://www.hangowa.com/shop/index.php?act=redcat&op=index',
+                    data: {
+                        company_name:company_name,
+                        linkman:linkman,
+                        phone:phone
+                    },
+
+                        dataType: "JSON",
+                    success: function(data) {
+                        if(data.status===true){
+                            confirm(data.msg);
+                        }else{
+                           alert(data.msg)
+                        }
+                    }
+                })
+            })
+
+        })
+
+    </script>
+
+
+
+    <script language="javascript">
+        function fade() {
+            $("img[rel='lazy']").each(function() {
+                var $scroTop = $(this).offset();
+                if ($scroTop.top <= $(window).scrollTop() + $(window).height()) {
+                    $(this).hide();
+                    $(this).attr("src", $(this).attr("shopwwi-url"));
+                    $(this).removeAttr("rel");
+                    $(this).removeAttr("name");
+                    $(this).fadeIn(500);
+                }
+            });
+        }
+
+        if ($("img[rel='lazy']").length > 0) {
+            $(window).scroll(function() {
+                fade();
+            });
+        };
+        fade();
+
+    </script>
+    <link href="http://www.hangowa.com/chat/templates/default/css/chat.css" rel="stylesheet" type="text/css">
+    <div style="clear: both;"></div>
+    <div id="web_chat_dialog" style="display: none;float:right;">
+    </div>
+    <a id="chat_login" href="javascript:void(0)" style="display: none;"></a>
+    <script type="text/javascript">
+        var LOGIN_SITE_URL = 'http://www.hangowa.com/member';
+        var CHAT_SITE_URL = 'http://www.hangowa.com/chat';
+        var SHOP_SITE_URL = 'http://www.hangowa.com';
+        var connect_url = "http://www.hangowa.com:8091";
+
+        var layout = "layout/home_layout.php";
+        var act_op = "special_show";
+        var chat_goods_id = "";
+        var user = {};
+
+        user['u_id'] = "";
+        user['u_name'] = "";
+        user['s_id'] = "";
+        user['s_name'] = "";
+        user['s_avatar'] = "http://www.hangowa.com/data/upload/shop/common/default_store_avatar.gif";
+        user['avatar'] = "http://www.hangowa.com/data/upload/shop/common/default_user_portrait.gif";
+
+        $("#chat_login").nc_login({
+            action: '/index.php?act=login',
+            nchash: '',
+            formhash: 'aJZN-EtAtVOa7Vg7B7bJ9AEdEqWcOW7'
+        });
+
+    </script>
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/jquery.charCount.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/jquery.smilies.js" charset="utf-8"></script>
+    <script type="text/javascript" src="http://www.hangowa.com/chat/resource/js/user.js" charset="utf-8"></script>
+
+    <!--start 底部-->
+    <footer>
+
+        <div class="foot_bg1">
+            <div class="wrapper">
+                <div class="con">
+                    <ul class="clearfix">
+                        <li>
+                            <dl class="s1">
+                                <dt>新手指南</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-6.html" title="如何注册成为会员">
+								如何注册成为会员 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-8.html" title="手机/邮箱修改">
+								手机/邮箱修改 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-40.html" title="忘记密码/会员名">
+								忘记密码/会员名 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-39.html" title="账号无法登录">
+								账号无法登录 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-10.html" title="账户安全">
+								账户安全 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="s2">
+                                <dt>购物指南</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-21.html" title="购物流程">
+								购物流程 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-19.html" title="商品挑选/购买">
+								商品挑选/购买 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-18.html" title="订单查询">
+								订单查询 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="s3">
+                                <dt>物流配送</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-13.html" title="常用快递">
+								常用快递 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-15.html" title="修改收货地址">
+								修改收货地址 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-14.html" title="货物签收">
+								货物签收 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-12.html" title="发货问题">
+								发货问题 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="s4">
+                                <dt>支付方式</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-30.html" title="礼品卡优惠券">
+								礼品卡优惠券 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-29.html" title="支付宝/微信支付">
+								支付宝/微信支付 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="s5">
+                                <dt>售后服务</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-33.html" title="退换货政策">
+								退换货政策 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-32.html" title="退换货流程">
+								退换货流程 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-34.html" title="退款申请">
+								退款申请 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl class="s6">
+                                <dt>商家服务</dt>
+                                <dd><a href="http://www.hangowa.com/member/article-43.html" title="电子面单操作手册">
+								电子面单操作手册 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/member/article-41.html" title="关于汉购网">
+								关于汉购网 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/index.php?act=show_help&amp;op=index&amp;t_id=91&amp;help_id=101" title="招商政策">
+								招商政策 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/index.php?act=show_joinin&amp;op=index" title="联系我们">
+								联系我们 </a>
+                                </dd>
+                                <dd><a href="http://www.hangowa.com/index.php?act=show_help&amp;op=index&amp;t_id=91&amp;help_id=102" title="收费标准">
+								收费标准 </a>
+                                </dd>
+                            </dl>
+                        </li>
+                        <!--<div class="ewm">
+						<p class="left"><img src="http://www.hangowa.com/data/upload/mobile/05234711548071503.png" ></p>
+						<h2>汉购网官方微信二维码 <br /><span>扫一扫<br />惊喜等你哟！</span></h2> 
+					</div>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="foot_bg2">
+            <div class="wrapper">
+                <div class="con2">
+                    <p><a href="http://www.hangowa.com">返回首页</a>
+                        <span>|</span> <a target="_blank" href="/?act=show_joinin&amp;op=index">商家入驻</a>
+                        <span>|</span> <a href="/member/?act=article&amp;article_id=23">联系我们</a>
+                        <span>|</span> <a href="/member/article-41.html">关于汉购网</a>
+                        <span>|</span> <a target="_blank" href="https://www.hansap.com/">汉搜云</a>
+                        <span>|</span><a href="http://www.hangowa.com/?act=link&op=index">友情链接</a>
+                    </p>
+                    <p>
+                        &copy;2005-2018 火凤凰农商互联科技（湖北）有限公司版权所有，并保留所有权利
+                    </p>
+
+                </div>
+
+
+            </div>
+            <p>
+                <script>
+                    var _hmt = _hmt || [];
+                    (function() {
+                        var hm = document.createElement("script");
+                        hm.src = "//hm.baidu.com/hm.js?d875947cc5453243549c5bc6172ef84f";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(hm, s);
+                    })();
+
+                </script>
+            </p>
+        </div>
+        <p class="footer-fp-img">
+            <a key="549264e13b05a3da0fbd611a" logo_size="83x30" logo_type="realname" href="http://www.anquan.org">
+                <script src="//static.anquan.org/static/outer/js/aq_auth.js"></script>
+            </a>
+            <!--		<a  key ="549264e13b05a3da0fbd611a"  logo_size="124x47"  logo_type="realname"  href="http://www.anquan.org" ><script src="//static.anquan.org/static/outer/js/aq_auth.js"></script></a>-->
+            <a href="javascrit:void(0);"><img src="/shop/templates/default/images/gangting.gif" /></a>
+            <a href="javascrit:void(0);"><img src="/shop/templates/default/images/beian.jpg" /></a>
+            <a href="http://wljg.egs.gov.cn/iciaicweb/dzbscheck.do?method=change&id=E2014121800067587" target="_blank"><img src="/shop/templates/default/images/gongshang-icon.png" /></a>
+        </p>
+    </footer>
+    <!--end 底部-->
+    <script>
+        $(function() {
+            $(".foot_bg1 ul li:last").css("border", "none");
+        })
+
+    </script>
+
+
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/jquery.cookie.js"></script>
+    <link href="http://www.hangowa.com/data/resource/js/perfect-scrollbar.min.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="http://www.hangowa.com/data/resource/js/qtip/jquery.qtip.min.js"></script>
+    <link href="http://www.hangowa.com/data/resource/js/qtip/jquery.qtip.min.css" rel="stylesheet" type="text/css">
+    <!-- 对比 -->
+    <script src="http://www.hangowa.com/resource/js/compare.js"></script>
+    <script src="http://www.hangowa.com/resource/js/main.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            // Membership card
+            $('[nctype="mcard"]').membershipCard({
+                type: 'shop'
+            });
+        });
+
+        var name = jQuery.cookie('hango_member_name') ? jQuery.cookie('hango_member_name') : '';
+        var uid = jQuery.cookie('hango_member_id') ? jQuery.cookie('hango_member_id') : '';
+
+    </script>
+
+    <!--start 360点睛代码-->
+
+    <!--end 360点睛代码-->
+
+    <!--start 小能客服代码-->
+    <script>
+        NTKF_PARAM = {
+            siteid: 'hf_1000', //企业ID，必填，取值参见文档开始表
+            sellerid: "",
+            settingid: 'hf_1000_1508484886546', //缺省客服配置ID，必填，取值参见文档开始表
+            uid: uid, //用户ID,未登录可以为空
+            uname: name, //用户名，未登录可以为空
+        };
+
+    </script>
+    <script type="text/javascript" src="http://dl.ntalker.com/js/b2b/ntkfstat.js?siteid=hf_1000" charset="utf-8"></script>
+    <!--end 小能客服代码-->
+</body>
+
+</html>

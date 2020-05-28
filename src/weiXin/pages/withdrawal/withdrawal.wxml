@@ -1,0 +1,26 @@
+<!--pages/withdrawal/withdrawal.wxml-->
+<scroll-view scroll-y="true" class="scroll" bindscrolltolower='bindpushList'>  
+    <block wx:for='{{dataList}}'>
+      <view class='block'>
+        <view class='top'>
+            <view class='t_1'>{{item.notice_info}}</view>
+            <view class='t_2'>
+              <view class='mini'>+</view>
+              <view class='money'>{{item.cash_money}}</view>
+            </view>
+        </view>
+        <view class='bom'>
+            <view class='b L'>
+              <view class='b_1'>申请提现时间</view>
+              <view class='b_2'>{{item.add_time_text}}</view>
+            </view>
+            <view class='m L'>
+                <view class='m_1'>状态</view>
+                <view class='m_2'>{{item.out_state_text}}</view>
+            </view>
+        </view>
+      </view>
+    </block>
+    <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+</scroll-view>
+

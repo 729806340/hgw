@@ -1,0 +1,165 @@
+/**app.wxss**/
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* reset.wxss */
+
+page, view, text, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p,
+blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend,
+input, button, textarea, menu {
+  margin: 0;
+  padding: 0;
+  font-weight: normal !important;
+}
+
+page {
+  overflow: hidden;
+  background: #f6f6f6;
+}
+
+button::after {
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+input {
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+caption, th {
+  font-weight: normal;
+}
+
+html, body, fieldset, img, iframe, abbr, button {
+  border: 0;
+}
+
+i, cite, em, var, address, dfn {
+  font-style: normal;
+}
+
+li, dd {
+  list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6, small {
+  font-size: 100%;
+}
+
+q:before, q:after {
+  content: none;
+}
+
+textarea {
+  overflow: auto;
+  resize: none;
+}
+
+label, summary {
+  cursor: default;
+}
+
+a, button {
+  cursor: pointer;
+}
+
+.placeholder {
+  color: #bdbdbd;
+}
+
+.noshop {
+  text-align: center;
+  font-size: 26rpx;
+  color: #bbb;
+  margin: 30rpx 0;
+}
+
+.title {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30rpx;
+  font-size: 28rpx;
+  position: fixed;
+  height: 80rpx;
+  top: 0;
+  background-color: #f5f5f5;
+  z-index: 99;
+}
+
+.storeNum {
+  color: #888;
+}
+
+.storeNum text, .management text {
+  color: #2eb772;
+}
+
+.footerBtn {
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  height: 118rpx;
+  line-height: 118rpx;
+  font-size: 34rpx;
+}
+
+.footerBtn text {
+  display: inline-block;
+  border-radius: 20rpx;
+  width: 690rpx;
+  height: 86rpx;
+  line-height: 86rpx;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  background: linear-gradient(to right, #7bdaaa, #49d68f);
+}
+
+.price_num {
+  font-size: 72rpx;
+}
+
+.price_color {
+  color: #fa7e36;
+}
+
+.noData {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.noData image {
+  width: 258rpx;
+  height: 258rpx;
+  margin-top: 184rpx;
+}
+
+.noData view {
+  font-size: 28rpx;
+  margin-top: 44.5rpx;
+  color: #888;
+}
+@import "weui.wxss";

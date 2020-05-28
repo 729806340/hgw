@@ -1,0 +1,6 @@
+cache
+config/config.ini.php
+session
+log
+upload
+resource/GatewayWorker

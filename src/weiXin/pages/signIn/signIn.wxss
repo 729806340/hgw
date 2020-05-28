@@ -1,0 +1,22 @@
+page{
+  background: #fff;
+}
+.erweima{
+  width: 410rpx;
+  height: 410rpx;
+  margin: 68rpx auto;
+  display: block;
+}
+.text{
+  font-size: 34rpx;
+  color: #333;
+  text-align: center;
+}
+.address{
+  font-size: 34rpx;
+  color: #333;
+  text-align: center;
+  padding: 0 50rpx;
+  box-sizing: border-box;
+  margin-top: 160rpx;
+}

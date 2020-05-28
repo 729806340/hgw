@@ -1,0 +1,41 @@
+<view class='root'>
+  <view class='coupons' bindtap='getCoupon'>
+    <image src='../../weixinImg/djqljlq_img@2x.png'></image>
+    <view class='cou_detail'>
+      <view class='cou_price'>
+        <view class='price'>
+          <text class='symbol'>￥</text>
+          <text class='num'>5</text>
+        </view>
+        <text class='name'>无门槛通用券</text>
+      </view>
+      <view class='cou_time'>有效期：2018.08-.31-2018.12.31</view>
+    </view>
+  </view>
+  <view class='coupons'>
+    <image src='../../weixinImg/djqyjlq_img@2x.png'></image>
+    <view class='cou_detail'>
+      <view class='cou_price'>
+        <view class='price'>
+          <text class='symbol'>￥</text>
+          <text class='num'>5</text>
+        </view>
+        <text class='name'>无门槛通用券</text>
+      </view>
+      <view class='cou_time'>有效期：2018.08-.31-2018.12.31</view>
+    </view>
+  </view>
+  <view class='coupons' bindtap='getCoupon'>
+    <image src='../../weixinImg/djqljlq_img@2x.png'></image>
+    <view class='cou_detail'>
+      <view class='cou_price'>
+        <view class='price'>
+          <text class='symbol'>￥</text>
+          <text class='num'>5</text>
+        </view>
+        <text class='name'>无门槛通用券</text>
+      </view>
+      <view class='cou_time'>有效期：2018.08-.31-2018.12.31</view>
+    </view>
+  </view>
+</view>

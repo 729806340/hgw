@@ -1,0 +1,326 @@
+<view class='root'>
+  <form bindsubmit="formSubmit" report-submit="true">
+    <scroll-view scroll-y class='scroll'>
+      <view class='column_block'>
+        <view class='location_layout'  wx:if="{{chain_id==0}}"  bindtap='goShopMa'>
+          <view class='location_col' wx:if="{{address_info}}">
+            <view class='row'>
+              <view class='location_t11'>收货人：{{address_info.true_name}}</view>
+              <view class='location_t2'>{{address_info.mob_phone}}</view>
+            </view>
+            <view class='location_t4'>收货地址：{{address_info.area_info +''+address_info.address}}</view>
+          </view>
+          <view class='location_col' wx:else>
+            <view class='row'>
+              <view class='location_t11'>请选择您的收货地址</view>
+            </view>
+          </view>
+          <view style='flex:1'></view>
+          <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+        </view>
+
+        <view class='location_layout'  wx:else bindtap='goMap'>
+          <view class='location_col'>
+            <view class='row'>
+              <view class='location_t11'>提货点：{{cha_info+''+address.chain_name}}</view>
+            </view>
+          </view>
+          <view style='flex:1'></view>
+          <view  class="chain_id"> 
+              <view class="chain_s"></view>
+              <image src='../../weixinImg/navigate_icon@2x.png' class='img_morese' mode='aspectFit'></image>
+          </view>
+        </view>
+        <image src='../../weixinImg/dz_img@2x.png' class='fg_mg' mode='widthFix'></image>
+      </view>
+
+      <view class='ping' wx:if="{{is_pintuan!=0}}">
+        <view class='ping_Status'>
+          <text class='pin' wx:if="{{is_pintuan!=0&&tuan_id!=0}}">[正在参团]</text>
+          <text class='pin' wx:else>[正在开团]</text>
+          为你推荐仅差{{limit_user}}人的团，完成支付即可拼购成功
+        </view>
+        <scroll-view scroll-x class='ping_user' wx:if="{{is_pintuan!=0&&tuan_id!=0}}">
+          <block wx:for="{{tuan_user_list}}" wx:key="uq4">
+              <view class='user_img'>
+                <image class='userImg green' src='{{item.member_avatar}}'></image>
+                <view class='status' wx:if="{{index==0}}">团长</view>
+                <view class='status' wx:if="{{index!=0 && item.state==0}}">待支付</view>
+              </view>
+          </block>
+          <block wx:for="{{oldLisimg}}" wx:key="uq4">
+            <view class='user_img'>
+              <image class='userImg' src='../../weixinImg/txwk_icon@2x.png'></image>
+            </view>
+          </block>
+        </scroll-view>
+        <scroll-view scroll-x class='ping_user' wx:else>
+          <view class='user_img'>
+            <image class='userImg green' src='{{pinImg}}'></image>
+            <view class='status'>待支付</view>
+          </view>
+          <view class='user_img'>
+            <image class='userImg' src='../../weixinImg/txwk_icon@2x.png'></image>
+          </view>
+        </scroll-view>
+        <image class='pingImg' src='../../weixinImg/ctbg_img@2x.png'></image>
+      </view>
+
+      <block wx:for="{{pay_list}}" wx:key="{{item.store_id}}">
+        <view class='goods_layout'>
+          <view class='goods_title_row'>
+            <view style="display:flex;align-item:center;">
+              <image src='../../weixinImg/dptb_icon@2x.png' class='img_shop'></image>
+              <view class='shop_name'>{{item.store_name}}</view>
+            </view>
+            <view class='goods_title1' data-type="2" data-index="{{index}}" bindtap="showModal" wx:if="{{item.store_voucher_list_all.length!=0}}" data-list="{{item.store_voucher_list_all}}">
+              <view class='t11'>领劵</view>
+            </view>
+          </view>
+          <block wx:for="{{item.goods_list}}" wx:for-item="data" wx:key="{{data.goods_id}}">
+            <view class='goods_center_row'>
+              <image class='goods_center_img' src='{{data.goods_image_url}}' mode="aspectFill"></image>
+              <view class='goods_center_col'>
+                <view style='flex:1'></view>
+                <view wx:if="{{data.premiums}}" class='goods_center_name1'>
+                  <view class="z_t">赠</view>
+                  {{data.goods_name}}
+                </view>
+                <view wx:else class='goods_center_name'>
+                  <view class='ping_t' wx:if="{{data.is_pintuan==1}}">拼购</view>
+                  {{data.goods_name}}
+                </view>
+                <view class='t6' wx:if="{{data.goods_spec}}">{{data.goods_spec}}</view>
+                <view class='t20' wx:if="{{data.ifxianshi}}">限购:{{data.xianshi_limit}}件</view>
+                <view style='flex:1'></view>
+                <view class='goods_center_row1'>
+                  <view class='goods_center_t2' wx:if="{{data.ifxianshi}}">
+                     <image src="../../weixinImg/ms_icon@2x.png"></image>
+                     <view>￥{{data.xianshi_info.xianshi_price}}</view>
+                     <view class="xianshi_price">￥{{data.xianshi_info.goods_price}}</view>
+                   </view>
+                  <view class='goods_center_t2'  wx:else>￥{{data.goods_price}}</view>
+                  <view style='flex:1'></view>
+                  <view class='goods_center_num'>x{{data.goods_num}}</view>
+                </view>
+                <view style='flex:1'></view>
+              </view>
+            </view>
+          </block>
+          <!-- 满赠减活动 -->
+          <view class='mj_row' wx:if="{{item.store_mansong_rule_list.length!=''}}">
+            <view class='mj_icon newss' wx:if="{{item.store_mansong_rule_list.discount!=0&&item.store_mansong_rule_list.goods_id>0}}">>满减满赠</view>
+            <view class='mj_icon_2' wx:if="{{item.store_mansong_rule_list.discount!=0&&item.store_mansong_rule_list.goods_id==0}}">满减</view>
+            <view class='mj_icon_2' wx:if="{{item.store_mansong_rule_list.discount==0&&item.store_mansong_rule_list.goods_id>0}}">满赠</view>
+            <view class='mj_content' wx:if="{{item.store_mansong_rule_list.discount==0&&item.store_mansong_rule_list.goods_id>0}}">满{{item.store_mansong_rule_list.price}}元，获得礼包：{{item.store_mansong_rule_list.mansong_goods_name}}，赠完为止</view>
+            <view class='mj_content' wx:if="{{item.store_mansong_rule_list.discount!=0&&item.store_mansong_rule_list.goods_id==0}}">满{{item.store_mansong_rule_list.price}}元减{{item.store_mansong_rule_list.discount}}</view>
+            <view class='mj_content' wx:if="{{item.store_mansong_rule_list.discount!=0&&item.store_mansong_rule_list.goods_id>0}}">满{{item.store_mansong_rule_list.price}}元减{{item.store_mansong_rule_list.discount}}活动，获得礼包：{{item.store_mansong_rule_list.mansong_goods_name}}</view>
+          </view>
+
+          <!-- <view class='mj_bottom_row_zp' bindtap='goZp' data-item='{{item.store_mansong_rule_list.goods_list}}'>
+            <view class='z_t'>赠</view>
+            <block>
+              <image src='../../images/spd_icon@2x.png' class='mj_bottom_zp' mode='aspectFit'></image>
+            </block>
+            <view style='flex:1'> </view>
+            <view class='mj_bottom_t2'>共1类</view>
+            <image src='/weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+          </view> -->
+          <!-- <view class='gray_line_1' wx:if="{{item.store_mansong_rule_list}}"></view> -->
+          <!-- 满赠结束 -->
+          <!-- <view class='yhj_layout bt' bindtap='show_vh' wx:if="{{item.store_voucher_list.length!=0}}" data-list="{{item.store_voucher_list}}">
+            <view class='yhj_t1'>代金券</view>
+            <view style='flex:1'></view>
+            <view class='yhj_t2' wx:if="{{item.store_voucher_list.length!=0&&coupon==''}}">{{item.store_voucher_list.length}}张可用</view>
+            <view class='yhj_t2' wx:elif="{{item.store_voucher_list.length!=0&&coupon!=''}}">{{Voucheramount}}元代金券</view>
+            <view class='yhj_t2' wx:else>无可用代金券</view>
+            <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+          </view> -->
+          <view class='yhj_layout bt' bindtap='showModal' data-index="{{index}}" data-type="1" wx:if="{{item.store_voucher_list.length!=0}}" data-list="{{item.store_voucher_list}}">
+            <view class='yhj_t1'>优惠券</view>
+            <view style='flex:1'></view>
+            <view class='yhj_t2' wx:if="{{item.store_voucher_list.length!=0&&item.vou_allNum==0}}">{{store_voucher_list.length==0?item.store_voucher_list.length:store_voucher_list.length}}张可用</view>
+            <view class='yhj_t2' wx:elif="{{item.store_voucher_list.length!=0&&item.vou_allNum!=0}}">{{item.vou_allNum}}元优惠券</view>
+            <view class='yhj_t2' wx:else>无可用优惠券</view>
+            <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+          </view>
+          <view class='yhj_layout'>
+            <view class='yhj_t1'>买家留言:</view>
+            <input class='ly_input1' bindinput='ly_input' data-storeid="{{item.store_id}}" placeholder='选填:可填写希望送达的时间,注意事项等' placeholder-class='placeholder' maxlength="30"></input>
+          </view>
+          <view class='goods_bottom_row'>
+            <view style='flex:1'></view>
+            <view class='goods_bottom_t1'>共{{item.store_goods_num_total}}件商品 小计:</view>
+            <view class='goods_center_t1'>￥{{item.store_goods_total}}</view>
+            <view class='goods_bottom_t1' wx:if="{{item.freight > 0}}">（需支付邮费：{{item.freight}}）</view>
+          </view>
+        </view>
+      </block>
+
+            <!-- 优惠券领取列表弹框 -->
+       <view class="voucher_screen" bindtap="hideModal" data-type='2' wx:if="{{VoucherStatus}}"></view>
+       <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{VoucherStatus}}">
+         <view class='voucher_a'>
+           <text class="vouch_title">优惠券</text>
+           <image class='vouch_img' src='../../weixinImg/gb_icon@2x.png' catchtap="hideModal"></image>
+           <scroll-view class='vou_fixed' scroll-y>
+             <block wx:for="{{store_voucher_list_all}}" wx:key="uip">
+               <view class="vouch_list_img" catchtap="Receive_voucher" data-index="{{index}}" data-type="2" data-id="{{item.voucher_t_id}}" data-index="{{index}}">
+                 <image src="../../weixinImg/dpyhq_img@2x.png"></image>
+                 <view class="vouch_text">
+                   <view class="mony">
+                     ¥
+                     <text class="mony_max">{{item.voucher_t_price}}</text>
+                     {{item.voucher_t_desc}}
+                   </view>
+                   <view class="time_vou">
+                     <view>有效期：{{item.voucher_t_start_date+"-"+item.voucher_t_end_date}}</view>
+                     <button class="{{item.stype==0?'btn_vou':'btn_vous'}}">
+                       {{item.vou_text}}
+                     </button>
+                   </view>
+                 </view>
+               </view>
+             </block>
+           </scroll-view>
+         </view>
+       </view>
+
+
+                <!-- 优惠券使用列表弹框 -->
+        <view class="voucher_screen" bindtap="hideModal"  data-type='1' wx:if="{{VouStatus}}"></view>
+          <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{VouStatus}}">
+            <view class='voucher_a'>
+              <text class="vouch_title">优惠券</text>
+              <image class='vouch_img' src='../../weixinImg/gb_icon@2x.png' catchtap="hideModal"></image>
+              <scroll-view class='vou_fixed' scroll-y>
+                <block wx:for="{{store_voucher_list}}" wx:key="uip">
+                  <view class="vouch_list_img" catchtap="Receive_voucher" data-index="{{index}}" data-type="1" data-id="{{item.voucher_t_id}}" data-index="{{index}}">
+                    <image src="../../weixinImg/dpyhq_img@2x.png"></image>
+                    <view class="vouch_text">
+                      <view class="mony">
+                        ¥
+                        <text class="mony_max">{{item.voucher_price}}</text>
+                        {{item.voucher_desc}}
+                      </view>
+                      <view class="time_vou">
+                        <view>有效期：{{item.voucher_start_date+"-"+item.voucher_end_date}}</view>
+                        <button class="{{item.ptype==0?'btn_vou':'btn_vous'}}">
+                          {{item.vou_texts}}
+                        </button>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </scroll-view>
+            </view>
+          </view>
+
+        <!-- 使用红包弹框 -->
+        <view class="voucher_screen" bindtap="hideModal"  data-type='3' wx:if="{{show_ms}}"></view>
+          <view animation="{{animationData}}" class="voucher_attr_box" wx:if="{{show_ms}}">
+            <view class='voucher_a'>
+              <text class="rpacket_title">红包</text>
+              <image class='vouch_img' src='../../weixinImg/gb_icon@2x.png' catchtap="hideModal"></image>
+              <scroll-view class='vou_fixed' scroll-y>
+                <block wx:for="{{rpt_list}}" wx:key="uip">
+                  <view class="vouch_list_img" catchtap="check" data-index="{{index}}" data-type="3" data-index="{{index}}">
+                    <image src="../../weixinImg/dpyhq_img@2x.png"></image>
+                    <view class="vouch_text">
+                      <view class="mony">
+                        ¥
+                        <text class="mony_max">{{item.rpacket_price}}</text>
+                      </view>
+                      <view class="time_vou">
+                        <view class="iter">{{item.desc}}</view>
+                        <button class="{{!item.checked?'btn_vou':'btn_vous'}}">
+                          {{item.vou_texts}}
+                        </button>
+                      </view>
+                    </view>
+                  </view>
+                </block>
+              </scroll-view>
+            </view>
+          </view>
+
+       
+      <view class='yhj_layout m24' data-type="3" bindtap='showModal'>
+        <view class='yhj_t1'>红包</view>
+        <view style='flex:1'></view>
+        <view class='yhj_t2' wx:if="{{rpt_list.length!=0&&hobao==''}}">{{rpt_list.length}}个可用</view>
+        <view class='yhj_t2' wx:elif="{{rpt_list.length!=0&&hobao!=''}}">{{redNm}}元红包</view>
+        <view class='yhj_t2' wx:else>无可用红包</view>
+        <!-- <view class='yhj_t2' wx:if="{{sp_rpt!=''}}">{{sp_rpt.t1}}</view> -->
+        <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit'></image>
+      </view>
+
+
+      <view class='pay_layout' wx:if="{{available_predeposit==0&&available_rc_balance==0?false:true}}">
+        <view class='pay_row' bindtap='change_pay_type' data-type="1">
+          <image class='img_pay' mode='aspectFit' src='../../weixinImg/ycktb_icon@2x.png'></image>
+          <view class='pay_con'>
+            <view class='pay_t1'>预存款余额支付</view>
+            <view class='pay_t2' wx:if="{{available_predeposit!=0}}">可用余额{{available_predeposit}}元</view>
+            <view class='pay_t3' wx:else>无可用余额</view>
+          </view>
+          <view style='flex:1'></view>
+          <switch checked="{{yuesdsdwds}}" disabled="{{available_predeposit==0}}" color='#2EB772' />
+        </view>
+
+
+        <view class='pay_row_end' bindtap='change_pay_type' data-type="2">
+          <image class='img_pay' mode='aspectFit' src='../../weixinImg/czk_icon@2x.png'></image>
+          <view class='pay_con'>
+            <view class='pay_t1'>充值卡余额支付</view>
+            <view class='pay_t2' wx:if="{{available_rc_balance!=0}}">可用余额{{available_rc_balance}}元</view>
+            <view class='pay_t3' wx:else>无可用余额</view>
+          </view>
+          <view style='flex:1'></view>
+          <switch checked="{{yuesdsdwd}}" disabled="{{available_rc_balance==0}}" color='#2EB772' />
+        </view>
+      </view>
+
+    </scroll-view>
+    <view class='row3'>
+      <view class='col2'>
+        <view class='row4'>
+          <view class='t2'>合计:</view>
+          <view class='t3'>￥{{order_amount}}</view>
+        </view>
+      </view>
+
+      <view style='flex:1'></view>
+      <view class='t4'>共{{num}}件商品</view>
+      <button formType="submit" class="{{is_submit?'btn_submit':'btn_forbit'}}">提交订单</button>
+    </view>
+  </form>
+</view>
+
+<!-- <view class='black_layout' wx:if="{{show_ms}}" bindtap='hide_ms'></view>
+<view class='mj_bottom_layout' wx:if="{{show_ms}}">
+  <view class='mj_bottom_t1'>红包</view>
+  <block wx:for="{{rpt_list}}" data-item='{{item}}'>
+    <block>
+      <view class='mj_bottom_row_no_line' bindtap="check" data-index="{{index}}">
+        <image src="{{item.checked?'../../weixinImg/swmr1_img@2x.png':'../../weixinImg/swmr2_img@2x.png'}}" class='img_circle'></image>
+        <view class='mj_content_1'>{{item.rpacket_price}}元红包</view>
+      </view>
+    </block>
+  </block>
+  <view class='mj_bottom_btn' bindtap='hide_ms'>确认</view>
+</view> -->
+
+<!-- <view class='black_layout' wx:if="{{show_vh}}" bindtap='hide_ms'></view>
+<view class='mj_bottom_layout' wx:if="{{show_vh}}">
+  <view class='mj_bottom_t1'>代金券</view>
+  <block wx:for="{{store_voucher_list}}" data-item='{{item}}'>
+    <block>
+      <view class='mj_bottom_row_no_line' bindtap="voucher" data-index="{{index}}">
+        <image src="{{item.checked?'../../weixinImg/swmr1_img@2x.png':'../../weixinImg/swmr2_img@2x.png'}}" class='img_circle'></image>
+        <view class='mj_content_1'>{{item.voucher_price}}元代金券</view>
+      </view>
+    </block>
+  </block>
+  <view class='mj_bottom_btn' bindtap='hide_ms'>确认</view>
+</view> -->

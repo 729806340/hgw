@@ -1,0 +1,68 @@
+<view class='back'>
+<!-- 手机号，搜索框 -->
+  <view class='dis'>
+    <view class='picker'>
+      <view class='iph'>{{array[index]}}</view>
+      <image src='../../weixinImg/assets/shengyu.png'></image>
+    </view>
+    <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class='picker'>
+        <view class='iph'>{{array[index]}}</view>
+        <image src='../../weixinImg/assets/shengyu.png'></image>
+      </view>
+    </picker>  -->
+    <!--搜索框-->
+    <view class='search_layout' bindtap="gomap">
+      <icon type="search" size="12" class='icon_search' bindtap='handleinput'></icon>
+      <input disabled='true' class='search_txt'  placeholder="请输入提货地址" confirm-type="search"  bindinput='handleinput'/>
+    </view>
+  </view>
+
+  <view class='new_address'>
+    <view class="l">
+      您目前的位置：{{city_name}}
+    </view>
+    <view class="r" bindtap="again">
+      <image class="icon" src="../../weixinImg/dwei.png"></image>
+      重新定位
+    </view>
+  </view>
+</view>
+
+<view class='text' wx:if='{{dataList.default_tuanzhang != ""}}'>
+  <view class='new'>当前团长</view>
+  <view class='cont'>
+      <image src='{{dataList.default_tuanzhang.avatar}}'></image>
+      <view class='txt'>
+        <view class='t_1'>{{dataList.default_tuanzhang.name}}</view>
+        <view class='t_2'>
+          <text class="t_2_t">取货地址：</text>
+          <text class="t_2_b">{{dataList.default_tuanzhang.address}}{{dataList.default_tuanzhang.building}}</text>
+        </view>
+        <view class='bon'>
+            <view class='t_t'>距您： {{dataList.default_tuanzhang.distance}}</view>
+        </view>
+      </view>
+  </view>
+</view>
+<block wx:for='{{dataList.tuanzhang_list}}' wx:key='q'>
+    <view class='text'>
+    <view class='ber'>附近团长</view>
+      <view class='cont'>
+          <image src='{{item.avatar}}'></image>
+          <view class='txt'>
+            <view class='t_1'>{{item.name}}</view>
+            <view class='t_2'>
+              <view class='t_2'>
+                <text class="t_2_t">取货地址：</text>
+                <text class="t_2_b">{{item.address}}{{item.building}}</text>
+              </view>
+            </view>
+            <view class='bon'>
+                <view class='t_t'>距您： {{item.distance}}</view>
+                <view class='btn' bindtap="setTuanzhang" data-id='{{item.id}}'>选择他</view>
+            </view>
+          </view>
+      </view>
+    </view>
+</block>

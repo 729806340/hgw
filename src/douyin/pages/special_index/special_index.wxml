@@ -1,0 +1,18 @@
+<import src="../../template/template.wxml" />
+<view class='white_bg'></view>
+<scroll-view scroll-y class='scroll'>
+  <view class='root'  style="background-color:{{special_background}}">
+    <view class='head_row' wx:if="{{bannerImg.length>0}}">
+      <!-- 轮播图 -->
+      <swiper class='swiper_item' circular="true" indicator-dots="{{bannerImg.length>1}}" autoplay="{{true}}" indicator-color='#fff' indicator-active-color='#2EB772' current="{{current}}">
+        <block wx:for="{{bannerImg}}" wx:key="q1">
+          <swiper-item class="swiper-item" catchtouchmove="stopTouchMove">
+            <image src="{{item.image}}" class="slide-image" mode='aspectFill' bindtap='GoSome' data-data='{{item.data}}' data-type="{{item.type}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+       <!-- <image bindtap='scanf' src='' class='img_scanf' mode='aspectFit' /> -->
+    </view>
+    <template is="main_template" data="{{indexList,xs_time}}" />
+  </view>
+</scroll-view>

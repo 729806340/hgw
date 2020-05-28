@@ -1,0 +1,83 @@
+<!--pages/distributionCenter/distributionCenter.wxml-->
+<view class="root">
+  <view class="top">
+    <image class="background" src="/weixinImg/yckbg_img@2x.png" />
+    <view class="header">
+      <image class="avatar" src="{{member_avatar}}" />
+      <text>{{member_name}}</text>
+      
+      <view class="brokerage" wx:if="{{is_pyramid}}">
+        <text>我的佣金：</text>
+        <text class="price">¥{{integer_bit}}</text>
+        <text>.{{decimal_place}} 元</text>
+        <view class="withdraw" bindtap="gotoWithdraw">提现</view>
+      </view>
+      <view class="distribution" bindtap="applyToDealer" wx:else>申请成为分销商</view>
+      <view class="segment" wx:if="{{is_pyramid}}">
+        <view class="item br" bindtap="gotoOrder">
+          <image class="order" src="/weixinImg/distributionOrder_icon@2x.png"></image>
+          <text>分销订单</text>
+        </view>
+        <view class="item" bindtap="gotoRecord">
+          <image src="/weixinImg/withdraw_icon@2x.png"></image>
+          <text>提现记录</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="decoration">
+    <scroll-view scroll-x class="scroll-header" scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+      <block wx:key="unqui" wx:for="{{classifies}}">
+        <view data-id="{{item.gc_id}}" class="classText {{classifyId == item.gc_id?'ons':''}}" bindtap="tabClick">
+          {{item.gc_name}}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <scroll-view scroll-y class="scroll" bindscrolltolower="getMore">
+    <block wx:for="{{commodities}}" wx:key="commodity">
+      <view class="cell" bindtap="goGoodsDetail" data-item="{{item}}">
+        <image src="{{item.goods_image}}"></image>
+        <view class="container">
+          <view class="header" wx:if="{{is_pyramid}}">
+            <text class="name">{{item.goods_name}}</text>
+            <button class='distribution' open-type='share' data-index="{{index}}">
+              <image src='/weixinImg/distributionCenter_icon@2x.png' />
+              <text>一键分销</text>
+            </button>
+          </view>
+          <text class="name" wx:else>{{item.goods_name}}</text>
+          <view class="content">
+            <text class="price">¥{{item.goods_price}}</text>
+            <text class="info" wx:if="{{is_pyramid}}">佣金：¥{{item.retail_money}}</text>
+            <view class="not_permission" wx:else>
+              <text>成为分销商</text>
+              <text class="brokerage">查看佣金</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <view class='list_bottom' wx:if="{{!is_bottom && commodities.length > 0}}">
+      <view style='-webkit-flex:1'></view>
+      <view class='line'></view>
+      <view class='list_bottom_t'>已经到底了</view>
+      <view class='line'></view>
+      <view style='-webkit-flex:1'></view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="model_screen" wx:if="{{distributionStatus}}"></view>
+<view animation="{{animationData}}" class="model_attr_box" wx:if="{{distributionStatus}}">
+  <form bindsubmit="formSubmit" report-submit="true">
+    <image class="background" src="/weixinImg/sqdl_bg@2x.png" />
+    <view class='store_layout'>
+      <text>为您的店铺取一个名字吧</text>
+      <input name="storeName" placeholder='您的店铺名称' placeholder-class='placeholder' maxlength="30"></input>
+      <button formType="submit">确认</button>
+    </view>
+    <image class="delete" src='/weixinImg/tc_icon@2x.png' mode='aspectFit' catchtap="hideModal" />
+  </form>
+</view>

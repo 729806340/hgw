@@ -1,0 +1,48 @@
+<scroll-view scroll-y class="Box">
+  <view class='infoBox'>
+    <view class="info_itemBox">
+      <view class="info_i_tit">计划送达日期</view>
+      <view class="info_i_get">{{dataList.delivery_time}}</view>
+    </view>
+    <view class="info_itemBox">
+      <view class="info_i_tit">司机</view>
+      <view class="info_i_get">{{dataList.driver_name}}</view>
+    </view>
+    <view class="info_itemBox">
+      <view class="info_i_tit">司机电话</view>
+      <view class="info_i_get">{{dataList.driver_phone}}</view>
+    </view>
+    <view class="info_itemBox">
+      <view class="info_i_tit">配送小区</view>
+      <view class="info_i_get">{{dataList.address}}</view>
+    </view>
+    <view class="info_itemBox">
+      <view class="info_i_tit">合伙人</view>
+      <view class="info_i_get">{{dataList.tuan_name}}</view>
+    </view>
+    <view class="info_itemBox">
+      <view class="info_i_tit">合伙人电话</view>
+      <view class="info_i_get">{{dataList.tuan_phone}}</view>
+    </view>
+  </view>
+
+  <view class="goodsBox">
+    <view class="goods_num">共<text>{{data.length}}</text>件商品</view>
+    <block wx:for='{{data}}' >
+      <view class="list_goodsBox">
+        <image src="{{item.goods_image}}" class="list_g_img"></image>
+        <view class="list_g_info">
+          <view class="list_g_name">{{item.goods_name}}</view>
+          <view class="list_g_gg">{{item.guige}}</view>
+        </view>
+        <view class="list_g_prc">
+          <view class="t">x {{item.goods_num}}</view>
+        </view>
+      </view> 
+    </block>
+  </view>
+
+  <view class="bottomBox" wx:if='{{if_show}}'>—————— 暂无更多数据 ——————</view>
+
+  <view class="btnBox" bindtap="goBtn" bindgetuserinfo="bindgetuserinfo">确认签收</view>
+</scroll-view>

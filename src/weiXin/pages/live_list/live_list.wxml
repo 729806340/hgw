@@ -1,0 +1,44 @@
+<!--pages/live_list/live_list.wxml-->
+<scroll-view scroll-y="true" style="height: 100vh;">
+    <block wx:for='999999999999'>
+        <view class='block'>
+          <view class='top'>
+
+            <view class='img'>
+              <image src='../../weixinImg/yckbg_img@2x.png'></image>
+            </view>
+
+            <view class='txt'>
+                <view class='t_1'>武汉喊吃虾！！！！！</view>
+                <view class='t_2'>
+                  <view class='tt_1'>
+                    <image src='../../weixinImg/wlgs_icon@2x.png'></image>
+                    <view class='t_c'>直播中</view>
+                  </view>  
+                  <view class='tt_2'>进入直播间</view>
+                </view>
+            </view>
+
+          </view>
+
+          <view class='top'>
+
+            <view class='img'>
+              <image src='../../weixinImg/mjtb_icon@2x.png'></image>
+            </view>
+
+            <view class='txt'>
+                <view class='t_1'>武汉喊吃虾！！！！！</view>
+                <view class='t_2'>
+                  <view class='tt_1'>
+                    <image src='../../weixinImg/wlgs_icon@2x.png'></image>
+                    <view class='t_c'>05月18日  20：00 开播</view>
+                  </view>  
+                  <view class='tt_3'>即将开播</view>
+                </view>
+            </view>
+
+          </view>
+        </view>
+    </block>
+</scroll-view>

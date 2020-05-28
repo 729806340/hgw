@@ -1,0 +1,144 @@
+<view class='root'>
+
+  <form bindsubmit="formSubmit" bindreset="formReset">
+  <scroll-view scroll-y class='scroll'>
+    <view class='sale_type' bindtap='showModal' data-type='1' data-refund="{{refund}}">
+      <text class='sale_type_f1'>售后类型</text>
+      <view class='sale_type_f2' wx:if="{{refund==1}}">
+        <text class='sale_sel'>仅退款</text>
+        <image src='../../weixinImg/more_icon@2x.png'></image>
+      </view>
+      <view class='sale_type_f2' wx:else>
+        <text class='sale_sel'>{{refund_value==""?'请选择':refund_value}}</text>
+        <image src='../../weixinImg/more_icon@2x.png'></image>
+      </view>
+    </view>
+
+    
+
+    <!-- 单个商品 -->
+    <view class='sale_goods' wx:if="{{refund==1?false:true}}">
+      <image src='{{goods.goods_img_360}}' class='goods_img'></image>
+      <view class='goods_info'>
+        <view class='goods_info_name'>
+          <view class='info_gg'>
+            <image wx:if="{{goods.is_xianshi==''?false:true}}" src='../../weixinImg/ms_icon@2x.png' class='info_img'></image>
+            {{goods.goods_name}}</view>
+        </view>
+        <text class='quantity'>规格：{{goods.goods_spec==''?'默认':goods.goods_spec}}</text>
+      </view>
+      <view class='order_goods_col'>
+        <view class='order_goods_t2'>¥{{goods.goods_pay_price}}</view>
+        <view class='shop_t1'>x{{goods.goods_num}}</view>
+      </view>
+    </view>
+    <!-- 整单退 -->
+    <view class='allRefund'>
+      <view class='goods_condition all'>
+        <text class='all_name'>订单编号：</text>
+        <text class='all_num'>{{order.order_sn}}</text>
+      </view>
+      <view class='goods_condition all'>
+        <text class='all_name'>下单时间：</text>
+        <text class='all_num'>{{order.order_add_time}}</text>
+      </view>
+    </view>
+
+    <!-- 退款 -->
+    <view class='{{refund==1?"goods_statuss":"goods_status"}}'>
+      <!-- <view class='goods_condition' wx:if="{{refund==1?false:true}}">
+        <text class='cons_n'>货物状态</text>
+        <view class='sale_type_f2'>
+          <text class='sale_sel2'>未收到货</text>
+          <image src='../../weixinImg/more_icon@2x.png'></image>
+        </view>
+      </view> -->
+      <view class='goods_condition' wx:if="{{refund==1?false:true}}" bindtap='showModal' data-type='2'>
+        <text class='cons_n'>退款原因</text>
+        <view class='sale_type_f2'>
+          <text class='sale_sel {{reason_id?"sale_selchange":""}}'>{{reason_id?values:'请选择'}}</text>
+          <image src='../../weixinImg/more_icon@2x.png'></image>
+        </view>
+      </view>
+      <view class='goods_condition sa'>
+        <text class='cons_n'>退款金额：</text>
+        <text  wx:if="{{refund==1}}" class='money'>￥{{refund==1?order.allow_refund_amount:goods.goods_pay_price}}</text>
+        <input wx:else class='value_good' type="digit" value="{{moneys}}"  bindfocus="fouc"  bindblur="blur" bindinput="getMoney"></input>
+        <text wx:if="{{refund!=1}}" class="chose">*金额可选</text>
+      </view>
+    </view>
+
+    <view class='fee'>最多¥{{refund==1?order.allow_refund_amount:goods.goods_pay_price}}，含发货运费¥0.00</view>
+
+    <view class='refund_desc'>
+      <view class='goods_condition sa'>
+        <text class='cons_n'>退款说明：</text>
+        <input class='cons_n'  bindinput='Refunds' placeholder='选填' placeholder-class='cons_con' maxlength='20'></input>
+      </view>
+    </view>
+
+    <view class='refund_pic'>
+      <text class='pic_txt'>上传凭证</text>
+      <view class='goods_btm'>
+      <block wx:for="{{productInfo}}">
+        <view class="btm_pics">
+            <image  wx:if="{{item.src}}" catchtap="show" data-index="{{index}}" src='{{item.src}}' class='btm_pic'></image>
+            <view catchtap='clearImg' wx:if="{{item.checked}}" data-index="{{index}}" class="deltel">
+             <image src="../../weixinImg/pldelete_icon@2x.png" class="img"></image>
+           </view>
+        </view>
+      </block>
+        <view class='add_pic' bindtap="addimg">
+          <image src='../../weixinImg/camera_icon@2x.png'></image>
+          <text>添加图片</text>
+        </view>
+      </view>
+    </view>
+ </scroll-view>
+    <view class='submit_com'>
+      <button formType="submit" class='submit_btn'>提交</button>
+    </view>
+        <!-- 售后类型弹窗 -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{showModalStatus}}">
+      <view class='screen_a'>
+        <view class='commo_title'>售后类型</view>
+        <view class='chooseArea'>
+          <view class='chooseDesc' data-type="1" bindtap='change_pay_type'>
+            <view class='cf'>
+              <image src='../../weixinImg/tcjtk_icon@2x.png'></image>
+              <text class='cn'>仅退款</text>
+            </view>
+            <image wx:if="{{refund==1}}" src='../../weixinImg/swmr1_img@2x.png' class='chooseImg'></image>
+            <image wx:else src='{{refund_type==1?"../../weixinImg/swmr1_img@2x.png":"../../weixinImg/swmr2_img@2x.png"}}' class='chooseImg'></image>
+          </view>
+          <view class='chooseDesc' wx:if="{{refund==1?false:true}}" bindtap='change_pay_type' data-type="2">
+            <view class='cf'>
+              <image src='../../weixinImg/tcthtk_img@2x.png'></image>
+              <text class='cn'>退货退款</text>
+            </view>
+            <image src='{{refund_type==2?"../../weixinImg/swmr1_img@2x.png":"../../weixinImg/swmr2_img@2x.png"}}' class='chooseImg'></image>
+          </view>
+        </view>
+        <!-- <button class='confirm'  catchtap="hideModal">确定</button> -->
+      </view>
+    </view>
+    <!-- 退款原因弹窗 -->
+    <view class="commodity_screen" bindtap="hideModal" wx:if="{{show}}"></view>
+    <view animation="{{animationData}}" class="commodity_attr_box" wx:if="{{show}}">
+      <view class='screen_a'>
+        <view class='commo_title'>退款原因</view>
+        <view class='chooseArea'>
+          <view class='chooseDesc' wx:for="{{reason_list}}" data-reason_id='{{item.reason_id}}' data-index="{{index}}" bindtap='checkreson_id'>
+            <view class='cf'>
+              <text class='cn'>{{item.reason_info}}</text>
+            </view>
+            <image src='{{item.chose==true?"../../weixinImg/swmr1_img@2x.png":"../../weixinImg/swmr2_img@2x.png"}}' class='chooseImg'></image>
+          </view>
+        </view>
+        <!-- <button class='confirm'  catchtap="hideModal">确定</button> -->
+      </view>
+    </view>
+  </form>
+ 
+</view>

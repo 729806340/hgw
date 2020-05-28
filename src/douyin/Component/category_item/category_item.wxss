@@ -1,0 +1,32 @@
+.col {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+}
+.scroll-header {
+  width: 100vw;
+  background: #fff;
+  display: flex;
+  white-space: nowrap;
+  border-bottom: solid 2rpx #f4f4f4;
+  padding: 0 20rpx;
+}
+/* .scroll-header :last-child {
+  margin-right: 40rpx;
+} */
+
+.scroll-header .classText {
+  display: inline-block;
+  font-size: 28rpx;
+  height: 86rpx;
+  line-height: 92rpx;
+  margin: 0 20rpx;
+  color: #222;
+}
+.ons {
+  color: #333 !important;
+  border-bottom: 4rpx solid #2eb772 !important;
+}

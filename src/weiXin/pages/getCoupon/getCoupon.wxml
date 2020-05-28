@@ -1,0 +1,14 @@
+<view>
+  <view class="input-item">
+    <label>
+      <input class="input-text" name="coupon_pass" bindinput="getCouponPass" placeholder-class='placeholder' placeholder="请输入20位店铺代金券卡密号" type="text"></input>
+    </label>
+  </view>
+  <view class="input-item">
+    <label>
+      <input class="input-text " placeholder-class='placeholder' name="secret_code" placeholder="请输入验证码" bindinput='getSecretCode'></input>
+       <canvas class='get-code canvas' style="width:{{cvs.width}};height:{{cvs.height}};" canvas-id="canvas" bindtap='onReady'></canvas>
+    </label>
+  </view>
+  <button disabled='{{disabled}}' bindtap='getCoupon'>确认</button>
+</view>

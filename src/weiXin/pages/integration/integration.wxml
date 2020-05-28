@@ -1,0 +1,23 @@
+<view>
+  <scroll-view scroll-y="true" class='scroll' bindscrolltoupper="refresh" bindscrolltolower="getMore">
+    <view class='integrate_title'>
+      <image src='/weixinImg/wdjfbg_img@2x.png'></image>
+      <view class='inte_info'>
+        <text>我的积分</text>
+        <text class='inte_num'>{{points}}</text>
+      </view>
+    </view>
+    <view wx:if="{{has_log}}" wx:for="{{log_list}}" wx:key="unqui">
+      <view class='integrate_con' data-item='{{item}}'>
+        <view class='l_con'>
+          <text class='nor'>{{item.stagetext}}</text>
+          <text class='small7'>{{item.pl_desc}}</text>
+        </view>
+        <view class='r_con'>
+          <text class='red'>{{item.pl_points}}</text>
+          <text class='smallB'>{{item.addtimetext}}</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

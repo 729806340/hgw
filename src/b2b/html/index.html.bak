@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>首页展示</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.fullPage.css" />
+	</head>
+
+	<body>
+
+		<div class="wrapper">
+			<div class="header">
+				<div class="links">
+					<div class="links-m">
+						<a href="#">友情链接</a>
+						<ul>
+							<li>
+								<a href="http://www.hangowa.com" target="_blank">汉购网</a>
+							</li>
+							<li>
+								<a href="http://www.hangochina.com" target="_blank">汉贸国际</a>
+							</li>
+							<li>
+								<a href="http://www.tujiago.com" target="_blank">土家购</a>
+							</li>
+							<li>
+								<a href="http://fuwu.snjgo.com" target="_blank">神农架购</a>
+							</li>
+							<li>
+								<a href="http://www.egowork.com" target="_blank">火凤凰云</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="headerCon">
+					<a href="#" class="logo">
+						<img src="img/logo_img.png" />
+					</a>
+					<ul class="header-nav" id="headerNav">
+						<li data-menuanchor="page1" class="active">
+							<a href="#page1">下载APP</a>
+						</li>
+						<li data-menuanchor="page2">
+							<a href="#page2">关于农猫</a>
+						</li>
+						<li data-menuanchor="page3">
+							<a href="#page3">招商加盟</a>
+						</li>
+						<li data-menuanchor="page4">
+							<a href="#page4">农猫商机</a>
+						</li>
+						<li data-menuanchor="page5">
+							<a href="#page5">加盟支持</a>
+						</li>
+						<li data-menuanchor="page6">
+							<a href="#page6">农猫优势</a>
+						</li>
+						<li data-menuanchor="page7">
+							<a href="#page7">联系我们</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="dowebok" class="fullpage-wrapper">
+				<div class="fp-section" style="background: #fffbfa;">
+					<div class="downloadPage">
+						<img src="img/page1_img.png" />
+						<a href="#ios" class="ios"></a>
+						<a href="#android" class="android"></a>
+					</div>
+				</div>
+				<div class="fp-section" data-anchor="page2" style="background: #fff;">
+					<div class="downloadPage">
+						<img src="img/page2_img.png" />
+					</div>
+					<img class="bimg" src="img/bg_img02.png" />
+				</div>
+				<div class="fp-section businessCooperation" data-anchor="page3">
+					<div class="downloadPage">
+						<img src="img/page3_img.png" />
+						<a href="#canyu" class="canyu_btn">立即参与</a>
+					</div>
+				</div>
+				<div class="fp-section" data-anchor="page4" style="background: #fff;">
+					<div class="downloadPage">
+						<img src="img/page4_img.png" />
+					</div>
+					<img class="bimg" src="img/bg_img04.png" />
+				</div>
+				<div class="fp-section" data-anchor="page5" style="background: #fff;">
+					<div class="downloadPage">
+						<img src="img/page5_img.png" />
+					</div>
+				</div>
+				<div class="fp-section businessCooperation2" data-anchor="page6">
+					<div class="downloadPage">
+						<img src="img/page6_img.png" />
+						<!--<img class="bimg" src="img/bg_img06.png" />-->
+					</div>
+				</div>
+				<div class="fp-section businessCooperation3" data-anchor="page7">
+					<div class="downloadPage">
+						<img src="img/page7_img.png" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.9.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/jquery.fullPage.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+			$('#dowebok').fullpage({
+				navigationTooltips: ['下载APP', '关于农猫', '招商加盟', '农猫商机', '加盟支持', '农猫优势', '联系我们'],
+				navigationColor: ['#fffbfa', '#fff', '#fff', '#fff', '#fff', '#fff', '#fff'],
+				anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6', 'page7'],
+				menu: '#headerNav',
+				continuousVertical: true
+			});
+		});
+		$(document).ready(function() {
+			var minwidth = $(window).width(); //获取屏幕宽度
+			if(minwidth < 400) {
+				window.location.href = "app.html"
+			}
+		})
+	</script>
+
+</html>

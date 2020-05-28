@@ -1,0 +1,64 @@
+###sap接口相关
+
+###配置文件地址：data/config/sap.config.php
+
+###提供SAP回调函数入口：
+http://www2.hangowa.com/shop/api/sap/callback.php?sign=fac58a7560f573b6c238948359c01085&code=交易码
+sign=fac58a7560f573b6c238948359c01085 //固定值  可在 shop/control/sap.php中修改
+code 请参照交易码说明
+
+###定时任务入口：
+http://www2.hangowa.com/crontab/index.php?act=sap&code=交易码
+code 请参照交易码说明
+
+推送顺序：sap201->sap101->sap401->sap301
+
+###交易码code说明：
+'sap101' => 添加商品到SAP
+'sap102' => 更新商品
+'sap201' => 添加商家到SAP
+'sap202' => 更新商家
+'sap301' => 交货单
+'sap401' => 收款
+'sap402' => 退款
+
+
+########业务规则#########
+
+### sap102 更新商品
+1、修改了商品名称、商品分类ID、商品价格、市场价、商品状态或运费模板ID时，才会更新到SAP
+2、平台下架违规商品时，也会更新到SAP
+
+### sap202 更新商家
+平台管理后台修改商家任何信息都会更新到SAP
+
+### sap401 收款
+目前只推送已支付的订单收款数据
+
+
+-------------------数据库相关-------------------
+
+alter table shopwwi_store add `send_sap` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '推送标识：0=>未推送,1=>推送中,2=>已推送';
+alter table shopwwi_store add `edit_sap` enum('0','1','2') NOT NULL DEFAULT '2' COMMENT '更新标识：0=>未更新,1=>更新中,2=>已更新';
+alter table shopwwi_goods add `send_sap` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '推送标识：0=>未推送,1=>推送中,2=>已推送';
+alter table shopwwi_goods add `edit_sap` enum('0','1','2') NOT NULL DEFAULT '2' COMMENT '更新标识：0=>未更新,1=>更新中,2=>已更新';
+alter table shopwwi_orders add `send_sap` enum('0','1','2') NOT NULL DEFAULT '0' COMMENT '推送标识：0=>未推送,1=>推送中,2=>已推送';
+alter table shopwwi_orders add `make_send_time` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '同步收款到SAP的时间' AFTER `payment_time`;
+alter table shopwwi_refund_return add `send_sap` enum('0','2') NOT NULL DEFAULT '0' COMMENT '推送标识：0=>未推送,2=>已推送';
+
+
+DROP TABLE IF EXISTS `shopwwi_sap_log`;
+CREATE TABLE `shopwwi_sap_log` (
+  `log_id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` enum('error','sap101','sap102','sap201','sap202','sap301','sap401','sap402','sap403') NOT NULL DEFAULT 'error' COMMENT '交易码',
+  `method` enum('api','after','callback') NOT NULL DEFAULT 'api',
+  `data` longtext COMMENT '推送或接受的数据',
+  `rel` longtext COMMENT '处理结果',
+  `error` longtext,
+  `add_time` int(10)  unsigned,
+  PRIMARY KEY (`log_id`),
+  KEY `index_code` (`code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='sap接口日志表';
+
+
+---------------------------------------------

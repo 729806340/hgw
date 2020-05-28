@@ -1,0 +1,73 @@
+page {
+  background: #fff;
+}
+
+.card_detail {
+  border-top: 1rpx solid #ededed;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail_block {
+  width: 100%;
+  border-bottom: 1rpx solid #ededed;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.order_num {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24rpx;
+}
+
+.extra_money {
+  font-size: 44rpx;
+  letter-spacing: 0;
+  text-align: right;
+  margin-right: 24rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+}
+
+.green {
+  color: #2eb772;
+}
+
+.red {
+  color: #fe5a4c !important;
+}
+
+.card_con {
+  width: 270rpx;
+  height: 100rpx;
+  margin: 400rpx auto;
+  color: #bbb;
+}
+
+.scroll {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-bottom: 24rpx;
+}
+
+.add_time {
+  font-size: 24rpx;
+  color: #bbb !important;
+  margin: 20rpx 0;
+}
+
+.des {
+  font-size: 26rpx;
+  color: #777;
+  letter-spacing: 0;
+  line-height: 21px;
+  margin-top: 10rpx;
+}

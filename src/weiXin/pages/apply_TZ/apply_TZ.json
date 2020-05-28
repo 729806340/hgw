@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "申请成为团长",
+  "usingComponents": {
+    "nyz_area_picker": "../../Component/nyz_area_picker_2/nyz_area_picker_2"
+  }
+}

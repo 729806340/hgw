@@ -1,0 +1,152 @@
+page{
+  background: #fff;
+}
+.telephone {
+  width: 602rpx;
+  height: 142rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #ededed;
+  position: relative;
+}
+
+.telephone_input {
+  position: absolute;
+  bottom: 30rpx;
+}
+.pa{
+  font-size: 30rpx;
+  color: #ccc;
+}
+.testCode {
+  width: 602rpx;
+  height: 142rpx;
+  margin: 0 auto;
+  border-bottom: 1rpx solid #ededed;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+}
+
+.testCode_input {
+  flex: 1;
+  position: absolute;
+  bottom: 30rpx;
+}
+
+.getCode {
+  flex: 1;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 12rpx;
+  position: absolute;
+  right: 5rpx;
+  bottom: 22rpx;
+  font-size: 15px;
+  color: #2eb772;
+  letter-spacing: 0;
+  text-align: center;
+  width: 200rpx;
+}
+
+.getAllowed {
+  font-size: 15px;
+  color: #2eb772;
+  letter-spacing: 0;
+  text-align: center;
+  border-color: #2eb772 !important;
+  background-color: #fff;
+}
+
+.alreadyGot {
+  flex: 1;
+  height: 70rpx;
+  line-height: 70rpx;
+  padding: 0 12rpx;
+  position: absolute;
+  right: 0;
+  bottom: 10rpx;
+  font-size: 15px;
+  color: #888;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.alreadyGot text {
+  font-size: 15px;
+  color: #2eb772;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.bindNow {
+  width: 602rpx;
+  height: 88rpx;
+  margin: 56rpx auto 0;
+  border-radius: 5px;
+  line-height: 88rpx;
+}
+
+.not_bind {
+  background: #e0e0e0;
+  font-size: 16px;
+  color: #888;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.binded {
+  background: #2eb772;
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: 0;
+  text-align: center;
+  border: 0;
+}
+
+.bottomInfo {
+  width: 602rpx;
+  height: 100rpx;
+  position: absolute;
+  bottom: 105rpx;
+  margin: 0 70rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+.bottomInfo image {
+  width: 96rpx;
+  height: 96rpx;
+  margin-right: 24rpx;
+}
+
+.bottomInfo text {
+  width: 482rpx;
+  font-size: 12px;
+  color: #bbb;
+  letter-spacing: 0;
+  line-height: 22px;
+}
+.alreadyBinded{
+  display: flex;
+  flex-direction: column;
+}
+.alreadyBinded image {
+  width: 258rpx;
+  height: 258rpx;
+  margin: 160rpx auto 80rpx;
+}
+
+.abTxt {
+  font-size: 16px;
+  color: #888;
+  letter-spacing: 0;
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.abNum {
+  font-size: 23px;
+  color: #333;
+  letter-spacing: 0;
+  text-align: center;
+}

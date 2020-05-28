@@ -1,0 +1,142 @@
+<view class='pj_title'>
+  <view class="pj_block {{currentTab == 'all'?'green':''}}" bindtap="tabClick" data-index="all">
+    <text>全部</text>
+    <text class='pj_num'>{{commentAllNum}}</text>
+  </view>
+  <view class="pj_block {{currentTab == '1'?'green':''}}" bindtap="tabClick" data-index="1">
+    <text>好评</text>
+    <text class='pj_num'>{{commentGoodNum}}</text>
+  </view>
+  <view class="pj_block {{currentTab == '2'?'green':''}}" bindtap="tabClick" data-index="2">
+    <text>中评</text>
+    <text class='pj_num'>{{commentNormalNum}}</text>
+  </view>
+  <view class="pj_block {{currentTab == '3'?'green':''}}" bindtap="tabClick" data-index="3">
+    <text>差评</text>
+    <text class='pj_num'>{{commentBadNum}}</text>
+  </view>
+</view>
+
+<scroll-view scroll-y class='comment' bindscrolltolower="getMore">
+  <!-- 所有评论 -->
+  <view class='comment_con' wx:if="{{hasAll}}" wx:for="{{allCommentList}}" wx:key="{{unique}}">
+    <view class='con_one'>
+      <view class='con_title'>
+        <view class='con_title_left'>
+          <image src='{{item.member_avatar}}' class='user_img'></image>
+          <text class='user_name'>{{item.geval_frommembername}}</text>
+          <view class='user_star'>
+            <block wx:for='{{item.geval_scores-0}}' wx:key='un'>
+              <image src='../../weixinImg/star1_icon@2x.png'></image>
+            </block>
+            <block wx:for='{{5-item.geval_scores-0}}' wx:key="un">
+              <image src='../../weixinImg/star2_icon@2x.png'></image>
+            </block>
+          </view>
+        </view>
+        <text class='com_time'>{{item.geval_addtime_str}}</text>
+      </view>
+      <view class='con_con'>
+        {{item.geval_content}}
+        <view class='img_block'>
+          <block wx:if="{{item.geval_image.length>0}}">
+            <view class='con_img' wx:for="{{item.geval_image}}" wx:for-item="item_child" wx:key="uni">
+              <image src='{{item_child}}' bindtap='previewImage' data-url='{{item_child}}' data-item="{{item}}"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 好评 -->
+  <view class='comment_con' wx:if="{{hasGood}}" wx:for="{{goodCommentList}}" wx:key="{{unique}}">
+    <view class='con_one'>
+      <view class='con_title'>
+        <view class='con_title_left'>
+          <image src='{{item.member_avatar}}' class='user_img'></image>
+          <text class='user_name'>{{item.geval_frommembername}}</text>
+          <view class='user_star'>
+            <block wx:for='{{item.geval_scores-0}}' wx:key='un'>
+              <image src='../../weixinImg/star1_icon@2x.png'></image>
+            </block>
+            <block wx:for='{{5-item.geval_scores-0}}' wx:key="un">
+              <image src='../../weixinImg/star2_icon@2x.png'></image>
+            </block>
+          </view>
+        </view>
+        <text class='com_time'>{{item.geval_addtime_str}}</text>
+      </view>
+      <view class='con_con'>
+        {{item.geval_content}}
+        <view class='img_block'>
+          <block wx:if="{{item.geval_image.length>0}}">
+            <view class='con_img' wx:for="{{item.geval_image}}" wx:for-item="item_child" wx:key="uni">
+              <image src='{{item_child}}' bindtap='previewImage' data-url='{{item_child}}' data-item="{{item}}"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 中评 -->
+  <view class='comment_con' wx:if="{{hasNormal}}" wx:for="{{middleCommentList}}" wx:key="{{unique}}">
+    <view class='con_one'>
+      <view class='con_title'>
+        <view class='con_title_left'>
+          <image src='{{item.member_avatar}}' class='user_img'></image>
+          <text class='user_name'>{{item.geval_frommembername}}</text>
+          <view class='user_star'>
+            <block wx:for='{{item.geval_scores-0}}' wx:key='un'>
+              <image src='../../weixinImg/star1_icon@2x.png'></image>
+            </block>
+            <block wx:for='{{5-item.geval_scores-0}}' wx:key="un">
+              <image src='../../weixinImg/star2_icon@2x.png'></image>
+            </block>
+          </view>
+        </view>
+        <text class='com_time'>{{item.geval_addtime_str}}</text>
+      </view>
+      <view class='con_con'>
+        {{item.geval_content}}
+        <view class='img_block'>
+          <block wx:if="{{item.geval_image.length>0}}">
+            <view class='con_img' wx:for="{{item.geval_image}}" wx:for-item="item_child" wx:key="uni">
+              <image src='{{item_child}}' bindtap='previewImage' data-url='{{item_child}}' data-item="{{item}}"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 差评 -->
+  <view class='comment_con' wx:if="{{hasBad}}" wx:for="{{badCommentList}}" wx:key="{{unique}}">
+    <view class='con_one'>
+      <view class='con_title'>
+        <view class='con_title_left'>
+          <image src='{{item.member_avatar}}' class='user_img'></image>
+          <text class='user_name'>{{item.geval_frommembername}}</text>
+          <view class='user_star'>
+            <block wx:for='{{item.geval_scores-0}}' wx:key='un'>
+              <image src='../../weixinImg/star1_icon@2x.png'></image>
+            </block>
+            <block wx:for='{{5-item.geval_scores-0}}' wx:key="un">
+              <image src='../../weixinImg/star2_icon@2x.png'></image>
+            </block>
+          </view>
+        </view>
+        <text class='com_time'>{{item.geval_addtime_str}}</text>
+      </view>
+      <view class='con_con'>
+        {{item.geval_content}}
+        <view class='img_block'>
+          <block wx:if="{{item.geval_image.length>0}}">
+            <view class='con_img' wx:for="{{item.geval_image}}" wx:for-item="item_child" wx:key="uni">
+              <image src='{{item_child}}' bindtap='previewImage' data-url='{{item_child}}' data-item="{{item}}"></image>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+

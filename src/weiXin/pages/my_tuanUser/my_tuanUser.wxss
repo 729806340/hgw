@@ -1,0 +1,153 @@
+page{
+
+}
+.headrow{
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.headBox{
+  width: 100%;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.searchBox{
+  width: 100%;
+  height: 78rpx;
+  display: flex;
+  align-items: center;
+  border: 2rpx solid #DDDDDD;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+.searchBox input{
+  flex: 1;
+  height: 78rpx;
+  line-height: 78rpx;
+  color: #333;
+  font-size: 24rpx;
+  padding: 0 10rpx;
+}
+.searchBox image{
+  width: 26rpx;
+  height: 26rpx;
+  padding: 20rpx;
+}
+.numBox{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+}
+.numBox .itemBox{
+  flex: 1;
+  text-align: center;
+}
+.numBox .itemBox .t{
+  color: #2CCC60;
+  font-size: 56rpx;
+  line-height: 76rpx;
+}
+.numBox .itemBox .b{
+  color: #333;
+  font-size: 28rpx;
+}
+.numBox .item_icon{
+  width: 2rpx;
+  height: 80rpx;
+  background: #ddd;
+}
+.scroll{
+  width: 100vw;
+  height: 100vh;
+  padding: 326rpx 24rpx 24rpx 24rpx;
+  box-sizing: border-box;
+}
+.listBox{
+  width: 100%;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.list_itemBox{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+.list_itemBox .icon{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  line-height: 50rpx;
+  text-align: center;
+  border: 4rpx solid #fff;
+  background: #fff;
+  font-size: 32rpx;
+  color: #333;
+}
+.list_itemBox .icon_1{
+  border-color: #FEDA5D;
+  background: #FCB607;
+  color: #fff;
+}
+.list_itemBox .icon_2{
+  border-color: #DBE9F4;
+  background: #AEB8C2;
+  color: #fff;
+}
+.list_itemBox .icon_3{
+  border-color: #D6A184;
+  background: #FBDCC7;
+  color: #fff;
+}
+.list_itemBox .center{
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+  flex: 1;
+}
+.list_itemBox .center image{
+  width: 86rpx;
+  height: 86rpx;
+  margin-right: 8rpx;
+}
+.list_itemBox .center .t{
+  
+}
+.list_itemBox .center .t .t_t{
+  color: #333;
+  font-size: 28rpx;
+}
+.list_itemBox .center .t .t_b{
+  color: #666;
+  font-size: 20rpx;
+}
+.list_itemBox .rBox{
+  display: flex;
+  align-items: center;
+  width: 136rpx;
+  justify-content: space-between;
+}
+.list_itemBox .rBox text{
+  color: #333;
+  font-size: 28rpx;
+}
+.list_itemBox .rBox image{
+  width: 30rpx;
+  height: 30rpx;
+}
+.bottomBox{
+  width: 100%;
+  padding: 20rpx 0;
+  color: #666;
+  font-size: 24rpx;
+  text-align: center;
+}

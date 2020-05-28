@@ -1,0 +1,16 @@
+<!--pages/scanning_code/scanning_code.wxml-->
+<view class='root'>
+
+<view class='block'>
+  <image src='../../weixinImg/saoma.png' bindtap="getScancode"></image>
+  <view class='text'>扫一扫提货</view>
+</view>
+
+ <!--搜索框-->
+  <view class='search_layout'>
+    <input class='search_txt' bindconfirm='searchClick' placeholder="手机/微信昵称查询" confirm-type="search"  bindinput='searchVal'/>
+    <icon type="search" size="14" class='icon_search' bindtap='searchClick'></icon>
+  </view>
+
+
+  </view>

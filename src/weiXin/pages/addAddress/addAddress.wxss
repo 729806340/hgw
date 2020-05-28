@@ -1,0 +1,258 @@
+page {
+  background-color: #f5f5f5;
+}
+
+.auth-info-container {
+  width: 100vw;
+  margin: auto;
+  padding-top: 10rpx;
+  background-color: #fff;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+label {
+  display: box;
+  display: -webkit-box;
+  display: -moz-box;
+  -webkit-box-align: center;
+  box-align: center;
+}
+
+.auth-info-container .input-item {
+  width: 100%;
+  border-bottom: solid 1rpx #ededed;
+}
+
+.region {
+  position: relative;
+}
+
+.auth-info-container .l-text-name {
+  font-size: 28rpx;
+  color: #555;
+  padding-left: 30rpx;
+  display: block;
+  width: 190rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.placeholder {
+  font-size: 28rpx;
+  color: #aaa;
+}
+
+.input-text {
+  display: block;
+  border: none;
+  padding: 0 10rpx;
+  font-size: 30rpx;
+  height: 80rpx;
+  width: 480rpx;
+}
+
+.auth-info-container .section {
+  padding: 0 10rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  color: #bdbdbd;
+  font-size: 30rpx;
+}
+
+.auth-info-container .h-icon {
+  float: left;
+  width: 30rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+.auth-info-container .h-icon image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.auth-info-container .hint {
+  float: left;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
+  color: #bdbdbd;
+  background: url(../weixinImg/dw_icon@2x.png) 0.4rpx center no-repeat;
+  background-size: 0.4rpx;
+}
+
+.auth-info-container .submit-box {
+  width: 100%;
+  height: 110rpx;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  align-items: center;
+}
+
+.auth-info-container .submit-btn {
+  width: 690rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #2eb772;
+  font-size: 30rpx;
+  color: #fff;
+  border-radius: 8rpx;
+  text-align: center;
+}
+
+.getAddress {
+  font-size: 30rpx;
+  /* width: 450rpx; */
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.addressW {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.belongArea {
+  height: 100rpx;
+  line-height: 100rpx;
+}
+
+.picker_view {
+  width: 300rpx;
+  height: 100rpx;
+}
+
+.picker_view picker-view-column {
+  font-size: 30rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.chooseAddress {
+  display: flex;
+  height: 100rpx;
+  line-height: 100rpx;
+  align-items: center;
+  font-size: 26rpx;
+  color: #ababab;
+  width: 550rpx;
+  padding-left: 20rpx;
+}
+
+.chooseAddress_s {
+  display: flex;
+  height: 100rpx;
+  margin-left: 10rpx;
+  line-height: 100rpx;
+  align-items: center;
+  font-size: 26rpx;
+  color: #333;
+  width: 550rpx;
+}
+
+.chooseAddress text {
+  margin-left: 10rpx;
+}
+
+.switch {
+  margin-left: 380rpx;
+}
+
+.address_col {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  padding-left: 10rpx;
+  flex: 1;
+  box-sizing: border-box;
+  flex-direction: column;
+}
+
+.address_col textarea {
+  padding-top: 10rpx;
+}
+
+.address_t2 {
+  width: 100%;
+  word-break: break-all;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.input_item_row {
+  width: 100vw;
+  height: 144rpx;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+  box-sizing: border-box;
+}
+
+.input_item_name {
+  width: 190rpx;
+  color: #555;
+  font-size: 28rpx;
+  margin-top: -30rpx;
+}
+
+.address_t1 {
+  height: 100%;
+  color: #aaa;
+  font-size: 28rpx;
+  margin-right: 30rpx;
+}
+
+.img_more {
+  width: 26rpx;
+  height: 26rpx;
+}
+
+.address_row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25rpx;
+  padding-bottom: 25rpx;
+  align-items: center;
+}
+
+.area_row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  right: 50rpx;
+  top: 30rpx;
+}

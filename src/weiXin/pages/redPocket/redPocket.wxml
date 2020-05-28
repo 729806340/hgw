@@ -1,0 +1,55 @@
+
+  <view class='pocket'>
+        <!-- tab标签 -->
+     <scroll-view scroll-x class='scroll' scroll-with-animation scroll-left="{{scrollLeftNumber}}">
+       <view class='scroll_bg'>
+         <block wx:for="{{tabs}}" wx:for-index='idx' wx:key="unq">
+           <text data-current='{{idx}}' class="{{currentTab==idx ? 'select' : 'unselect'}}" bindtap='swichNav'>
+             {{item}}
+           </text>
+         </block>
+       </view>
+     </scroll-view>
+
+  <swiper circular='true' current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+    <block wx:for="{{tabs}}" wx:key="unq1">
+      <swiper-item class="swiper-item">
+       <block>
+          <template is="home0" data="{{rpList:rpList}}" />
+        </block>
+      </swiper-item>
+    </block>
+  </swiper>
+  </view>
+
+<template name='home0'>
+  <view class='non_rp' wx:if="{{rpList.length==0}}">
+    <image src='../../weixinImg/hbwtb_icon@2x.png'></image>
+    <text class='c_remind'>您还没有相关的红包</text>
+    <text class='d_remind'>平台红包全场通用</text>
+  </view>
+ <scroll-view scroll-y="true" class='t_scroll' bindscrolltoupper="refresh" bindscrolltolower="getMore" wx:else>
+   <view class='c_block' wx:key="unqui" wx:for="{{rpList}}" data-item='{{item}}'>
+     <image src="{{item.rpacket_state_text == '未使用'?'../../weixinImg/hbbj_img1@2x.png':'../../weixinImg/hbbj_img2@2x1.png'}}" class='bg_img'></image>
+     <view class='top_b'>
+       <image src="{{item.rpacket_state_text == '未使用'?'../../weixinImg/hbtb_icon@2x.png':'../../weixinImg/hbtbh_icon@2x.png'}}"></image>
+       <view class='shop_b'>
+         <text class='s_name'>{{item.rpacket_code}}</text>
+         <text class='s_title'>有效期至：{{item.rpacket_end_date}}</text>
+       </view>
+       <view class='price_b'>
+         <image src="{{item.rpacket_state_text == '未使用'?'':(item.rpacket_state_text =='已使用'?'../../weixinImg/ysy_img@2x.png':'../../weixinImg/ygq_img@2x.png')}}"></image>
+         <view>
+           <text class='dollar'>￥</text>
+           <text class='dollar'>{{item.rpacket_price}}</text>
+         </view>
+         <text class='p_limit'>满{{item.rpacket_limit}}可用</text>
+       </view>
+     </view>
+   </view>
+ </scroll-view>
+</template>
+  
+<view class='btn_bottom'>
+  <button bindtap='getPocket'>领取红包</button>
+</view>

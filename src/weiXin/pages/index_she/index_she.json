@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "汉购网",
+  "navigationBarBackgroundColor":"#2EB772",
+  "navigationBarTextStyle":"white",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": true,
+  "backgroundColor": "#2EB772"
+}

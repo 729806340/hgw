@@ -1,0 +1,410 @@
+<!--template-->
+
+
+<template name="main_template">
+  <block wx:for="{{indexList}}" wx:key="unqui">
+    <!--菜单分类-->
+    <template is="navClass" data="{{iconList:item.list}}" wx:if="{{item.type =='icon'}}" />
+    <!-- 一个专题 -->
+    <template is="home1" data="{{item:item,home1List:item.list}}" wx:if="{{item.type =='home1'}}" />
+    <!-- 横向 -->
+    <template is="goods_rank" data="{{item:item,goods3List:item.list}}" wx:if="{{item.type =='goods3'}}" />
+    <!-- 两个小专题 -->
+    <template is="explode2" data="{{explode:item,explode2List:item.list}}" wx:if="{{item.type == 'explode2' }}" />
+    <!-- 一排两个 -->
+    <template is="right_one" data="{{title:item,item:item.list}}" wx:if="{{item.type =='explode2pic'}}" />
+    <!-- 一排三个有文字 -->
+    <template is="right_two" data="{{title:item,item:item.list}}" wx:if="{{item.type =='explode3pic'}}" />
+    <!-- 新版秒杀-->
+    <template is="home6" data="{{xian_shi:item,xs_m_time}}" wx:if="{{item.type =='home6'}}" />
+    <!-- 秒杀-->
+    <template is="xianshi_more" data="{{ms:item.list.item,xs_time}}" wx:if="{{item.type =='miaosha'}}" />
+    <!-- 秒杀-->
+    <template is="limit_goods" data="{{goods:item.list.goods_list,more_info:item.list.current_xianshi_data,xs_more_time,xian_shi_ids:item.list.config_ids}}" wx:if="{{item.type =='miaosha_more'}}" />
+    <!-- 左一右二 -->
+    <template is="img_three" data="{{item:item.list}}" wx:if="{{item.type =='home2'}}" />
+    <!-- 左二右一 -->
+    <template is="img_four" data="{{item:item.list}}" wx:if="{{item.type =='home4'}}" />
+    <!-- 商品列表 -->
+    <template is="goods" data="{{goods:item.list,lcurl:item.lcurl}}" wx:if="{{item.type =='goods'}}" />
+    <!-- 一行三张图片 -->
+    <template is="explode3" data="{{explode3Img:item.list}}" wx:if="{{item.type =='explode3'}}" />
+    <!-- 一行四张图片 -->
+    <template is="explode4" data="{{explode4Img:item.list}}" wx:if="{{item.type =='explode4'}}" />
+    <!-- 一行多张图片 -->
+    <template is="home3" data="{{home3Img:item.list}}" wx:if="{{item.type =='home3'}}" />
+    <!-- <view class='white_bottom' wx:if="{{index==indexList.length-1}} "></view> -->
+  </block>
+</template>
+
+<!--首页菜单分类模板-->
+<template name="navClass">
+  <view class='nav-class'>
+    <block wx:for='{{iconList}}' wx:key='{{q2}}'>
+      <view class='menuItem' bindtap='goClass' data-class='{{item.data}}' data-type='{{item.type}}'>
+        <image src='{{item.image}}' class='nav-img' mode='aspectFit'></image>
+        <text class='nav-name'>{{item.titlebelow}}</text>
+      </view>
+    </block>
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 一个专题 -->
+<template name="home1">
+  <view class='home1'>
+    <image src='{{home1List.image}}' class='top_img' mode='widthFix' bindtap='GoSome' data-data='{{home1List.data}}' data-type="{{home1List.type}}"> </image>
+    <view class='gray_line'></view>
+  </view>
+</template>
+
+<!-- 两个小专题 -->
+<template name="explode2">
+  <view class='img_two_row two_small'>
+    <image src='{{explode2List[0].image}}' class='img_two'  bindtap='GoSome' data-data='{{explode2List[0].data}}' data-type="{{explode2List[0].type}}"></image>
+    <!-- <view style='width:18rpx'></view> -->
+    <image src='{{explode2List[1].image}}' class='img_two'  bindtap='GoSome' data-data='{{explode2List[1].data}}' data-type="{{explode2List[1].type}}"> </image>
+
+  </view>
+  <view class='gray_line'></view>
+
+</template>
+
+
+
+
+
+<!-- 商品列表 -->
+<template name="goods">
+  <view class='goods_item_layout'>
+    <view class='titleImg' wx:if="{{lcurl==''?false:true}}">
+      <image src='{{lcurl}}'></image>
+    </view>
+    <goods_item goods_list="{{goods}}" bind:goods_event="initRed"></goods_item>
+  </view>
+  <!-- <view class='gray_line'></view> -->
+</template>
+
+
+
+<!-- 横线滚动商品 -->
+<template name="goods_rank">
+  <view style='position:relative;' class='goods_rank'>
+    <view class='goods_title_cxtj' wx:if="{{item.lcurl==''?false:true}}">
+      <image class='jrtj' src='{{item.lcurl}}'></image>
+    </view>
+    <scroll-view scroll-x class='scroll_x'>
+      <view class='rank_row'>
+        <block wx:for='{{goods3List}}' wx:key="q1">
+          <view class='rank_goods_col' bindtap='goGoodsDetail' data-item='{{item}}'>
+            <image src='{{item.goods_image}}' class='rank_img' mode="aspectFill" />
+            <view class='rank_name'>{{item.goods_name}}</view>
+            <view class='rank_name Gprice'>￥{{item.goods_promotion_price}}</view>
+          </view>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 一排两个 -->
+<template name="right_one">
+  <view class='img_two_row two_small'>
+    <view class='img_two_col br'>
+      <view class='godds_title'>
+        <text class='blc'>{{title.stitle}}</text>
+        <text class='grey'>{{title.stitle1}}</text>
+      </view>
+      <view class='pic'>
+        <image src='{{item[0].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[0].data}}' data-type="{{item[0].type}}"> </image>
+        <view style='width:10rpx'></view>
+        <image src='{{item[1].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[1].data}}' data-type="{{item[1].type}}"> </image>
+      </view>
+    </view>
+
+    <view class='img_two_col'>
+      <view class='godds_title'>
+        <text class='blc'>{{title.title}}</text>
+        <text class='grey'>{{title.title1}}</text>
+      </view>
+      <view class='pic'>
+        <image src='{{item[2].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[2].data}}' data-type="{{item[2].type}}"> </image>
+        <view style='width:10rpx'></view>
+        <image src='{{item[3].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[3].data}}' data-type="{{item[3].type}}"> </image>
+      </view>
+    </view>
+
+  </view>
+</template>
+
+
+<!-- 一排三个有文字 -->
+<template name="right_two">
+  <view class='img_two_row'>
+    <view class='blockone br'>
+      <view class='godds_title m0'>
+        <text class='blc'>{{title.stitle}}</text>
+        <text class='grey'>{{title.stitle1}}</text>
+      </view>
+      <image src='{{item[0].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[0].data}}' data-type="{{item[0].type}}"> </image>
+    </view>
+
+    <view class='blockone br'>
+      <view class='godds_title m0'>
+        <text class='blc'>{{title.stitle2}}</text>
+        <text class='grey'>{{title.title}}</text>
+      </view>
+      <image src='{{item[1].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[1].data}}' data-type="{{item[1].type}}"> </image>
+    </view>
+
+    <view class='blockone'>
+      <view class='godds_title m0'>
+        <text class='blc'>{{title.title1}}</text>
+        <text class='grey'>{{title.title2}}</text>
+      </view>
+      <image src='{{item[2].image}}' class='right_one_img1' mode='aspectFill' bindtap='GoSome' data-data='{{item[2].data}}' data-type="{{item[2].type}}"> </image>
+    </view>
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+
+
+<!-- 限时秒杀列表 -->
+<template name="xianshi_more">
+  <!-- <scroll-view scroll-x class='scroll_x'>
+    <view class='ms_top'>
+      <block wx:for="{{xianshi_more.item.xian_shi_list}}">
+        <view class='top_item_col' wx:if="{{cur_index != item.xianshi_id}}">
+          <view class='top_item_t1'>{{item.start_time}}</view>
+          <view class='top_item_t2'>{{item.status_text}}</view>
+        </view>
+        <view class='top_item_col' wx:if="{{cur_index == item.xianshi_id}}">
+          <view class='top_item_t1_1'>{{item.start_time}}</view>
+          <view class='top_item_t2_1'>{{item.status_text}}</view>
+        </view>
+      </block>
+    </view>
+  </scroll-view> -->
+  <view class='rank_title_row'>
+    <view class='rank_top_row'>
+      <image src='../../weixinImg/mszq_icon@2x.png' class='img_sd' mode='aspectFit'></image>
+    </view>
+    <view class='xs_time_row'>
+      <view class='rank_top_t1'>{{ms.info.my_text}}</view>
+      <view class='time_1'>{{xs_time[0]}}</view>
+      <view class='time_2'>:</view>
+      <view class='time_1'>{{xs_time[1]}}</view>
+      <view class='time_2'>:</view>
+      <view class='time_1'>{{xs_time[2]}}</view>
+    </view>
+  </view>
+  <scroll-view scroll-x='true' class='scroll_x'>
+    <view class='col1'>
+      <block wx:for='{{ms.xian_shi.list}}' wx:key="q1">
+        <!-- 秒杀商品item -->
+        <view class='singleTrade'>
+          <image src='{{item.goods_image}}' class='goods-img' mode="aspectFill" bindtap='goGoodsDetail' data-item='{{item}}' />
+          <view class='goods-info' bindtap='goGoodsDetail' data-item='{{item}}'>
+            <view class='goods-name'>{{item.goods_name}}</view>
+            <view class='row_end'>
+              <text class='current-price'>¥{{item.xianshi_price}}</text>
+              <text class='rank_market_price'>¥{{item.goods_price}}</text>
+            </view>
+            <view class='row_end'>
+              <text class='limitQuantity' wx:if="{{item.xianshi_limit>0}}">每人限购{{item.xianshi_limit}}件</text>
+            </view>
+            <view class='row_end'>
+              <!-- <progress percent="60" color="#ff6464" class='progress' stroke-width="10" backgroundColor="pink" /> -->
+              <view class='progress_t1' wx:if="{{item.xianshi_storage>0}}">限抢
+                <text>{{item.xianshi_storage}}</text>
+                件</view>
+              <view class='progress_t2'>已抢{{item.xianshi_sold}}</view>
+            </view>
+          </view>
+          <!-- <image data-index='{{index}}' class="add_cart_img" mode="aspectFit" src='../../weixinImg/jrgwc_icon@2x.png' wx:if="{{item.num==0}}" data-index='{{index}}' data-spec_index='0' catchtap="bindPlus" /> -->
+          <!-- <view class="stepper" wx:if="{{item.num>0}}"> -->
+          <!-- 减号 -->
+          <!-- <text class="{{item.minusStatus}}" catchtap="bindMinus" data-index='{{index}}' data-spec_index='0'>-</text> -->
+          <!-- 数值 -->
+          <!-- <input type="number" bindinput="bindManual" value="{{item.spec_list[0].num}}" data-index='{{index}}' data-spec_index='0' /> -->
+          <!-- 加号 -->
+          <!-- <text class="normal" data-index='{{index}}' data-spec_index='0' bindtap="bindPlus">+</text> -->
+          <!-- </view> -->
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 秒杀 -->
+<template name="limit_goods">
+  <view class='rank_title_row'>
+    <view class='rank_top_row'>
+      <image src='../../weixinImg/mszq_icon@2x.png' class='img_sd' mode='aspectFit'></image>
+    </view>
+    <view class='xs_time_row'>
+      <view class='rank_top_t1'>{{more_info.my_text}}</view>
+      <view class='time_1'>{{xs_more_time[0]}}</view>
+      <view class='time_2'>:</view>
+      <view class='time_1'>{{xs_more_time[1]}}</view>
+      <view class='time_2'>:</view>
+      <view class='time_1'>{{xs_more_time[2]}}</view>
+    </view>
+  </view>
+  <scroll-view scroll-x class='scroll_x'>
+    <view class='rank_row'>
+      <block wx:for="{{goods}}" wx:key='q4'>
+        <view class='rank_goods_row1' bindtap='goGoodsDetail' data-item='{{item}}'>
+          <view class='rank_img_layout'>
+            <image src='{{item.goods_image}}' class='rank_img' mode="aspectFill" />
+            <view class='rank_img_t1' wx:if="{{item.xianshi_storage==item.xianshi_sold}}">已抢光</view>
+            <image class='rank_img_1' src='/weixinImg/yjs_img@2x.png' wx:if="{{more_info.my_text=='活动已结束'}}"></image>
+          </view>
+
+          <view class='rank_goods_col'>
+            <view style='flex:1'></view>
+            <view class='rank_name'>{{item.goods_name}}</view>
+            <view style='flex:1'></view>
+
+            <view class='rank_goods_row'>
+              <view class='rank_price'>￥{{item.xianshi_price}}</view>
+              <view class='rank_market_price'>￥{{item.goods_price}}</view>
+            </view>
+            <view style='flex:1'></view>
+            <view class='rank_goods_t1'>每人限购{{item.xianshi_limit}}件</view>
+            <view style='flex:1'></view>
+
+            <view class='rank_goods_row'>
+              <view class='rank_goods_t2'>限抢</view>
+              <view class='rank_goods_t3'>{{item.xianshi_storage}}</view>
+              <view class='rank_goods_t2'>件</view>
+              <view class='rank_goods_t4'>已抢{{item.xianshi_sold}}</view>
+            </view>
+            <view style='flex:1'></view>
+          </view>
+        </view>
+      </block>
+      <view class='more_rank' bindtap='moreLimit' data-ids="{{xian_shi_ids}}" data-current_id="{{more_info.config_xianshi_id}}">
+        <image src='../../weixinImg/gdms_icon@2x.png'></image>
+      </view>
+    </view>
+  </scroll-view>
+</template>
+
+
+<!-- 秒杀 -->
+<template name="home6">
+  <view scroll-x class='scroll_x'>
+    <view class='r_row'>
+      <block>
+        <view class="ms_list">
+          <view class="ms_bgx"  style="background-image: url('{{xian_shi.back_img}}'); background-size: 100% 100%;">
+              <view class='newx_time'>
+                <view class="min_s">
+                  <view class='time_3'>{{xs_m_time[0]}}</view>
+                  <view class='time_3'>{{xs_m_time[1]}}</view>
+                  <text>天</text>
+                </view>
+                <view class='time_4'>:</view>
+                <view class="min_s">
+                  <view class='time_3'>{{xs_m_time[2]}}</view>
+                  <view class='time_3'>{{xs_m_time[3]}}</view>
+                  <text>时</text>
+                </view>
+                <view class='time_4'>:</view>
+                <view class="min_s">
+                  <view class='time_3'>{{xs_m_time[4]}}</view>
+                  <view class='time_3'>{{xs_m_time[5]}}</view>
+                  <text>分</text>
+                </view>
+                <view class='time_4'>:</view>
+                <view class="min_s">
+                  <view class='time_3'>{{xs_m_time[6]}}</view>
+                  <view class='time_3'>{{xs_m_time[7]}}</view>
+                  <text>秒</text>
+                </view>
+              </view>
+          </view>
+          <view class="ms_goods"  bindtap='goGoodsDetail' data-item ="{{xian_shi.xian_shi}}">
+            <view class="ms_goodsname">
+              <!-- <view style='flex:1'></view> -->
+              <text class='big_name'>{{xian_shi.xian_shi.goods_name}}</text>
+              <view style='flex:1'></view>
+              <view class='mis_name'>原价：￥{{xian_shi.xian_shi.goods_price}}</view>
+               <view style='flex:1'></view>
+              <view class='rank_goods_row'>
+                <view class='mix_name'>秒杀价 :</view>
+                <view class='mix_name_price'>￥{{xian_shi.xian_shi.xianshi_price}}</view>
+              </view>
+              <view style='flex:1'></view>
+            </view>
+            <view class="ms_goodsimg">
+              <image mode="aspectFill" src="{{xian_shi.goods_image}}"></image>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<!-- 左一右二 -->
+<template name="img_three">
+  <view class='totalThree'>
+    <image src='{{item.rectangle1_image}}' class='leftOne br' mode='aspectFill' bindtap='GoSome' data-data='{{item.rectangle1_data}}' data-type="{{item.rectangle1_type}}"></image>
+    <view class='rightTwo'>
+      <image src='{{item.rectangle2_image}}' class='right_One bb' mode='aspectFill' bindtap='GoSome' data-data='{{item.rectangle2_data}}' data-type="{{item.rectangle2_type}}"></image>
+      <image src='{{item.square_image}}' class='right_Two' mode='aspectFill' bindtap='GoSome' data-data='{{item.square_data}}' data-type="{{item.square_type}}"></image>
+    </view>
+
+  </view>
+  <view class='gray_line'></view>
+</template>
+<!-- 左二右一 -->
+<template name="img_four">
+  <view class='totalFour'>
+    <view class='leftTwo'>
+      <image src='{{item.rectangle1_image}}' class='left_One bb' mode='aspectFill' bindtap='GoSome' data-data='{{item.rectangle1_data}}' data-type="{{item.rectangle1_type}}"> </image>
+      <image src='{{item.rectangle2_image}}' class='left_Two br' mode='aspectFill' bindtap='GoSome' data-data='{{item.rectangle2_data}}' data-type="{{item.rectangle2_type}}"></image>
+    </view>
+
+    <view class='rightTwo'>
+      <image src='{{item.square_image}}' class='right_One bl' mode='aspectFill' bindtap='GoSome' data-data='{{item.square_data}}' data-type="{{item.square_type}}"></image>
+    </view>
+
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 一行三张图片 -->
+<template name='explode3'>
+  <view class='explode3'>
+    <block wx:for='{{explode3Img}}' wx:key='qui'>
+      <image src='{{item.image}}' class='explode3Img' mode='widthFix' bindtap='GoSome' data-data='{{item.data}}' data-type='{{item.type}}'></image>
+    </block>
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 一行四张图片 -->
+<template name='explode4'>
+  <view class='explode4'>
+    <block wx:for='{{explode4Img}}' wx:key='qui'>
+      <image src='{{item.image}}' class='explode3Img' mode='aspectFill' bindtap='GoSome' data-data='{{item.data}}' data-type='{{item.type}}'></image>
+    </block>
+  </view>
+  <view class='gray_line'></view>
+</template>
+
+<!-- 一行多个图片 -->
+<template name='home3'>
+  <view class='home3'>
+    <block wx:for='{{home3Img}}' wx:key='qui'>
+      <image src='{{item.image}}' class='explode3Img' bindtap='GoSome' data-data='{{item.data}}' data-type='{{item.type}}' mode="widthFix"></image>
+    </block>
+  </view>
+  <view class='gray_line'></view>
+</template>

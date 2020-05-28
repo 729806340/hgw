@@ -1,0 +1,51 @@
+<view class='titBox'>
+  <image src="../../weixinImg/xtxx_icon@2x.png"></image>
+  <view>目前社区团长仅支持武汉地区，一键发货可支持非武汉区域团长。</view>
+</view>
+
+<view class="ipt_row">
+  <view class="itemBox">
+    <view class="left"><text>*</text>姓名</view>
+    <view class="iptBox">
+      <input class="ipt" bindinput='bindname' value="{{name}}" placeholder="请输入您的真实姓名" placeholder-style="color:#999;"></input>
+    </view>
+  </view>
+  <view class="itemBox">
+    <view class="left"><text>*</text>所在城市</view>
+    <picker bindchange="pickercity" value="{{city_val}}" range="{{city}}">
+      <view class="iptcity {{city_val?'iptcity_333':''}}">{{city_val?city[city_val]:'请选择所在城市'}}</view>
+    </picker>
+  </view>
+  <view class="itemBox" wx:if='{{city_val && city_val == 0}}'>
+    <view class="left"><text>*</text>选择区域</view>
+    <!-- <picker bindchange="pickerregion" value="{{region_val}}" range="{{region}}" range-key="{{'area_name'}}">
+      <view class="iptcity {{region_val?'iptcity_333':''}}">{{region_val?region[region_val].area_name:'请选择所在区域'}}</view>
+    </picker> -->
+    <nyz_area_picker provinces="{{provinces}}" citys="{{citys}}" areas="{{areas}}" multiArray="{{multiArray}}" value="{{value}}">
+      <view class='area_row'>
+        <view class="{{s_map==''?'address_t1':'address_t2'}}">请选择</view>
+        <view style='-webkit-flex:1'></view>
+        <image src='../../weixinImg/more_icon@2x.png' class='img_more' mode='aspectFit' wx:if="{{!order.if_refund_cancel}}"></image>
+      </view>
+    </nyz_area_picker>
+  </view>
+  <view class="itemBox_add" wx:if='{{city_val && city_val == 0}}'>
+    <view class="left"><text>*</text>所在地址</view>
+    <view class="addressBox">
+      <view class="a" bindtap="goMap">
+        <image src="../../weixinImg/dw_icon@2x.png"></image>
+        <view class="{{s_map==''?'':'col333'}}">{{s_map==''?'请选择地址':s_map.name}}</view>
+      </view>
+      <input class="i" bindinput="binddetail" value="{{addressDetail}}" placeholder="可输入更详细地址，如门牌号" placeholder-style="color:#999;"></input>
+    </view>
+  </view>
+  <view class="itemBox">
+    <view class="left"><text>*</text>手机号码</view>
+    <view class="iptBox">
+      <input class="ipt" bindinput="bindphone" value="{{phone}}" type="number" placeholder="您的手机号" placeholder-style="color:#999;"></input>
+      <button class="wx_phone" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">使用微信电话</button>
+    </view>
+  </view>
+</view>
+
+<view class="btnBox" bindtap="submit">提交申请</view>
